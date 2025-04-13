@@ -8,6 +8,9 @@ export const translations = {
       contact: 'Contato',
       bookNow: 'Reservar Agora',
       everyday: 'Todos os dias',
+      closeMenu: 'Fechar Menu',
+      openMenu: 'Abrir Menu',
+      languageSelector: 'Selecionar Idioma',
     },
     hero: {
       headline: 'Seu cão merece mais do que cuidados. Ele merece amor.',
@@ -181,6 +184,9 @@ export const translations = {
       contact: 'Contact',
       bookNow: 'Book Now',
       everyday: 'Every day',
+      closeMenu: 'Close Menu',
+      openMenu: 'Open Menu',
+      languageSelector: 'Select Language',
     },
     hero: {
       headline: 'Your dog deserves more than care. They deserve love.',
@@ -353,6 +359,9 @@ export const translations = {
       contact: 'Contacto',
       bookNow: 'Reservar Ahora',
       everyday: 'Todos los días',
+      closeMenu: 'Cerrar Menú',
+      openMenu: 'Abrir Menú',
+      languageSelector: 'Seleccionar Idioma',
     },
     hero: {
       headline: 'Tu perro merece más que cuidados. Merece amor.',
@@ -527,6 +536,9 @@ export const translations = {
       contact: 'Contact',
       bookNow: 'Réserver Maintenant',
       everyday: 'Tous les jours',
+      closeMenu: 'Fermer le Menu',
+      openMenu: 'Ouvrir le Menu',
+      languageSelector: 'Sélectionner la Langue',
     },
     hero: {
       headline: "Votre chien mérite plus que des soins. Il mérite de l'amour.",
@@ -705,6 +717,9 @@ export const translations = {
       everyday: 'Jeden Tag',
       languages: 'Sprachen',
       appointments: 'Termine',
+      closeMenu: 'Menü schließen',
+      openMenu: 'Menü öffnen',
+      languageSelector: 'Sprache auswählen',
     },
     hero: {
       headline: 'Ein Ort voller Liebe – für Welpen, Erwachsene und Seniorenhunde',

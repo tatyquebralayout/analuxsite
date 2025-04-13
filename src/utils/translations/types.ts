@@ -10,7 +10,7 @@ export interface TranslationSchema {
     submit: string;
     loading: string;
   };
-  
+
   // Header section
   header: {
     home: string;
@@ -20,8 +20,10 @@ export interface TranslationSchema {
     contact: string;
     bookNow: string;
     everyday: string;
+    languages?: string;
+    appointments?: string;
   };
-  
+
   // Hero section
   hero: {
     headline: string;
@@ -29,7 +31,7 @@ export interface TranslationSchema {
     primaryCTA: string;
     secondaryCTA: string;
   };
-  
+
   // Advantages section
   advantages: {
     title: string;
@@ -50,7 +52,7 @@ export interface TranslationSchema {
       description: string;
     };
   };
-  
+
   // Services section
   services: {
     title: string;
@@ -75,6 +77,7 @@ export interface TranslationSchema {
       pricing?: string;
       hours?: string;
       attention?: string;
+      button?: string;
     };
     hotel: {
       title: string;
@@ -84,6 +87,7 @@ export interface TranslationSchema {
       pricing?: string;
       comfort?: string;
       care?: string;
+      button?: string;
     };
     training: {
       title: string;
@@ -102,6 +106,7 @@ export interface TranslationSchema {
       location?: string;
       privatePricing?: string;
       schedule?: string;
+      button?: string;
     };
     taxi: {
       title: string;
@@ -111,6 +116,7 @@ export interface TranslationSchema {
       pricing?: string;
       coverage?: string;
       hours?: string;
+      locationHint?: string;
     };
     grooming: {
       title: string;
@@ -132,7 +138,7 @@ export interface TranslationSchema {
       viewFaq?: string;
     };
   };
-  
+
   // About Us section
   about: {
     title: string;
@@ -142,28 +148,48 @@ export interface TranslationSchema {
     vision?: string;
     values?: string[];
   };
-  
+
   // Team section
   team: {
     title: string;
     button: string;
-    ceo: {
+    ceo?: {
       name: string;
       role: string;
       description: string;
     };
-    manager: {
+    manager?: {
       name: string;
       role: string;
       description: string;
     };
-    trainer: {
+    trainer?: {
+      name: string;
+      role: string;
+      description: string;
+    };
+    member1?: {
+      name: string;
+      role: string;
+      description: string;
+    };
+    member2?: {
+      name: string;
+      role: string;
+      description: string;
+    };
+    member3?: {
+      name: string;
+      role: string;
+      description: string;
+    };
+    member4?: {
       name: string;
       role: string;
       description: string;
     };
   };
-  
+
   // Testimonials section
   testimonials: {
     title: string;
@@ -174,7 +200,7 @@ export interface TranslationSchema {
       pet: string;
     }>;
   };
-  
+
   // Gallery section
   gallery: {
     title: string;
@@ -182,8 +208,9 @@ export interface TranslationSchema {
     viewImage?: string;
     viewAll: string;
     instagram: string;
+    sectionTitle?: string;
   };
-  
+
   // FAQ section
   faq: {
     title: string;
@@ -193,7 +220,7 @@ export interface TranslationSchema {
       answer: string;
     }>;
   };
-  
+
   // Contact section
   contact: {
     title: string;
@@ -210,8 +237,13 @@ export interface TranslationSchema {
     promise: string;
     or: string;
     successMessage: string;
+    requiredFields?: string;
+    dogCountOptions?: string[];
+    dogSizeOptions?: string[];
+    serviceOptions?: string[];
+    message?: string;
   };
-  
+
   // Location section
   location: {
     title: string;
@@ -220,8 +252,12 @@ export interface TranslationSchema {
     taxiDescription: string;
     parking: string;
     parkingDescription: string;
+    city?: string;
+    phone?: string;
+    email?: string;
+    hours?: string;
   };
-  
+
   // Footer section
   footer: {
     weekdays: string;
@@ -237,7 +273,7 @@ export interface TranslationSchema {
     subscribeSuccess: string;
     rights: string;
   };
-  
+
   // Partnership page
   partnership: {
     title: string;
@@ -252,11 +288,128 @@ export interface TranslationSchema {
     };
     cta: string;
   };
-  
+
   // 404 Not found page
   notFound: {
     title: string;
     message: string;
     backHome: string;
+  };
+
+  // Hundebetreuung page
+  hundebetreuungPage?: {
+    intro?: {
+      p1?: string;
+      p2?: string;
+      p3?: string;
+    };
+    pricing?: {
+      title?: string;
+      daycareTitle?: string;
+      pricePerDay?: string;
+      vatInfo?: string;
+      pickupInfoTitle?: string;
+      pickupLine1?: string;
+      pickupLine2?: string;
+      pickupLine3?: string;
+      pickupLine4?: string;
+      pickupLine5?: string;
+    };
+  };
+
+  // Hundetraining page
+  hundetrainingPage?: {
+    intro?: {
+      p1?: string;
+      p2?: string;
+      p3?: string;
+    };
+    socialTraining?: {
+      title?: string;
+      detailsTitle?: string;
+      when?: string;
+      duration?: string;
+      location?: string;
+      groups?: string;
+      pricingTitle?: string;
+      priceSingle?: string;
+      pricePackage?: string;
+      vatInfo?: string;
+      descriptionTitle?: string;
+      descriptionP1?: string;
+      descriptionP2?: string;
+      descriptionP3?: string;
+      descriptionP4?: string;
+      descriptionExamplesTitle?: string;
+      descriptionExamples?: string[];
+      descriptionP5?: string;
+      descriptionP6?: string;
+      socialWalkingTitle?: string;
+      socialWalkingText?: string;
+      socialTrainingDefTitle?: string;
+      socialTrainingDefText?: string;
+    };
+    impulseControl?: {
+      title?: string;
+      detailsTitle?: string;
+      when?: string;
+      duration?: string;
+      location?: string;
+      groups?: string;
+      pricingTitle?: string;
+      priceSingle?: string;
+      pricePackage?: string;
+      vatInfo?: string;
+      descriptionTitle?: string;
+      descriptionP1?: string;
+      descriptionP2?: string;
+      descriptionLearningsTitle?: string;
+      descriptionLearnings?: string[];
+      descriptionGoal?: string;
+    };
+    leashTraining?: {
+      title?: string;
+      detailsTitle?: string;
+      pricingTitle?: string;
+      priceSingle?: string;
+      pricePackage?: string;
+      vatInfo?: string;
+      descriptionTitle?: string;
+      descriptionP1?: string;
+      descriptionP2?: string;
+      descriptionP3?: string;
+      descriptionP4?: string;
+      descriptionP5?: string;
+      trainingDetailsTitle?: string;
+      duration?: string;
+      participants?: string;
+      location?: string;
+      stimulusLevel?: string;
+      goalTitle?: string;
+      goalText?: string;
+    };
+    privateLesson?: {
+      title?: string;
+      detailsTitle?: string;
+      descriptionP1?: string;
+      goal?: string;
+      pricingTitle?: string;
+      priceSingle?: string;
+      pricePackage?: string;
+      travelCost?: string;
+      closing?: string;
+    };
+    onlineConsulting?: {
+      title?: string;
+      detailsTitle?: string;
+      descriptionP1?: string;
+      descriptionP2?: string;
+      descriptionP3?: string;
+      descriptionP4?: string;
+      descriptionP5?: string;
+      pricingTitle?: string;
+      priceConsultation?: string;
+      travelCost?: string;
+    };
   };
 }

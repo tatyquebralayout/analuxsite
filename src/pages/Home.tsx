@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import Hero from '../components/home/Hero';
 import Advantages from '../components/home/Advantages';
 import Services from '../components/home/Services';
@@ -13,7 +13,7 @@ import ContactSection from '../components/home/ContactSection';
 
 /**
  * Componente da página inicial
- * 
+ *
  * Agrega todos os componentes que formam a página inicial,
  * obtendo o idioma atual do contexto de idioma.
  */
