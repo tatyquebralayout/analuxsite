@@ -1,0 +1,8 @@
+// Flag SVG icons for language selector
+export const flags = {
+  pt: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"><rect width="20" height="15" fill="#009b3a"/><path d="M10,2.174l7.5,5.326L10,12.826l-7.5-5.326Z" fill="#fedf00"/><circle cx="10" cy="7.5" r="3.3" fill="#002776"/><path d="M7.5,7.5c0-1.381,.839-2.565,2.034-3.068c-.486-.103-.99-.158-1.509-.158-3.979,0-7.208,3.229-7.208,7.208,0,.519,.055,1.023,.158,1.509,.503-1.195,1.687-2.034,3.068-2.034,1.839,0,3.333-1.494,3.333-3.333,0-.042-.001-.083-.003-.125h.127Z" fill="#fff"/></svg>`,
+  en: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"><rect width="20" height="15" fill="#012169"/><path d="M20,0l-20,15m0-15l20,15" stroke="#fff" stroke-width="3"/><path d="M20,0l-20,15m0-15l20,15" stroke="#c8102e" stroke-width="2"/><path d="M10,0v15m-10-7.5H20" stroke="#fff" stroke-width="5"/><path d="M10,0v15m-10-7.5H20" stroke="#c8102e" stroke-width="3"/></svg>`,
+  es: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"><rect width="20" height="15" fill="#c60b1e"/><rect width="20" height="7.5" y="3.75" fill="#ffc400"/><path d="M5.5,7.5h1v1h-1v-1Z" fill="#c60b1e"/></svg>`,
+  fr: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"><rect width="20" height="15" fill="#fff"/><rect width="6.667" height="15" fill="#002654"/><rect width="6.667" height="15" x="13.333" fill="#ce1126"/></svg>`,
+  de: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"><rect width="20" height="15" fill="#000"/><rect width="20" height="10" y="5" fill="#dd0000"/><rect width="20" height="5" y="10" fill="#ffce00"/></svg>`
+};
