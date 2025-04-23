@@ -8,7 +8,6 @@ import { TranslationSchema } from '../../types';
 
 interface ContactFormProps {
   language: string;
-  onClick?: (e: React.MouseEvent) => void;
 }
 
 // Prevenir comportamentos globais que possam causar refresh
@@ -24,7 +23,26 @@ if (typeof window !== 'undefined') {
   );
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ language, onClick }) => {
+const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
+  const t = translations[language as keyof typeof translations] as TranslationSchema;
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    dogCount: '1',
+    dogSize: 'small',
+    service: 'daycare',
+    message: '',
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   // Inicializa o EmailJS no carregamento do componente
   useEffect(() => {
     try {
@@ -50,26 +68,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ language, onClick }) => {
 
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, []);
-
-  const t = translations[language as keyof typeof translations] as TranslationSchema;
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    dogCount: '1',
-    dogSize: 'small',
-    service: 'daycare',
-    message: '',
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  }, [isSubmitting]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -228,17 +227,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ language, onClick }) => {
     return false;
   };
 
-  // Função de botão com captura de eventos múltipla
-  const buttonClickHandler = (e: React.MouseEvent) => {
-    // Usar o manipulador global se fornecido
-    if (onClick) {
-      onClick(e);
-    }
-
-    // Prevenção local
-    handleSubmit(e);
-  };
-
   const inputVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
@@ -344,236 +332,196 @@ const ContactForm: React.FC<ContactFormProps> = ({ language, onClick }) => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <motion.div
-          className="mb-4"
-          variants={inputVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          custom={0}
-        >
-          <label htmlFor="name" className="form-label">
-            {t.contact?.name || 'Name'}
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
-        </motion.div>
-
-        <motion.div
-          className="mb-4"
-          variants={inputVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          custom={1}
-        >
-          <label htmlFor="phone" className="form-label">
-            {t.contact?.phone || 'Phone'}
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
-        </motion.div>
-
-        <motion.div
-          className="mb-4"
-          variants={inputVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          custom={2}
-        >
-          <label htmlFor="email" className="form-label">
-            {t.contact?.email || 'Email'}
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
-        </motion.div>
-
-        <motion.div
-          className="grid grid-cols-2 gap-4 mb-4"
-          variants={inputVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          custom={3}
-        >
-          <div>
-            <label htmlFor="dogCount" className="form-label">
-              {t.contact?.dogCount || 'Number of Dogs'}
-            </label>
-            <select
-              id="dogCount"
-              name="dogCount"
-              value={formData.dogCount}
-              onChange={handleChange}
-              className="form-input"
-            >
-              {t.contact?.dogCountOptions?.map((option, index) => (
-                <option key={index} value={String(index + 1)}>
-                  {option}
-                </option>
-              )) || (
-                <>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4+">4+</option>
-                </>
-              )}
-            </select>
-          </div>
-
-          <div>
-            <label htmlFor="dogSize" className="form-label">
-              {t.contact?.dogSize || 'Dog Size'}
-            </label>
-            <select
-              id="dogSize"
-              name="dogSize"
-              value={formData.dogSize}
-              onChange={handleChange}
-              className="form-input"
-            >
-              {t.contact?.dogSizeOptions?.map((option, index) => (
-                <option key={index} value={index === 0 ? 'small' : 'large'}>
-                  {option}
-                </option>
-              )) || (
-                <>
-                  <option value="small">Klein</option>
-                  <option value="large">Groß</option>
-                </>
-              )}
-            </select>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="mb-6"
-          variants={inputVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          custom={4}
-        >
-          <label htmlFor="service" className="form-label">
-            {t.contact?.service || 'Service'}
-          </label>
-          <select
-            id="service"
-            name="service"
-            value={formData.service}
-            onChange={handleChange}
-            className="form-input"
-          >
-            {t.contact?.serviceOptions?.map((option, index) => (
-              <option key={index} value={['daycare', 'hotel', 'training'][index] || 'daycare'}>
-                {option}
-              </option>
-            )) || (
-              <>
-                <option value="daycare">{t.services?.daycare?.title || 'Daycare'}</option>
-                <option value="hotel">{t.services?.hotel?.title || 'Hotel'}</option>
-                <option value="training">{t.services?.training?.title || 'Training'}</option>
-                {t.services?.taxi && (
-                  <option value="taxi">{t.services.taxi.title || 'Taxi'}</option>
-                )}
-                {t.services?.grooming && (
-                  <option value="grooming">{t.services.grooming.title || 'Grooming'}</option>
-                )}
-              </>
-            )}
-          </select>
-        </motion.div>
-
-        <motion.div
-          className="mb-6"
-          variants={inputVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          custom={5}
-        >
-          <label htmlFor="message" className="form-label">
-            {t.contact?.message || 'Message'}
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            rows={4}
-            className="form-input resize-none"
-          />
-        </motion.div>
-
-        {/* Status de envio */}
-        {isSubmitting && (
+        <form onSubmit={handleSubmit}>
           <motion.div
-            className="mb-4 p-4 bg-blue-50 text-blue-600 rounded-md shadow-sm border border-blue-100"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            className="mb-4"
+            variants={inputVariants}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            custom={0}
           >
-            <div className="flex items-center">
-              <svg
-                className="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              <span>{'Enviando mensagem...'}</span>
+            <label htmlFor="name" className="form-label">
+              {t.contact?.name || 'Name'}
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </motion.div>
+
+          <motion.div
+            className="mb-4"
+            variants={inputVariants}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            custom={1}
+          >
+            <label htmlFor="phone" className="form-label">
+              {t.contact?.phone || 'Phone'}
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </motion.div>
+
+          <motion.div
+            className="mb-4"
+            variants={inputVariants}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            custom={2}
+          >
+            <label htmlFor="email" className="form-label">
+              {t.contact?.email || 'Email'}
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </motion.div>
+
+          <motion.div
+            className="mb-4"
+            variants={inputVariants}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            custom={3}
+          >
+            <div className="flex space-x-4">
+              <div className="w-1/2">
+                <label htmlFor="dogCount" className="form-label">
+                  {t.contact?.dogCount || 'Dog Count'}
+                </label>
+                <select
+                  id="dogCount"
+                  name="dogCount"
+                  value={formData.dogCount}
+                  onChange={handleChange}
+                  className="form-input"
+                >
+                  {t.contact?.dogCountOptions?.map((option, index) => (
+                    <option key={index} value={String(index + 1)}>
+                      {option}
+                    </option>
+                  )) || (
+                    <>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3+</option>
+                    </>
+                  )}
+                </select>
+              </div>
+              <div className="w-1/2">
+                <label htmlFor="dogSize" className="form-label">
+                  {t.contact?.dogSize || 'Dog Size'}
+                </label>
+                <select
+                  id="dogSize"
+                  name="dogSize"
+                  value={formData.dogSize}
+                  onChange={handleChange}
+                  className="form-input"
+                >
+                  {t.contact?.dogSizeOptions?.map((option, index) => (
+                    <option key={index} value={index === 0 ? 'small' : 'large'}>
+                      {option}
+                    </option>
+                  )) || (
+                    <>
+                      <option value="small">Klein</option>
+                      <option value="large">Groß</option>
+                    </>
+                  )}
+                </select>
+              </div>
             </div>
           </motion.div>
-        )}
 
-        <motion.button
-          type="button"
-          className="w-full btn-primary py-3 relative"
-          variants={inputVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          custom={6}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          disabled={isSubmitting}
-          onClick={buttonClickHandler}
-        >
-          {isSubmitting ? (
-            <>
-              <span className="opacity-0">{t.contact?.submit || 'Submit'}</span>
-              <span className="absolute inset-0 flex items-center justify-center">
+          <motion.div
+            className="mb-6"
+            variants={inputVariants}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            custom={4}
+          >
+            <label htmlFor="service" className="form-label">
+              {t.contact?.service || 'Service'}
+            </label>
+            <select
+              id="service"
+              name="service"
+              value={formData.service}
+              onChange={handleChange}
+              className="form-input"
+            >
+              {t.contact?.serviceOptions?.map((option, index) => (
+                <option key={index} value={['daycare', 'hotel', 'training'][index] || 'daycare'}>
+                  {option}
+                </option>
+              )) || (
+                <>
+                  <option value="daycare">{t.services?.daycare?.title || 'Daycare'}</option>
+                  <option value="hotel">{t.services?.hotel?.title || 'Hotel'}</option>
+                  <option value="training">{t.services?.training?.title || 'Training'}</option>
+                  {t.services?.taxi && (
+                    <option value="taxi">{t.services.taxi.title || 'Taxi'}</option>
+                  )}
+                  {t.services?.grooming && (
+                    <option value="grooming">{t.services.grooming.title || 'Grooming'}</option>
+                  )}
+                </>
+              )}
+            </select>
+          </motion.div>
+
+          <motion.div
+            className="mb-6"
+            variants={inputVariants}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            custom={5}
+          >
+            <label htmlFor="message" className="form-label">
+              {t.contact?.message || 'Message'}
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows={4}
+              className="form-input resize-none"
+            />
+          </motion.div>
+
+          {/* Status de envio */}
+          {isSubmitting && (
+            <motion.div
+              className="mb-4 p-4 bg-blue-50 text-blue-600 rounded-md shadow-sm border border-blue-100"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <div className="flex items-center">
                 <svg
-                  className="animate-spin h-5 w-5 text-white"
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-500"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -592,12 +540,53 @@ const ContactForm: React.FC<ContactFormProps> = ({ language, onClick }) => {
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   ></path>
                 </svg>
-              </span>
-            </>
-          ) : (
-            t.contact?.submit || 'Submit'
+                <span>{'Enviando mensagem...'}</span>
+              </div>
+            </motion.div>
           )}
-        </motion.button>
+
+          <motion.button
+            type="submit"
+            className="w-full btn-primary py-3 relative"
+            variants={inputVariants}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            custom={6}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <span className="opacity-0">{t.contact?.submit || 'Submit'}</span>
+                <span className="absolute inset-0 flex items-center justify-center">
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                </span>
+              </>
+            ) : (
+              t.contact?.submit || 'Submit'
+            )}
+          </motion.button>
+        </form>
 
         <motion.p
           className="text-gray-500 text-sm mt-4 text-center"
