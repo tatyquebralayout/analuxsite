@@ -10,19 +10,6 @@ interface ContactFormProps {
   language: string;
 }
 
-// Prevenir comportamentos globais que possam causar refresh
-if (typeof window !== 'undefined') {
-  window.addEventListener(
-    'submit',
-    e => {
-      console.log('Interceptado evento global de submit');
-      e.preventDefault();
-      return false;
-    },
-    true
-  );
-}
-
 const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
   const t = translations[language as keyof typeof translations] as TranslationSchema;
   const { ref, inView } = useInView({
@@ -48,10 +35,20 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
     try {
       emailjs.init('AmgBu5KTBSjqp5HVm');
       console.log('EmailJS inicializado com sucesso');
+
+      // Verificar se as configurações do EmailJS estão definidas
+      const serviceID = 'service_2lih55m';
+      const templateID = 'template_2lih55m';
+      const publicKey = 'AmgBu5KTBSjqp5HVm';
+
+      if (!serviceID || !templateID || !publicKey) {
+        console.warn('⚠️ Verificar configurações do EmailJS - algum valor pode estar indefinido');
+      } else {
+        console.log('✅ Configurações do EmailJS verificadas com sucesso');
+      }
     } catch (error) {
-      console.error('Erro ao inicializar EmailJS:', error);
+      console.error('❌ Erro ao inicializar EmailJS:', error);
     }
-    // Não precisamos de cleanup para inicialização
   }, []);
 
   const handleChange = (
@@ -93,23 +90,22 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
   // Função simplificada para enviar e-mail
   const sendEmail = async () => {
     if (!t.contact || !t.services) {
-      console.log('t.contact ou t.services está undefined, abortando envio');
+      console.log('❌ t.contact ou t.services está undefined, abortando envio');
       return;
     }
 
     // Validação básica
     if (!formData.name || !formData.phone || !formData.email || !formData.message) {
-      console.log('Validação falhou, alguns campos estão vazios');
+      console.log('❌ Validação falhou, alguns campos estão vazios');
       alert('Por favor, preencha todos os campos obrigatórios');
       return;
     }
 
-    console.log('Validação passou, preparando para enviar email');
+    console.log('✅ Validação passou, preparando para enviar email');
 
     // Configurações do EmailJS
     const serviceID = 'service_2lih55m';
     const templateID = 'template_2lih55m';
-    // Não precisamos passar a chave pública novamente já que inicializamos no useEffect
 
     // Preparação dos parâmetros para o e-mail
     const templateParams = {
@@ -129,12 +125,21 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    console.log('Enviando email com parâmetros:', templateParams);
+    console.log('📧 Tentando enviar email com os seguintes parâmetros:', templateParams);
+    console.log('📧 Usando serviceID:', serviceID);
+    console.log('📧 Usando templateID:', templateID);
 
     try {
-      // Envio do e-mail - não precisa passar a chave pública novamente
+      // Envio do e-mail
+      console.time('Tempo de envio do email');
       const response = await emailjs.send(serviceID, templateID, templateParams);
-      console.log('Email enviado com sucesso!', response.status, response.text);
+      console.timeEnd('Tempo de envio do email');
+
+      console.log('✅ Email enviado com sucesso!', {
+        status: response.status,
+        text: response.text,
+        timestamp: new Date().toISOString(),
+      });
 
       // Atualiza o estado para mostrar mensagem de sucesso
       setSubmitStatus('success');
@@ -150,36 +155,46 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
         message: '',
       });
 
-      console.log('Formulário limpo, preparando para rolar até a mensagem de sucesso');
+      console.log('✅ Formulário limpo após envio bem-sucedido');
 
       // Rola suavemente até a mensagem de sucesso
       setTimeout(() => {
         const successMessage = document.querySelector('.success-message');
         if (successMessage) {
-          console.log('Mensagem de sucesso encontrada, rolando até ela');
+          console.log('✅ Rolando até a mensagem de sucesso');
           successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
-          console.log('Mensagem de sucesso não encontrada no DOM');
+          console.log('⚠️ Mensagem de sucesso não encontrada no DOM');
         }
       }, 100);
     } catch (error) {
-      console.error('Erro ao enviar email:', error);
+      console.error('❌ Erro ao enviar email:', error);
+      // Log detalhado do erro para diagnóstico
+      if (error instanceof Error) {
+        console.error('❌ Detalhes do erro:', {
+          name: error.name,
+          message: error.message,
+          stack: error.stack,
+          timestamp: new Date().toISOString(),
+        });
+      }
+
       setSubmitStatus('error');
 
-      console.log('Erro no envio, preparando para rolar até a mensagem de erro');
+      console.log('⚠️ Preparando para mostrar mensagem de erro');
 
       // Rola suavemente até a mensagem de erro
       setTimeout(() => {
         const errorMessage = document.querySelector('.error-message');
         if (errorMessage) {
-          console.log('Mensagem de erro encontrada, rolando até ela');
+          console.log('⚠️ Rolando até a mensagem de erro');
           errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
-          console.log('Mensagem de erro não encontrada no DOM');
+          console.log('⚠️ Mensagem de erro não encontrada no DOM');
         }
       }, 100);
     } finally {
-      console.log('Finalizando processo de envio, setIsSubmitting(false)');
+      console.log('📧 Processo de envio finalizado');
       setIsSubmitting(false);
     }
   };
@@ -187,10 +202,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
   // Manipulador de submissão simplificado
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault(); // Esta linha é essencial e suficiente
-    console.log('Formulário submetido, prevenindo comportamento padrão');
+    console.log('📝 Formulário submetido, prevenindo comportamento padrão');
 
     if (!isSubmitting) {
       sendEmail();
+    } else {
+      console.log('⚠️ Envio já em andamento, ignorando tentativa duplicada');
     }
   };
 
