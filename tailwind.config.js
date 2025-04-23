@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
+        'sour-gummy': ['Sour Gummy', 'cursive'],
       },
       fontWeight: {
         light: 300,

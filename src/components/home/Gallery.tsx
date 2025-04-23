@@ -133,10 +133,10 @@ const Gallery: React.FC = () => {
     <section id="gallery" className="py-16 bg-white" ref={ref}>
       <div className="container mx-auto px-4">
         <motion.h2
-          className="headline2 text-center mb-6"
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.6 }}
+          className="headline2 text-center mb-6 font-sour-gummy"
         >
           {t('gallery.title', 'Gallery')}
         </motion.h2>

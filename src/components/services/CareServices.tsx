@@ -32,7 +32,7 @@ const CareServices: React.FC<CareServicesProps> = ({ cardVariants, inView }) => 
             <div className="p-2 rounded-lg bg-primary-container">
               <Sun className="h-5 w-5 text-primary" />
             </div>
-            <h3 className="headline6">{t('services.daycare.title')}</h3>
+            <h3 className="headline6 font-sour-gummy">{t('services.daycare.title')}</h3>
           </div>
           <p className="body1 text-gray-600 mb-6">{t('services.daycare.description')}</p>
           <div className="space-y-4">
@@ -74,7 +74,7 @@ const CareServices: React.FC<CareServicesProps> = ({ cardVariants, inView }) => 
             <div className="p-2 rounded-lg bg-primary-container">
               <Moon className="h-5 w-5 text-primary" />
             </div>
-            <h3 className="headline6">{t('services.hotel.title')}</h3>
+            <h3 className="headline6 font-sour-gummy">{t('services.hotel.title')}</h3>
           </div>
           <p className="body1 text-gray-600 mb-6">{t('services.hotel.description')}</p>
           <div className="space-y-4">
@@ -118,7 +118,7 @@ const CareServices: React.FC<CareServicesProps> = ({ cardVariants, inView }) => 
             <div className="p-2 rounded-lg bg-primary-container">
               <Car className="h-5 w-5 text-primary" />
             </div>
-            <h3 className="headline6">{t('services.taxi.title')}</h3>
+            <h3 className="headline6 font-sour-gummy">{t('services.taxi.title')}</h3>
           </div>
           <p className="body1 text-gray-600 mb-6">{t('services.taxi.description')}</p>
           <div className="space-y-4">

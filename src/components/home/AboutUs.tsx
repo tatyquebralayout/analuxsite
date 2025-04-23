@@ -36,10 +36,10 @@ const AboutUs: React.FC = () => {
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-2">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-2 font-sour-gummy">
             {aboutData.title}
           </h3>
-          <h2 className="headline2 text-gray-900 mb-4">
+          <h2 className="headline2 text-gray-900 mb-4 font-sour-gummy">
             {aboutData.homeSectionTitle || aboutData.title}
           </h2>
           <VigiaIcon className="h-10 w-10 text-primary mx-auto" />
@@ -83,7 +83,7 @@ const AboutUs: React.FC = () => {
 
             {/* Service Highlights Integrated */}
             <div>
-              <h4 className="headline5 mb-4 text-gray-800">Was uns auszeichnet:</h4>
+              <h4 className="headline5 mb-4 text-gray-800 font-sour-gummy">Was uns auszeichnet:</h4>
               <div className="space-y-4">
                 {Object.values(aboutData.serviceHighlights).map((highlight, index) => (
                   <div key={index} className="flex items-start space-x-3">
@@ -112,7 +112,7 @@ const AboutUs: React.FC = () => {
             {/* Team Introduction Integrated */}
             {teamData && (
               <div className="pt-6 border-t border-gray-200">
-                <h4 className="headline5 mb-2 text-gray-800">{teamData.title}</h4>
+                <h4 className="headline5 mb-2 text-gray-800 font-sour-gummy">{teamData.title}</h4>
                 {teamData.description && (
                   <p className="body1 text-gray-700 mb-4">{teamData.description}</p>
                 )}

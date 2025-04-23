@@ -21,7 +21,7 @@ const PartnershipSection: React.FC = () => {
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <h2 className="headline2">{t('partnership.title')}</h2>
+            <h2 className="headline2 font-sour-gummy">{t('partnership.title')}</h2>
             <p className="body1 text-gray-700 mb-8 leading-relaxed">
               {t('partnership.description')}
             </p>

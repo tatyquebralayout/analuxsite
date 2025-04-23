@@ -29,10 +29,10 @@ const Faq: React.FC = () => {
     <section className="py-16 bg-neutral-surface" ref={ref}>
       <div className="container mx-auto px-4">
         <motion.h2
-          className="headline2 text-center mb-12"
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.6 }}
+          className="headline2 text-center mb-12 font-sour-gummy"
         >
           {faqData.title}
         </motion.h2>
@@ -57,7 +57,7 @@ const Faq: React.FC = () => {
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
               >
-                <span className="headline6 text-left">{item.question}</span>
+                <span className="headline6 text-left font-sour-gummy">{item.question}</span>
                 {openIndex === index ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
               </motion.button>
 

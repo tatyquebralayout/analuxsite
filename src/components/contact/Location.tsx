@@ -37,10 +37,10 @@ const Location: React.FC = () => {
     <section className="py-16 bg-neutral-surface lg:w-1/2" ref={ref}>
       <div className="container mx-auto px-4">
         <motion.h2
-          className="headline2"
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.6 }}
+          className="headline2 font-sour-gummy"
         >
           {t('location.title', 'Find Us')}
         </motion.h2>
@@ -92,7 +92,9 @@ const Location: React.FC = () => {
               <MapPin className="text-primary mt-1 flex-shrink-0" aria-hidden="true" />
             </motion.div>
             <div>
-              <h3 className="headline6 text-gray-900">{t('location.address', 'Address')}</h3>
+              <h3 className="headline6 text-gray-900 font-sour-gummy">
+                {t('location.address', 'Address')}
+              </h3>
               <p className="body1 text-gray-700">Hauptstrasse, 8416 Flaach</p>
               <p className="body1 text-gray-700">Switzerland (HJF3+Q8)</p>
             </div>
@@ -112,7 +114,7 @@ const Location: React.FC = () => {
               <Car className="text-primary mt-1 flex-shrink-0" aria-hidden="true" />
             </motion.div>
             <div>
-              <h3 className="headline6 text-gray-900">
+              <h3 className="headline6 text-gray-900 font-sour-gummy">
                 {t('location.taxiArea', 'Taxi Service Area')}
               </h3>
               <p className="body1 text-gray-700">
@@ -138,7 +140,9 @@ const Location: React.FC = () => {
               <ParkingMeter className="text-primary mt-1 flex-shrink-0" aria-hidden="true" />
             </motion.div>
             <div>
-              <h3 className="headline6 text-gray-900">{t('location.parking', 'Parking')}</h3>
+              <h3 className="headline6 text-gray-900 font-sour-gummy">
+                {t('location.parking', 'Parking')}
+              </h3>
               <p className="body1 text-gray-700">
                 {t('location.parkingDescription', 'Free parking available on site.')}
               </p>

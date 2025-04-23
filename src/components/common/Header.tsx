@@ -147,7 +147,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                     className="h-10 w-auto"
                   />
                 </motion.div>
-                <h1 className="headline5 font-bold">Amanlux Dog</h1>
+                <h1 className="headline5 font-bold font-sour-gummy">Amanlux Dog</h1>
               </Link>
             </motion.div>
 

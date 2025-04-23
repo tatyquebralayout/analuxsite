@@ -1,30 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import heroDogsUrl from '../../assets/images/dogs_hero.webp';
 
 /**
  * Interface de propriedades do componente Hero
  */
 
 /**
- * Componente Hero com layout específico e espaçamento adequado
- *
- * Implementa um design com dimensões específicas:
- * - Altura total: 540px
- * - Área de texto à esquerda: 647px de largura
- * - Espaçamento superior reduzido para melhor harmonização
- * - Inclui botão CTA
+ * Componente Hero redesenhado com altura proporcional e nova imagem.
  */
 const Hero: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="container mx-auto flex flex-col md:flex-row items-center bg-white h-[540px]">
-      {/* Área de texto à esquerda - limitada a 647px de largura */}
-      <div className="md:w-1/2 md:pr-12 mb-10 md:mb-0 max-w-[647px] h-full flex flex-col justify-center">
+    <div className="container mx-auto px-4 py-16 md:py-20 bg-white flex flex-col md:flex-row items-center">
+      {/* Área de texto - md:w-1/2, smaller max-width, left-aligned */}
+      <div className="w-full md:w-1/2 md:pr-12 lg:pr-16 mb-10 md:mb-0 max-w-2xl">
         {/* Bloco de título */}
         <motion.h1
-          className="headline1 text-black leading-tight mb-6"
+          className="headline1 text-[#ec1c54] leading-tight mb-6 font-sour-gummy font-medium"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -41,7 +36,7 @@ const Hero: React.FC = () => {
           {t('hero.subtitle')}
         </motion.p>
 
-        {/* Botão CTA */}
+        {/* Botão CTA - Adjust layout */}
         <motion.button
           className="btn-primary w-fit"
           initial={{ opacity: 0, y: 20 }}
@@ -54,24 +49,19 @@ const Hero: React.FC = () => {
         </motion.button>
       </div>
 
-      {/* Área da imagem à direita */}
-      <div className="md:w-1/2 h-full flex items-center justify-center">
-        <motion.div
-          className="relative w-full h-full"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          {/* Imagem do cachorro */}
-          <div className="relative z-10 w-full h-full flex items-center justify-center">
-            <img
-              src="https://iili.io/3dPCVXp.md.jpg"
-              alt="Cachorro feliz na AmanluxDog"
-              className="object-cover rounded-lg shadow-xl max-h-[489px] max-w-[439px]"
-            />
-          </div>
-        </motion.div>
-      </div>
+      {/* Área da nova imagem - md:w-1/2, remove max-width */}
+      <motion.div
+        className="w-full md:w-1/2"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+      >
+        <img
+          src={heroDogsUrl}
+          alt={t('hero.imageAlt', 'Cachorros olhando por cima de uma superfície branca')}
+          className="w-full h-auto rounded-lg shadow-xl"
+        />
+      </motion.div>
     </div>
   );
 };

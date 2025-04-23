@@ -91,24 +91,22 @@ const Services: React.FC = () => {
     },
   };
 
+  const sectionTitle = t('services.sectionTitle', 'Unsere Dienstleistungen');
+
   return (
     <section id="services" className="py-16 bg-neutral-surface" ref={ref}>
       <div className="container mx-auto px-4">
-        <motion.h2
-          className="headline2 text-center mb-12"
-          initial={{ opacity: 0, y: -20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-          transition={{ duration: 0.6 }}
-        >
-          {servicesData.title}
-        </motion.h2>
-
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
         >
+          {/* Apply font to section title */}
+          <h2 className="col-span-full headline2 text-center mb-12 font-sour-gummy">
+            {sectionTitle}
+          </h2>
+
           {/* Daycare */}
           <motion.div
             className="card card-hover"
@@ -126,7 +124,7 @@ const Services: React.FC = () => {
               >
                 <DaycareIcon />
               </motion.div>
-              <h3 className="headline6">{servicesData.daycare.title}</h3>
+              <h3 className="headline6 font-sour-gummy">{servicesData.daycare.title}</h3>
               <p className="body1 text-gray-600 mb-4">{servicesData.daycare.description}</p>
               <motion.a
                 href="/services/hundebetreuung"
@@ -155,7 +153,7 @@ const Services: React.FC = () => {
               >
                 <Bed className="text-white" />
               </motion.div>
-              <h3 className="headline6">{servicesData.hotel.title}</h3>
+              <h3 className="headline6 font-sour-gummy">{servicesData.hotel.title}</h3>
               <p className="body1 text-gray-600 mb-4">{servicesData.hotel.description}</p>
               <motion.a
                 href="/services/hundebetreuung"
@@ -184,7 +182,7 @@ const Services: React.FC = () => {
               >
                 <Dog className="text-white" />
               </motion.div>
-              <h3 className="headline6">{servicesData.training.title}</h3>
+              <h3 className="headline6 font-sour-gummy">{servicesData.training.title}</h3>
               <p className="body1 text-gray-600 mb-4">{servicesData.training.description}</p>
               <motion.a
                 href="/services/hundetraining"
@@ -213,7 +211,7 @@ const Services: React.FC = () => {
               >
                 <Car className="text-white" />
               </motion.div>
-              <h3 className="headline6">{servicesData.taxi.title}</h3>
+              <h3 className="headline6 font-sour-gummy">{servicesData.taxi.title}</h3>
               <p className="body1 text-gray-600 mb-4">{servicesData.taxi.description}</p>
               {/* No learn more link for Taxi */}
             </div>
@@ -236,7 +234,7 @@ const Services: React.FC = () => {
               >
                 <Scissors className="text-white" />
               </motion.div>
-              <h3 className="headline6">{groomingData.title}</h3>
+              <h3 className="headline6 font-sour-gummy">{groomingData.title}</h3>
               <p className="body1 text-gray-600 mb-4">{groomingData.description}</p>
               <motion.a
                 href="#" // TODO: Update link if Grooming page exists

@@ -190,7 +190,7 @@ const ContactForm: React.FC = () => {
           exit={{ opacity: 0, height: 0 }}
         >
           <div className="flex items-center mb-4">
-            <h3 className="text-xl font-semibold">
+            <h3 className="text-xl font-semibold font-sour-gummy">
               {t('contact.successTitle', 'Mensagem Enviada!')}
             </h3>
           </div>
@@ -220,7 +220,9 @@ const ContactForm: React.FC = () => {
           exit={{ opacity: 0, height: 0 }}
         >
           <div className="flex items-center mb-4">
-            <h3 className="text-xl font-semibold">{t('contact.errorTitle', 'Erro ao Enviar')}</h3>
+            <h3 className="text-xl font-semibold font-sour-gummy">
+              {t('contact.errorTitle', 'Erro ao Enviar')}
+            </h3>
           </div>
           <p className="mb-4">
             {t(
@@ -457,7 +459,7 @@ const ContactForm: React.FC = () => {
         <div className="flex flex-wrap justify-center">
           <div className="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
             <motion.h2
-              className="headline2 text-center mb-6"
+              className="headline2 text-center mb-6 font-sour-gummy"
               initial={{ opacity: 0, y: -20 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ duration: 0.6 }}

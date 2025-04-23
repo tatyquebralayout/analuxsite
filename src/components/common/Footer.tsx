@@ -98,7 +98,7 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
                   className="h-10 w-auto"
                 />
               </motion.div>
-              <h2 className="headline5 font-bold">Amanlux Dog</h2>
+              <h2 className="headline5 font-bold font-sour-gummy">Amanlux Dog</h2>
             </motion.div>
 
             <div className="space-y-3">
@@ -119,12 +119,12 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
                     {language === 'pt'
                       ? 'Fechado'
                       : language === 'es'
-                        ? 'Cerrado'
-                        : language === 'fr'
-                          ? 'Fermé'
-                          : language === 'de'
-                            ? 'Geschlossen'
-                            : 'Closed'}
+                      ? 'Cerrado'
+                      : language === 'fr'
+                      ? 'Fermé'
+                      : language === 'de'
+                      ? 'Geschlossen'
+                      : 'Closed'}
                   </p>
                 </div>
               </motion.div>
@@ -133,7 +133,7 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
 
           {/* Links rápidos */}
           <motion.div variants={itemVariants}>
-            <h3 className="headline6 mb-6">{t.footer.quickLinks}</h3>
+            <h3 className="headline6 mb-6 font-sour-gummy">{t.footer.quickLinks}</h3>
             <ul className="space-y-3">
               <li>
                 <motion.a
@@ -185,7 +185,7 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
 
           {/* Redes sociais */}
           <motion.div variants={itemVariants}>
-            <h3 className="headline6 mb-6">{t.footer.followUs}</h3>
+            <h3 className="headline6 mb-6 font-sour-gummy">{t.footer.followUs}</h3>
             <div className="flex space-x-4 mb-6">
               <motion.a
                 href="#"
@@ -250,7 +250,7 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
 
           {/* Newsletter */}
           <motion.div variants={itemVariants}>
-            <h3 className="headline6 mb-6">{t.footer.newsletter}</h3>
+            <h3 className="headline6 mb-6 font-sour-gummy">{t.footer.newsletter}</h3>
             <p className="mb-4 text-gray-300">{t.footer.newsletterText}</p>
 
             <form onSubmit={handleSubmit} className="flex">

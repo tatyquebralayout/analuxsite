@@ -27,7 +27,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon: Icon, title, descriptio
       transition={{ duration: 0.5, delay }}
     >
       <Icon className="h-12 w-12 text-primary mb-4" />
-      <h3 className="headline6 text-gray-900 mb-2">{title}</h3>
+      <h3 className="headline6 text-gray-900 mb-2 font-sour-gummy">{title}</h3>
       <p className="body2 text-gray-600">{description}</p>
     </motion.div>
   );

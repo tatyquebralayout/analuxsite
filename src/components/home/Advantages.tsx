@@ -92,10 +92,10 @@ const Advantages: React.FC = () => {
     <section id="advantages" className="py-16 bg-white" ref={ref}>
       <div className="container mx-auto px-4">
         <motion.h2
-          className="headline2 text-center mb-12"
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.6 }}
+          className="headline2 text-center mb-12 font-sour-gummy"
         >
           {advantagesData.title}
         </motion.h2>
@@ -118,9 +118,11 @@ const Advantages: React.FC = () => {
                 🐾
               </motion.span>
             </div>
-            <h3 className="headline4 font-bold mb-2">+{counts.stories.toLocaleString()}</h3>
-            <h4 className="headline6 mb-2">{advantagesData.stories.title}</h4>
-            <p className="body1 text-gray-600">{advantagesData.stories.description}</p>
+            <div className="text-center">
+              <h3 className="headline4 font-bold mb-2">+{counts.stories.toLocaleString()}</h3>
+              <h4 className="headline6 mb-2 font-sour-gummy">{advantagesData.stories.title}</h4>
+              <p className="body2 text-gray-600">{advantagesData.stories.description}</p>
+            </div>
           </motion.div>
 
           <motion.div
@@ -139,9 +141,11 @@ const Advantages: React.FC = () => {
                 <Calendar className="text-white" />
               </motion.div>
             </div>
-            <h3 className="headline4 font-bold mb-2">{counts.years}</h3>
-            <h4 className="headline6 mb-2">{advantagesData.years.title}</h4>
-            <p className="body1 text-gray-600">{advantagesData.years.description}</p>
+            <div className="text-center">
+              <h3 className="headline4 font-bold mb-2">{counts.years}</h3>
+              <h4 className="headline6 mb-2 font-sour-gummy">{advantagesData.years.title}</h4>
+              <p className="body2 text-gray-600">{advantagesData.years.description}</p>
+            </div>
           </motion.div>
 
           <motion.div
@@ -157,9 +161,11 @@ const Advantages: React.FC = () => {
                 <Home className="text-white" />
               </motion.div>
             </div>
-            <h3 className="headline4 font-bold mb-2">{counts.space}m²</h3>
-            <h4 className="headline6 mb-2">{advantagesData.space.title}</h4>
-            <p className="body1 text-gray-600">{advantagesData.space.description}</p>
+            <div className="text-center">
+              <h3 className="headline4 font-bold mb-2">{counts.space}m²</h3>
+              <h4 className="headline6 mb-2 font-sour-gummy">{advantagesData.space.title}</h4>
+              <p className="body2 text-gray-600">{advantagesData.space.description}</p>
+            </div>
           </motion.div>
 
           <motion.div
@@ -184,9 +190,11 @@ const Advantages: React.FC = () => {
                 <Heart className="text-white" />
               </motion.div>
             </div>
-            <h3 className="headline4 font-bold mb-2">24/7</h3>
-            <h4 className="headline6 mb-2">{advantagesData.attention.title}</h4>
-            <p className="body1 text-gray-600">{advantagesData.attention.description}</p>
+            <div className="text-center">
+              <h3 className="headline4 font-bold mb-2">24/7</h3>
+              <h4 className="headline6 mb-2 font-sour-gummy">{advantagesData.attention.title}</h4>
+              <p className="body2 text-gray-600">{advantagesData.attention.description}</p>
+            </div>
           </motion.div>
         </div>
       </div>

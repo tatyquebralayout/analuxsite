@@ -104,7 +104,7 @@ const TrainingSection: React.FC<TrainingSectionProps> = ({
 
           {/* Coluna do Conteúdo Principal */}
           <div className="md:w-1/2 w-full">
-            <h2 className="headline3 mb-4">{contentTitle}</h2>
+            <h2 className="headline3 mb-4 font-sour-gummy">{contentTitle}</h2>
             {contentParagraphs.map((p, index) => (
               <p key={index} className="body1 text-gray-600 mb-4">
                 {p}
@@ -124,7 +124,7 @@ const TrainingSection: React.FC<TrainingSectionProps> = ({
                 {subContentSections.map((subSection, sIdx) => (
                   <React.Fragment key={sIdx}>
                     <hr className="my-6" />
-                    <h3 className="headline4 mb-4">{subSection.title}</h3>
+                    <h3 className="headline4 mb-4 font-sour-gummy">{subSection.title}</h3>
                     {subSection.paragraphs.map((p, pIdx) => (
                       <p key={pIdx} className="body1 text-gray-600 mb-6">
                         {p}
