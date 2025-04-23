@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, Menu, X } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Menu as MenuIcon, X, ChevronDown } from 'lucide-react';
+import { Menu } from '@headlessui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { translations } from '../../utils/translations';
 import { flags } from '../../assets/flags';
@@ -153,25 +154,69 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
 
             {/* Área direita com navegação, botão e seletor de idioma */}
             <div className="flex items-center">
-              {/* Navegação para Desktop */}
-              <nav className="hidden md:flex items-center space-x-6 mr-6">
+              {/* Navegação para Desktop - Improved Styling */}
+              <nav className="hidden md:flex items-center space-x-4 mr-6">
                 <motion.div whileHover={{ y: -2 }}>
-                  <Link to="/" className="font-medium hover:text-primary transition-colors">
+                  <Link
+                    to="/"
+                    className="text-primary text-lg font-medium px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors"
+                  >
                     {headerTranslations.home || 'Home'}
                   </Link>
                 </motion.div>
+
+                {/* Services Dropdown Menu - Updated Button Style */}
+                <Menu as="div" className="relative inline-block text-left">
+                  <div>
+                    <Menu.Button className="text-primary text-lg font-medium px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors inline-flex items-center">
+                      {headerTranslations.services || 'Services'}
+                      <ChevronDown className="-mr-1 ml-1 h-5 w-5" aria-hidden="true" />
+                    </Menu.Button>
+                  </div>
+
+                  <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+                    <div className="py-1">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            to="/services/hundebetreuung"
+                            className={`${
+                              active ? 'bg-primary text-white' : 'text-gray-700'
+                            } block px-4 py-2 font-medium transition-colors`}
+                          >
+                            Hundebetreuung
+                          </Link>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            to="/services/hundetraining"
+                            className={`${
+                              active ? 'bg-primary text-white' : 'text-gray-700'
+                            } block px-4 py-2 font-medium transition-colors`}
+                          >
+                            Hundetraining
+                          </Link>
+                        )}
+                      </Menu.Item>
+                    </div>
+                  </Menu.Items>
+                </Menu>
+
                 <motion.div whileHover={{ y: -2 }}>
-                  <Link to="/services" className="font-medium hover:text-primary transition-colors">
-                    {headerTranslations.services || 'Services'}
-                  </Link>
-                </motion.div>
-                <motion.div whileHover={{ y: -2 }}>
-                  <Link to="/about" className="font-medium hover:text-primary transition-colors">
+                  <Link
+                    to="/about"
+                    className="text-primary text-lg font-medium px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors"
+                  >
                     {headerTranslations.about || 'About Us'}
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{ y: -2 }}>
-                  <Link to="/contact" className="font-medium hover:text-primary transition-colors">
+                  <Link
+                    to="/contact"
+                    className="text-primary text-lg font-medium px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors"
+                  >
                     {headerTranslations.contact || 'Contact'}
                   </Link>
                 </motion.div>
@@ -231,7 +276,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                 }
                 aria-expanded={isMenuOpen}
               >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {isMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
               </motion.button>
             </div>
           </div>
@@ -262,6 +307,20 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                 onClick={closeMobileMenu}
               >
                 {headerTranslations.services || 'Services'}
+              </Link>
+              <Link
+                to="/services/hundebetreuung"
+                className="font-medium hover:text-primary transition-colors"
+                onClick={closeMobileMenu}
+              >
+                Hundebetreuung
+              </Link>
+              <Link
+                to="/services/hundetraining"
+                className="font-medium hover:text-primary transition-colors"
+                onClick={closeMobileMenu}
+              >
+                Hundetraining
               </Link>
               <Link
                 to="/about"
