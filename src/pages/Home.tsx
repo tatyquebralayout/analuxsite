@@ -1,5 +1,6 @@
 import React from 'react';
 import Hero from '../components/home/Hero';
+import VideoHighlight from '../components/home/VideoHighlight';
 import QuickServices from '../components/home/QuickServices';
 import Advantages from '../components/home/Advantages';
 import Testimonials from '../components/home/Testimonials';
@@ -25,6 +26,7 @@ const Home: React.FC = () => {
         keywords="Hundebetreuung Zürich, Hundehotel Zürich, Hundetagesstätte Flaach, Hundetraining, AmanluxDog"
       />
       <Hero />
+      <VideoHighlight />
       <QuickServices />
       <Advantages />
       {/* <Services language={language} /> */}
