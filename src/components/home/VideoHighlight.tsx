@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link
 import videoUrl from '../../assets/video/2video.mp4'; // Import the NEW video file
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -26,25 +27,23 @@ const VideoHighlight: React.FC = () => {
   ];
 
   return (
-    <section ref={ref} className="py-16 bg-neutral-surface">
-      {' '}
-      {/* Increased padding */}
-      {/* Changed flex direction for responsive layout, added gap */}
+    <section ref={ref} className="py-16 bg-neutral-surface min-h-[40rem] flex">
+      {/* Changed items-center to items-stretch */}
       <motion.div
-        className="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-12"
-        initial={{ opacity: 0 }} // Simplified overall initial animation
+        className="container mx-auto px-4 flex flex-col lg:flex-row items-stretch gap-12 my-auto"
+        initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8 }} // Adjusted duration
+        transition={{ duration: 0.8 }}
       >
-        {/* Left Column: Video */}
+        {/* Left Column: Video - Added h-full */}
         <motion.div
-          className="w-full lg:w-1/2 mb-8 lg:mb-0" // Responsive width, add margin bottom on small screens
+          className="w-full lg:w-1/2 mb-8 lg:mb-0 h-full flex items-center"
           initial={{ opacity: 0, x: -50 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {/* Container to define size and aspect ratio */}
-          <div className="relative w-full" style={{ aspectRatio: '600 / 617' }}>
+          {/* Container for aspect ratio - adjusted width/height potentially */}
+          <div className="relative w-full max-w-xl mx-auto" style={{ aspectRatio: '600 / 617' }}>
             {/* Inline SVG for mask definition */}
             <svg viewBox="0 0 600 617" width="0" height="0" style={{ position: 'absolute' }}>
               <defs>
@@ -83,7 +82,7 @@ const VideoHighlight: React.FC = () => {
               loop
               muted
               playsInline
-              className="absolute top-0 left-0 w-full h-full object-cover rounded-lg" // Added rounded-lg
+              className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
               style={{
                 maskImage: `url(#${maskId})`,
                 WebkitMaskImage: `url(#${maskId})`,
@@ -98,21 +97,20 @@ const VideoHighlight: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Right Column: Text Content */}
+        {/* Right Column: Text Content - Changed vertical alignment */}
         <motion.div
-          className="w-full lg:w-1/2 text-center lg:text-left" // Responsive width and text alignment
+          className="w-full lg:w-1/2 text-center lg:text-left h-full flex flex-col justify-start pt-16"
           initial={{ opacity: 0, x: 50 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          {/* Top Titles - Added text-center, changed color */}
           <h1 className="headline3 mb-2 text-primary font-sour-gummy text-center">
             Ein Paradies für Ihren Hund
           </h1>
-          <h3 className="headline5 mb-8 text-primary text-center">Mehr als nur Betreuung</h3>
-          {/* Example Title */}
-          {/* Icon and Text Items - Final size adjustment & Text color using theme */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
+          <h3 className="headline5 mb-4 text-primary text-center">Mehr als nur Betreuung</h3>
+
+          {/* Icon and Text Items */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-4">
             {iconTextItems.map(({ Icon, text }, index) => {
               // Apply larger size specifically to EstimulosIcon
               const iconSizeClass = Icon === EstimulosIcon ? 'w-28 h-28' : 'w-24 h-24';
@@ -130,11 +128,17 @@ const VideoHighlight: React.FC = () => {
               );
             })}
           </div>
-          {/* Bottom Titles - Changed to h1 and centered, changed color */}
+
+          {/* Bottom Titles & Button */}
           <h1 className="headline4 mb-2 text-primary text-center">Engagement für Wohlbefinden</h1>
           <h3 className="subtitle1 text-primary text-center">
             Sicherheit und Spass an erster Stelle
           </h3>
+          <div className="mt-4 flex justify-center">
+            <Link to="/services" className="btn-primary w-fit">
+              Entdecken Sie unsere Angebote
+            </Link>
+          </div>
         </motion.div>
       </motion.div>
     </section>
