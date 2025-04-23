@@ -1,98 +1,50 @@
 /**
  * Animações e variantes reutilizáveis para framer-motion
+ * Usa as configurações centralizadas do arquivo animation.ts
  */
 import { Variants } from 'framer-motion';
+import { ANIMATION_CONFIG, getAdjustedDuration } from '../animation';
 
 /**
  * Variante básica para fade-in de elementos
  */
 export const fadeInVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { duration: 0.5 },
-  },
+  ...ANIMATION_CONFIG.variants.fadeIn,
 };
 
 /**
  * Variante com fade-in + slide-up
  */
 export const fadeSlideUpVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: 'easeOut',
-    },
-  },
+  ...ANIMATION_CONFIG.variants.slideUp,
 };
 
 /**
  * Variante com fade-in + slide-in da esquerda
  */
 export const fadeSlideInLeftVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    x: -50,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.7,
-      ease: 'easeOut',
-    },
-  },
+  ...ANIMATION_CONFIG.variants.slideRight,
 };
 
 /**
  * Variante com fade-in + slide-in da direita
  */
 export const fadeSlideInRightVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    x: 50,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.7,
-      ease: 'easeOut',
-    },
-  },
+  ...ANIMATION_CONFIG.variants.slideLeft,
 };
 
 /**
- * Variante com escala (zoom-in)
+ * Variante para exibir itens em staggered animation (um após o outro)
  */
-export const scaleInVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.8,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      ease: 'easeOut',
-    },
-  },
+export const staggeredItemsVariants: Variants = {
+  ...ANIMATION_CONFIG.variants.staggeredItems,
 };
 
 /**
- * Animação para itens em sequência (staggered)
- * @param index - índice do item na sequência
- * @param delayFactor - fator de atraso entre itens (padrão: 0.1)
+ * Variante para exibir um único item em uma lista staggered
  */
-export const getStaggerDelay = (index: number, delayFactor = 0.1): number => {
-  return index * delayFactor;
+export const staggeredItemVariants: Variants = {
+  ...ANIMATION_CONFIG.variants.staggeredItem,
 };
 
 /**
@@ -105,10 +57,58 @@ export const defaultScrollAnimation = {
 };
 
 /**
- * Transição padrão para hover
+ * Gera uma variante de fade-in com configurações personalizadas
  */
-export const hoverTransition = {
-  type: 'spring',
-  stiffness: 400,
-  damping: 17,
-};
+export function createFadeInVariant(options?: {
+  duration?: number;
+  delay?: number;
+  ease?: string | number[];
+}): Variants {
+  const {
+    duration = ANIMATION_CONFIG.duration.medium,
+    delay = 0,
+    ease = ANIMATION_CONFIG.easing.smooth,
+  } = options || {};
+
+  return {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: getAdjustedDuration(duration),
+        delay,
+        ease,
+      },
+    },
+  };
+}
+
+/**
+ * Gera uma variante de slide up com configurações personalizadas
+ */
+export function createSlideUpVariant(options?: {
+  duration?: number;
+  delay?: number;
+  distance?: number;
+  ease?: string | number[];
+}): Variants {
+  const {
+    duration = ANIMATION_CONFIG.duration.medium,
+    delay = 0,
+    distance = 20,
+    ease = ANIMATION_CONFIG.easing.smooth,
+  } = options || {};
+
+  return {
+    hidden: { opacity: 0, y: distance },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: getAdjustedDuration(duration),
+        delay,
+        ease,
+      },
+    },
+  };
+}
