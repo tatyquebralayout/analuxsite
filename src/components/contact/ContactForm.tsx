@@ -43,50 +43,61 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  // Inicializa o EmailJS no carregamento do componente
+  // Inicializa o EmailJS apenas uma vez
   useEffect(() => {
     try {
-      // Inicialização do EmailJS - importante para algumas versões
-      // Usar a public key aqui é seguro e recomendado
       emailjs.init('AmgBu5KTBSjqp5HVm');
       console.log('EmailJS inicializado com sucesso');
     } catch (error) {
       console.error('Erro ao inicializar EmailJS:', error);
     }
+    // Não precisamos de cleanup para inicialização
   }, []);
-
-  // Adicionar hook para garantir que não haja refresh
-  useEffect(() => {
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      console.log('Tentativa de unload detectada');
-      if (isSubmitting) {
-        e.preventDefault();
-        e.returnValue = '';
-        return '';
-      }
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [isSubmitting]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    e.preventDefault(); // Prevenir qualquer comportamento padrão
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // Helper para obter o texto do serviço
+  function getServiceText() {
+    if (!t.services) return formData.service;
+
+    let serviceTitle = '';
+
+    switch (formData.service) {
+      case 'daycare':
+        serviceTitle = t.services.daycare?.title || '';
+        break;
+      case 'hotel':
+        serviceTitle = t.services.hotel?.title || '';
+        break;
+      case 'training':
+        serviceTitle = t.services.training?.title || '';
+        break;
+      case 'taxi':
+        serviceTitle = t.services.taxi?.title || '';
+        break;
+      case 'grooming':
+        serviceTitle = t.services.grooming?.title || '';
+        break;
+      default:
+        serviceTitle = formData.service;
+    }
+
+    return serviceTitle || formData.service;
+  }
+
+  // Função simplificada para enviar e-mail
   const sendEmail = async () => {
     if (!t.contact || !t.services) {
       console.log('t.contact ou t.services está undefined, abortando envio');
       return;
     }
 
-    // Validação direta dos campos do estado formData
-    console.log('Valores dos campos:', formData);
-
+    // Validação básica
     if (!formData.name || !formData.phone || !formData.email || !formData.message) {
       console.log('Validação falhou, alguns campos estão vazios');
       alert('Por favor, preencha todos os campos obrigatórios');
@@ -95,12 +106,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
 
     console.log('Validação passou, preparando para enviar email');
 
-    // Configurações do EmailJS - Atualizadas para versão mais recente
+    // Configurações do EmailJS
     const serviceID = 'service_2lih55m';
     const templateID = 'template_2lih55m';
-    const publicKey = 'AmgBu5KTBSjqp5HVm';
+    // Não precisamos passar a chave pública novamente já que inicializamos no useEffect
 
-    // Prepara os parâmetros extras que podem ser úteis
+    // Preparação dos parâmetros para o e-mail
     const templateParams = {
       from_name: formData.name,
       reply_to: formData.email,
@@ -109,37 +120,26 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
       dog_count: formData.dogCount,
       dog_size: formData.dogSize,
       service_requested: formData.service,
-      // Campos extras que podem ser úteis no email
-      serviceText:
-        formData.service === 'daycare' && t.services.daycare
-          ? t.services.daycare.title
-          : formData.service === 'hotel' && t.services.hotel
-          ? t.services.hotel.title
-          : formData.service === 'training' && t.services.training
-          ? t.services.training.title
-          : formData.service === 'taxi' && t.services.taxi
-          ? t.services.taxi.title
-          : formData.service === 'grooming' && t.services.grooming
-          ? t.services.grooming.title
-          : formData.service,
+      // Informações adicionais
+      serviceText: getServiceText(),
       site_name: 'AmanluxDog',
       date: new Date().toLocaleDateString(),
     };
 
-    // Mostra indicador de envio
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
     console.log('Enviando email com parâmetros:', templateParams);
-    console.log('Configurações EmailJS:', { serviceID, templateID, publicKey });
 
     try {
-      // Usar async/await para melhor controle de fluxo e exceções
-      const response = await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      // Envio do e-mail - não precisa passar a chave pública novamente
+      const response = await emailjs.send(serviceID, templateID, templateParams);
       console.log('Email enviado com sucesso!', response.status, response.text);
+
+      // Atualiza o estado para mostrar mensagem de sucesso
       setSubmitStatus('success');
 
-      // Limpa o formulário
+      // Limpa o formulário após envio bem-sucedido
       setFormData({
         name: '',
         phone: '',
@@ -162,12 +162,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
           console.log('Mensagem de sucesso não encontrada no DOM');
         }
       }, 100);
-
-      // Mantém a mensagem visível por 5 segundos antes de resetar
-      setTimeout(() => {
-        console.log('Resetando status após 5 segundos');
-        setSubmitStatus('idle');
-      }, 5000);
     } catch (error) {
       console.error('Erro ao enviar email:', error);
       setSubmitStatus('error');
@@ -184,47 +178,20 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
           console.log('Mensagem de erro não encontrada no DOM');
         }
       }, 100);
-
-      // Mantém a mensagem de erro visível por 5 segundos
-      setTimeout(() => {
-        console.log('Resetando status após 5 segundos');
-        setSubmitStatus('idle');
-      }, 5000);
     } finally {
       console.log('Finalizando processo de envio, setIsSubmitting(false)');
       setIsSubmitting(false);
     }
   };
 
-  // Função de tratamento de submissão com prevenção intensa de defaults
-  const handleSubmit = (e?: React.MouseEvent | React.FormEvent) => {
-    // Prevenção máxima de refresh
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      console.log('EVENTO INTERCEPTADO - preventDefault e stopPropagation aplicados');
-      if ('nativeEvent' in e) {
-        e.nativeEvent.preventDefault();
-        e.nativeEvent.stopImmediatePropagation();
-        e.nativeEvent.stopPropagation();
-      }
-    }
+  // Manipulador de submissão simplificado
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // Esta linha é essencial e suficiente
+    console.log('Formulário submetido, prevenindo comportamento padrão');
 
-    console.log('Função handleSubmit foi chamada');
-
-    // Evita envio duplicado
-    if (isSubmitting) {
-      console.log('Envio já em andamento, ignorando');
-      return false;
-    }
-
-    // Processar o envio de email de forma assíncrona
-    Promise.resolve().then(() => {
+    if (!isSubmitting) {
       sendEmail();
-    });
-
-    // Garantir que não haja comportamento padrão
-    return false;
+    }
   };
 
   const inputVariants = {
@@ -239,7 +206,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
     }),
   };
 
-  // Renderização condicional com base no status
+  // Renderização condicional do formulário
   const renderFormContent = () => {
     // Verificar se t.contact e t.services existem
     if (!t.contact || !t.services) return null;
@@ -275,6 +242,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
               'Sua mensagem foi enviada com sucesso. Entraremos em contato em breve!'}
           </p>
           <button
+            type="button" // type="button" para não acionar o formulário
             onClick={() => setSubmitStatus('idle')}
             className="mt-4 px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
           >
@@ -315,6 +283,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
               'Houve um erro ao enviar sua mensagem. Por favor, tente novamente ou entre em contato por telefone.'}
           </p>
           <button
+            type="button" // type="button" para não acionar o formulário
             onClick={() => setSubmitStatus('idle')}
             className="mt-4 px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
           >
