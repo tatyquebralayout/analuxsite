@@ -7,6 +7,7 @@ import Gallery from '../components/home/Gallery';
 import Faq from '../components/home/Faq';
 import InstagramFeed from '../components/home/InstagramFeed';
 import SEO from '../components/common/SEO';
+import ContactSection from '../components/contact/ContactSection';
 
 /**
  * Componente da página inicial
@@ -33,7 +34,7 @@ const Home: React.FC = () => {
       <Gallery />
       <Faq />
       <InstagramFeed />
-      {/* <ContactSection language={language} /> */}
+      <ContactSection />
     </>
   );
 };

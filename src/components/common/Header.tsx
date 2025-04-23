@@ -97,7 +97,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
             </div>
             <div className="flex items-center gap-2">
               <Mail size={16} className="text-primary" />
-              <span className="text-gray-700">contato@amanluxdog.com</span>
+              <span className="text-gray-700">• info@amanlux.com</span>
             </div>
           </div>
 
@@ -179,7 +179,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                       <Menu.Item>
                         {({ active }) => (
                           <Link
-                            to="/services/hundebetreuung"
+                            to="/services"
                             className={`${
                               active ? 'bg-primary text-white' : 'text-gray-700'
                             } block px-4 py-2 font-medium transition-colors`}
@@ -311,13 +311,6 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
               </Link>
               <Link
                 to="/services"
-                className="font-medium hover:text-primary transition-colors"
-                onClick={closeMobileMenu}
-              >
-                {headerTranslations.services || 'Services'}
-              </Link>
-              <Link
-                to="/services/hundebetreuung"
                 className="font-medium hover:text-primary transition-colors"
                 onClick={closeMobileMenu}
               >

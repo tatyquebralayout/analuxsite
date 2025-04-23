@@ -5,11 +5,11 @@ import LoadingScreen from '../components/common/LoadingScreen';
 
 // Lazy load page components
 const Home = lazy(() => import('../pages/Home'));
-const Services = lazy(() => import('../pages/Services'));
-const ServiceDetails = lazy(() => import('../pages/ServiceDetails'));
 const About = lazy(() => import('../pages/About'));
 const Contact = lazy(() => import('../pages/Contact'));
 const NotFound = lazy(() => import('../pages/NotFound'));
+const Hundebetreuung = lazy(() => import('../pages/Hundebetreuung'));
+const Hundetraining = lazy(() => import('../pages/Hundetraining'));
 
 /**
  * Configuração de rotas da aplicação
@@ -20,8 +20,8 @@ const NotFound = lazy(() => import('../pages/NotFound'));
  *
  * Rotas:
  * - / : Página inicial
- * - /services : Página de serviços
- * - /services/:serviceId : Detalhes de um serviço específico
+ * - /services : Página de cuidados com cães (Hundebetreuung)
+ * - /services/hundetraining : Página de treinamento de cães
  * - /about : Página sobre nós
  * - /partnership : Página de parcerias
  * - /contact : Página de contato
@@ -35,8 +35,8 @@ const AppRoutes: React.FC = () => {
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
-            <Route path="services" element={<Services />} />
-            <Route path="services/:serviceId" element={<ServiceDetails />} />
+            <Route path="services" element={<Hundebetreuung />} />
+            <Route path="services/hundetraining" element={<Hundetraining />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
             <Route path="404" element={<NotFound />} />

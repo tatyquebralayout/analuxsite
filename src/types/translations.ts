@@ -229,6 +229,12 @@ export interface TranslationSchema {
     languageSelector?: string;
     openMenu?: string;
     closeMenu?: string;
+    partnership?: string;
+  };
+  footer?: {
+    quickLinks?: string;
+    followUs?: string;
+    rights?: string;
   };
   hero?: HeroSection;
   advantages?: AdvantagesSection;

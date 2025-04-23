@@ -45,7 +45,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, del
       {/* Added whitespace-pre-line */}
       {/* Conditionally render the button link for specific services */}
       {(title === 'Tagesbetreuung' || title === 'Übernachtung und Wochenende') && (
-        <Link to="/services/hundebetreuung" className="btn-primary w-fit mt-auto">
+        <Link to="/services" className="btn-primary w-fit mt-auto">
           Zur Seite Hundebetreuung
         </Link>
       )}
