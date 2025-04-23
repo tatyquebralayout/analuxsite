@@ -2,8 +2,7 @@ import React from 'react';
 import Hero from '../components/home/Hero';
 import VideoHighlight from '../components/home/VideoHighlight';
 import QuickServices from '../components/home/QuickServices';
-import Advantages from '../components/home/Advantages';
-import Testimonials from '../components/home/Testimonials';
+import Partnership from '../components/home/Advantages';
 import Gallery from '../components/home/Gallery';
 import Faq from '../components/home/Faq';
 import InstagramFeed from '../components/home/InstagramFeed';
@@ -28,9 +27,9 @@ const Home: React.FC = () => {
       <Hero />
       <VideoHighlight />
       <QuickServices />
-      <Advantages />
+      <Partnership />
       {/* <Services language={language} /> */}
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Gallery />
       <Faq />
       <InstagramFeed />

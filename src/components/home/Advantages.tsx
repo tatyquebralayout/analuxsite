@@ -1,205 +1,86 @@
-import React, { useEffect, useState } from 'react';
-import { Heart, Calendar, Home } from 'lucide-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useTranslation } from 'react-i18next';
-import { AdvantagesSection } from '../../types/translations';
+// Removed unused useTranslation import
+// Removed unused partnershipImageUrl (cachorro.png)
+import partnershipBannerUrl from '../../assets/images/banner_parceria.png'; // Import banner image
 
-const Advantages: React.FC = () => {
-  const { t } = useTranslation();
-
-  const advantagesData = t('advantages', { returnObjects: true }) as AdvantagesSection;
-
-  const [counts, setCounts] = useState({
-    stories: 0,
-    years: 0,
-    space: 0,
-  });
+const Partnership: React.FC = () => {
+  // Removed t hook
 
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true,
   });
 
-  useEffect(() => {
-    if (!inView) return;
-
-    const duration = 2000;
-    const interval = 20;
-
-    const targetCounts = {
-      stories: 2000,
-      years: 5,
-      space: 220,
-    };
-
-    const steps = {
-      stories: targetCounts.stories / (duration / interval),
-      years: targetCounts.years / (duration / interval),
-      space: targetCounts.space / (duration / interval),
-    };
-
-    let timer: number | undefined;
-
-    const startCounting = () => {
-      let elapsed = 0;
-      timer = setInterval(() => {
-        elapsed += interval;
-        setCounts(() => ({
-          stories: Math.min(Math.round(steps.stories * (elapsed / interval)), targetCounts.stories),
-          years: Math.min(Math.round(steps.years * (elapsed / interval)), targetCounts.years),
-          space: Math.min(Math.round(steps.space * (elapsed / interval)), targetCounts.space),
-        }));
-        if (elapsed >= duration) {
-          clearInterval(timer);
-        }
-      }, interval);
-    };
-
-    startCounting();
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, [inView]);
-
-  if (
-    !advantagesData ||
-    !advantagesData.title ||
-    !advantagesData.stories ||
-    !advantagesData.years ||
-    !advantagesData.space ||
-    !advantagesData.attention
-  ) {
-    console.error('Advantages data not loaded correctly from translations');
-    return null;
-  }
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.2,
-        duration: 0.6,
-        ease: 'easeOut',
-      },
-    }),
-  };
+  // Removed partnershipTitle and partnershipDescription
 
   return (
-    <section id="advantages" className="py-16 bg-white" ref={ref}>
-      <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-          transition={{ duration: 0.6 }}
-          className="headline2 text-center mb-12 font-sour-gummy"
+    // Removed background image styling, kept bg-white
+    <section
+      id="partnership"
+      className="py-16 bg-white" // Back to bg-white
+      ref={ref}
+    >
+      {/* Restored two-column layout, items-center for vertical alignment */}
+      <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-12">
+        {/* Left Column: Text */}
+        <motion.div
+          className="w-full lg:w-1/2 text-left" // Align text left
+          initial={{ opacity: 0, x: -50 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {advantagesData.title}
-        </motion.h2>
+          <p className="headline3 font-sour-gummy text-[#EC6B1C] mb-4">
+            Liebe Kundinnen und Kunden
+          </p>
+          <p className="body1 text-[#EC6B1C] mb-4">
+            Mit grosser Freude dürfen wir Ihnen mitteilen, dass wir neu mit DogAffair
+            zusammenarbeiten – dem Zürcher Fachbetrieb für Fellpflege, Beauty-Bäder und
+            ganzheitliches Hundewohlbefinden.
+          </p>
+          <p className="body1 text-[#EC6B1C] mb-6">
+            Dank dieser Partnerschaft können wir Ihnen jetzt ein noch umfassenderes
+            Rundum-Sorglos-Paket bieten: von der liebevollen Betreuung bei AmanLux Dogs bis hin zu
+            professionellem Baden, Trimmen und Spa-Momenten bei DogAffair – alles aus einer Hand, in
+            der Stadt Zürich.
+          </p>
+          <p className="body1 text-[#EC6B1C] font-medium">
+            {' '}
+            {/* Added font-medium for emphasis */}
+            Entdecken Sie, wie diese Partnerschaft Ihr gemeinsames Erlebnis auf ein neues Level von
+            Fürsorge und Liebe hebt!
+          </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <motion.div
-            className="bg-primary-container rounded-lg p-6 text-center transform transition-transform hover:scale-105"
-            variants={cardVariants}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            custom={0}
-            whileHover={{ y: -10 }}
-          >
-            <div className="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-4">
-              <motion.span
-                className="text-white"
-                animate={{ rotate: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                🐾
-              </motion.span>
-            </div>
-            <div className="text-center">
-              <h3 className="headline4 font-bold mb-2">+{counts.stories.toLocaleString()}</h3>
-              <h4 className="headline6 mb-2 font-sour-gummy">{advantagesData.stories.title}</h4>
-              <p className="body2 text-gray-600">{advantagesData.stories.description}</p>
-            </div>
-          </motion.div>
+          {/* Added Partnership Button - Orange Style */}
+          <div className="mt-6">
+            <Link
+              to="/partnership"
+              // Removed btn-primary, added specific orange bg, white text, hover, padding, rounded
+              className="bg-[#EC6B1C] text-white px-6 py-2 rounded-full hover:bg-[#c65a17] transition-colors duration-300 w-fit inline-block"
+            >
+              Erfahren Sie mehr über die Partnerschaft
+            </Link>
+          </div>
+        </motion.div>
 
-          <motion.div
-            className="bg-primary-container rounded-lg p-6 text-center transform transition-transform hover:scale-105"
-            variants={cardVariants}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            custom={1}
-            whileHover={{ y: -10 }}
-          >
-            <div className="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-4">
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-              >
-                <Calendar className="text-white" />
-              </motion.div>
-            </div>
-            <div className="text-center">
-              <h3 className="headline4 font-bold mb-2">{counts.years}</h3>
-              <h4 className="headline6 mb-2 font-sour-gummy">{advantagesData.years.title}</h4>
-              <p className="body2 text-gray-600">{advantagesData.years.description}</p>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="bg-primary-container rounded-lg p-6 text-center transform transition-transform hover:scale-105"
-            variants={cardVariants}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            custom={2}
-            whileHover={{ y: -10 }}
-          >
-            <div className="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-4">
-              <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
-                <Home className="text-white" />
-              </motion.div>
-            </div>
-            <div className="text-center">
-              <h3 className="headline4 font-bold mb-2">{counts.space}m²</h3>
-              <h4 className="headline6 mb-2 font-sour-gummy">{advantagesData.space.title}</h4>
-              <p className="body2 text-gray-600">{advantagesData.space.description}</p>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="bg-primary-container rounded-lg p-6 text-center transform transition-transform hover:scale-105"
-            variants={cardVariants}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            custom={3}
-            whileHover={{ y: -10 }}
-          >
-            <div className="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-4">
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  repeatType: 'reverse',
-                }}
-              >
-                <Heart className="text-white" />
-              </motion.div>
-            </div>
-            <div className="text-center">
-              <h3 className="headline4 font-bold mb-2">24/7</h3>
-              <h4 className="headline6 mb-2 font-sour-gummy">{advantagesData.attention.title}</h4>
-              <p className="body2 text-gray-600">{advantagesData.attention.description}</p>
-            </div>
-          </motion.div>
-        </div>
+        {/* Right Column: Banner Image */}
+        <motion.div
+          className="w-full lg:w-1/2"
+          initial={{ opacity: 0, x: 50 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.4 }} // Adjusted delay
+        >
+          <img
+            src={partnershipBannerUrl}
+            alt="Partnership Banner"
+            className="rounded-lg shadow-md"
+          />
+        </motion.div>
       </div>
     </section>
   );
 };
 
-export default Advantages;
+export default Partnership;

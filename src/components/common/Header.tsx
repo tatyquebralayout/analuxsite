@@ -214,6 +214,14 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                 </motion.div>
                 <motion.div whileHover={{ y: -2 }}>
                   <Link
+                    to="/partnership"
+                    className="text-primary text-lg font-medium px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors"
+                  >
+                    Partnership
+                  </Link>
+                </motion.div>
+                <motion.div whileHover={{ y: -2 }}>
+                  <Link
                     to="/contact"
                     className="text-primary text-lg font-medium px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors"
                   >
@@ -328,6 +336,13 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                 onClick={closeMobileMenu}
               >
                 {headerTranslations.about || 'About Us'}
+              </Link>
+              <Link
+                to="/partnership"
+                className="font-medium hover:text-primary transition-colors"
+                onClick={closeMobileMenu}
+              >
+                Partnership
               </Link>
               <Link
                 to="/contact"
