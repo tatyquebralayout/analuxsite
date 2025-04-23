@@ -8,7 +8,6 @@ const Home = lazy(() => import('../pages/Home'));
 const Services = lazy(() => import('../pages/Services'));
 const ServiceDetails = lazy(() => import('../pages/ServiceDetails'));
 const About = lazy(() => import('../pages/About'));
-const Partnership = lazy(() => import('../pages/Partnership'));
 const Contact = lazy(() => import('../pages/Contact'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
@@ -39,7 +38,6 @@ const AppRoutes: React.FC = () => {
             <Route path="services" element={<Services />} />
             <Route path="services/:serviceId" element={<ServiceDetails />} />
             <Route path="about" element={<About />} />
-            <Route path="partnership" element={<Partnership />} />
             <Route path="contact" element={<Contact />} />
             <Route path="404" element={<NotFound />} />
             <Route path="*" element={<Navigate to="/404" replace />} />

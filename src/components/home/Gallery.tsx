@@ -2,15 +2,10 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Instagram, X, ChevronLeft, ChevronRight, ZoomIn, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { translations } from '../../utils/translations';
-import { TranslationSchema } from '../../types';
+import { useTranslation } from 'react-i18next';
 
-interface GalleryProps {
-  language: string;
-}
-
-const Gallery: React.FC<GalleryProps> = ({ language }) => {
-  const t = translations[language as keyof typeof translations] as TranslationSchema;
+const Gallery: React.FC = () => {
+  const { t } = useTranslation();
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [isZoomed, setIsZoomed] = useState(false);
   const [liked, setLiked] = useState<number[]>([]);
@@ -143,7 +138,7 @@ const Gallery: React.FC<GalleryProps> = ({ language }) => {
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.6 }}
         >
-          {t.gallery?.title}
+          {t('gallery.title', 'Gallery')}
         </motion.h2>
 
         <motion.p
@@ -152,7 +147,7 @@ const Gallery: React.FC<GalleryProps> = ({ language }) => {
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {t.gallery?.description}
+          {t('gallery.description', 'Check out some moments from our furry friends!')}
         </motion.p>
 
         {/* Masonry-like grid - Usando gap-3 e gap-4 da escala do Tailwind */}
@@ -229,7 +224,7 @@ const Gallery: React.FC<GalleryProps> = ({ language }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {t.gallery?.viewAll}
+            {t('gallery.viewAll', 'View All Images')}
           </motion.button>
 
           <motion.a
@@ -240,7 +235,7 @@ const Gallery: React.FC<GalleryProps> = ({ language }) => {
             whileHover={{ x: 5 }}
           >
             <Instagram size={20} />
-            {t.gallery?.instagram}
+            {t('gallery.instagram', 'Follow us on Instagram')}
           </motion.a>
         </motion.div>
       </div>
@@ -257,9 +252,10 @@ const Gallery: React.FC<GalleryProps> = ({ language }) => {
           >
             {/* Close button */}
             <motion.button
-              className="absolute top-4 right-4 text-white hover:text-secondary transition-colors z-50 bg-black/50 p-2 rounded-full"
+              className="absolute top-4 right-4 bg-black/50 text-white rounded-full p-2 cursor-pointer hover:bg-black/75 transition-colors z-50"
               onClick={closeLightbox}
-              aria-label="Close"
+              aria-label={t('gallery.closeLightbox', 'Close image viewer')}
+              initial={{ opacity: 0, scale: 0.5 }}
               whileHover={{ scale: 1.2, rotate: 90 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -268,12 +264,10 @@ const Gallery: React.FC<GalleryProps> = ({ language }) => {
 
             {/* Navigation - Previous */}
             <motion.button
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-secondary transition-colors z-50 bg-black/30 hover:bg-black/50 p-3 rounded-full"
-              onClick={e => {
-                e.stopPropagation();
-                navigateImage('prev');
-              }}
-              aria-label="Previous image"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white rounded-full p-2 cursor-pointer hover:bg-black/75 transition-colors z-50"
+              onClick={() => navigateImage('prev')}
+              aria-label={t('gallery.prevImage', 'Previous image')}
+              initial={{ opacity: 0, x: -20 }}
               whileHover={{ scale: 1.2, x: -5 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -348,12 +342,10 @@ const Gallery: React.FC<GalleryProps> = ({ language }) => {
 
             {/* Navigation - Next */}
             <motion.button
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-secondary transition-colors z-50 bg-black/30 hover:bg-black/50 p-3 rounded-full"
-              onClick={e => {
-                e.stopPropagation();
-                navigateImage('next');
-              }}
-              aria-label="Next image"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white rounded-full p-2 cursor-pointer hover:bg-black/75 transition-colors z-50"
+              onClick={() => navigateImage('next')}
+              aria-label={t('gallery.nextImage', 'Next image')}
+              initial={{ opacity: 0, x: 20 }}
               whileHover={{ scale: 1.2, x: 5 }}
               whileTap={{ scale: 0.9 }}
             >

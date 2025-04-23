@@ -13,33 +13,39 @@ Check out the live demo: [AmanluxDog Website](https://frolicking-pothos-f0e419.n
 ## Features
 
 ### 🌐 Multilingual Support
+
 - Complete translations in 5 languages (Portuguese, English, Spanish, French, German)
 - Easy language switching with flag icons
 - Modular translation system for easy maintenance
 
 ### 🎨 Modern UI/UX
+
 - Responsive design that works on all devices
 - Smooth animations using Framer Motion
 - Beautiful image gallery with lightbox functionality
 - Interactive components with hover effects
 
 ### 📱 Mobile Optimized
+
 - Fully responsive layout
 - Mobile navigation menu
 - Touch-adapted interactive elements
 
 ### 🔍 SEO Optimized
+
 - Semantic HTML structure
 - Meta tags for better search engine visibility
 - Fast loading times
 
 ### 🚀 Performance Optimized
+
 - Automatic performance detection for low-end devices
 - Reduced animations for users with reduced motion preferences
 - Lazy loading of images and components
 - Route-based code splitting for faster initial loading
 
 ### 🧩 Modular Architecture
+
 - Component-based design for reusability
 - Context API for state management
 - Custom hooks for shared functionality
@@ -133,6 +139,7 @@ amanluxdog-website/
 ## Pages
 
 ### Home Page
+
 - Hero section with call-to-action
 - Services overview
 - Advantages section with animated counters
@@ -144,22 +151,26 @@ amanluxdog-website/
 - Contact form and location map
 
 ### Services Page
+
 - Services overview with tabs for different categories
 - Detailed service cards with pricing
 - Online consultation section
 - Call-to-action for contact
 
 ### About Page
+
 - Company information
 - Team members section
 - Mission and values
 
 ### Partnership Page
+
 - Partnership opportunities
 - Benefits of partnering
 - Contact form for potential partners
 
 ### Contact Page
+
 - Contact form
 - Location map
 - Business hours and contact information
@@ -174,12 +185,14 @@ amanluxdog-website/
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/amanluxdog-website.git
 cd amanluxdog-website
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 # or
@@ -187,6 +200,7 @@ yarn
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 # or
@@ -210,6 +224,7 @@ The built files will be in the `dist` directory.
 The website is deployed on Netlify. You can deploy your own version by:
 
 1. Building the project:
+
 ```bash
 npm run build
 ```

@@ -7,7 +7,7 @@ import { flags } from '../../assets/flags';
 import { TranslationSchema } from '../../types';
 
 /**
- * Interface de propriedades do componente Header
+ * Interface de propriedades do componente Header (Restored)
  */
 interface HeaderProps {
   language: string; // Idioma atual
@@ -24,14 +24,17 @@ interface HeaderProps {
  * cabeçalho no topo da página quando o usuário rola para baixo.
  */
 const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
+  // Get translations based on the passed language prop
+  const t = translations[language as keyof typeof translations] as TranslationSchema;
+
+  // Add a check for t and t.header for safety
+  const headerTranslations = t?.header || {};
+
   // Estado para controlar a abertura/fechamento do menu mobile
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Estado para controlar se o cabeçalho está fixo após rolagem
   const [isScrolled, setIsScrolled] = useState(false);
-
-  // Obtém as traduções para o idioma atual
-  const t = translations[language as keyof typeof translations] as TranslationSchema;
 
   // Efeito para detectar rolagem da página
   useEffect(() => {
@@ -154,35 +157,27 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
               <nav className="hidden md:flex items-center space-x-6 mr-6">
                 <motion.div whileHover={{ y: -2 }}>
                   <Link to="/" className="font-medium hover:text-primary transition-colors">
-                    {t.header.home}
+                    {headerTranslations.home || 'Home'}
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{ y: -2 }}>
                   <Link to="/services" className="font-medium hover:text-primary transition-colors">
-                    {t.header.services}
+                    {headerTranslations.services || 'Services'}
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{ y: -2 }}>
                   <Link to="/about" className="font-medium hover:text-primary transition-colors">
-                    {t.header.about}
-                  </Link>
-                </motion.div>
-                <motion.div whileHover={{ y: -2 }}>
-                  <Link
-                    to="/partnership"
-                    className="font-medium hover:text-primary transition-colors"
-                  >
-                    {t.header.partnership}
+                    {headerTranslations.about || 'About Us'}
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{ y: -2 }}>
                   <Link to="/contact" className="font-medium hover:text-primary transition-colors">
-                    {t.header.contact}
+                    {headerTranslations.contact || 'Contact'}
                   </Link>
                 </motion.div>
               </nav>
 
-              {/* Botão de destaque e seletor de idioma */}
+              {/* Botão de destaque e seletor de idioma (Restored language selector) */}
               <div className="hidden md:flex items-center space-x-4">
                 <motion.button
                   className="btn-primary flex items-center gap-2"
@@ -190,33 +185,35 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Clock size={16} />
-                  {t.header.bookNow}
+                  {headerTranslations.bookNow || 'Book Now'}
                 </motion.button>
 
-                {/* Seletor de idioma */}
+                {/* Seletor de idioma RESTORED */}
                 <div
-                  className="flex border rounded-md"
+                  className="flex border rounded-md overflow-hidden"
                   role="group"
-                  aria-label={t.header.languageSelector || 'Select Language'}
+                  aria-label={headerTranslations.languageSelector || 'Select Language'}
                 >
                   <motion.button
-                    onClick={() => setLanguage('pt')}
-                    className={`px-2 py-1 text-sm flex items-center justify-center ${
-                      language === 'pt' ? 'bg-gray-200' : ''
+                    onClick={() => setLanguage('en')}
+                    className={`px-2 py-1 text-sm flex items-center justify-center transition-colors duration-200 ${
+                      language === 'en' ? 'bg-gray-200' : 'bg-white hover:bg-gray-100'
                     }`}
-                    title="Português"
-                    aria-label="Mudar para Português"
-                    whileHover={{ y: -2 }}
-                    dangerouslySetInnerHTML={{ __html: flags.pt }}
+                    title="English"
+                    aria-label="Switch to English"
+                    whileHover={{ y: -1 }}
+                    whileTap={{ scale: 0.95 }}
+                    dangerouslySetInnerHTML={{ __html: flags.en }}
                   />
                   <motion.button
                     onClick={() => setLanguage('de')}
-                    className={`px-2 py-1 text-sm flex items-center justify-center ${
-                      language === 'de' ? 'bg-gray-200' : ''
+                    className={`px-2 py-1 text-sm flex items-center justify-center transition-colors duration-200 ${
+                      language === 'de' ? 'bg-gray-200' : 'bg-white hover:bg-gray-100'
                     }`}
                     title="Deutsch"
                     aria-label="Wechseln zu Deutsch"
-                    whileHover={{ y: -2 }}
+                    whileHover={{ y: -1 }}
+                    whileTap={{ scale: 0.95 }}
                     dangerouslySetInnerHTML={{ __html: flags.de }}
                   />
                 </div>
@@ -228,7 +225,9 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 whileTap={{ scale: 0.9 }}
                 aria-label={
-                  isMenuOpen ? t.header.closeMenu || 'Close Menu' : t.header.openMenu || 'Open Menu'
+                  isMenuOpen
+                    ? headerTranslations.closeMenu || 'Close Menu'
+                    : headerTranslations.openMenu || 'Open Menu'
                 }
                 aria-expanded={isMenuOpen}
               >
@@ -255,81 +254,69 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                 className="font-medium hover:text-primary transition-colors"
                 onClick={closeMobileMenu}
               >
-                {t.header.home}
+                {headerTranslations.home || 'Home'}
               </Link>
               <Link
                 to="/services"
                 className="font-medium hover:text-primary transition-colors"
                 onClick={closeMobileMenu}
               >
-                {t.header.services}
+                {headerTranslations.services || 'Services'}
               </Link>
               <Link
                 to="/about"
                 className="font-medium hover:text-primary transition-colors"
                 onClick={closeMobileMenu}
               >
-                {t.header.about}
-              </Link>
-              <Link
-                to="/partnership"
-                className="font-medium hover:text-primary transition-colors"
-                onClick={closeMobileMenu}
-              >
-                {t.header.partnership}
+                {headerTranslations.about || 'About Us'}
               </Link>
               <Link
                 to="/contact"
                 className="font-medium hover:text-primary transition-colors"
                 onClick={closeMobileMenu}
               >
-                {t.header.contact}
+                {headerTranslations.contact || 'Contact'}
               </Link>
 
               <motion.button
-                className="btn-primary flex items-center justify-center gap-2 w-full"
-                whileHover={{ scale: 1.05 }}
+                className="btn-primary-outline mt-4 w-full flex items-center justify-center gap-2"
                 whileTap={{ scale: 0.95 }}
+                onClick={closeMobileMenu}
               >
                 <Clock size={16} />
-                {t.header.bookNow}
+                {headerTranslations.bookNow || 'Book Now'}
               </motion.button>
 
-              {/* Seletor de idioma para mobile */}
-              <div
-                className="flex border rounded-md self-start"
-                role="group"
-                aria-label={t.header.languageSelector || 'Select Language'}
-              >
-                <button
-                  onClick={() => setLanguage('pt')}
-                  className={`px-2 py-1 text-sm flex items-center justify-center ${
-                    language === 'pt' ? 'bg-gray-200' : ''
-                  }`}
-                  title="Português"
-                  aria-label="Mudar para Português"
-                  dangerouslySetInnerHTML={{ __html: flags.pt }}
-                />
-                <button
-                  onClick={() => setLanguage('de')}
-                  className={`px-2 py-1 text-sm flex items-center justify-center ${
-                    language === 'de' ? 'bg-gray-200' : ''
-                  }`}
-                  title="Deutsch"
-                  aria-label="Wechseln zu Deutsch"
-                  dangerouslySetInnerHTML={{ __html: flags.de }}
-                />
-              </div>
-
-              {/* Informações adicionais no menu mobile */}
-              <div className="pt-4 mt-4 border-t border-gray-200">
-                <div className="flex items-center gap-2 mb-2">
-                  <MapPin size={16} className="text-primary" />
-                  <span className="text-sm text-gray-700">Hauptstrasse, 8416 Flaach</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock size={16} className="text-primary" />
-                  <span className="text-sm text-gray-700">07:00 - 18:00 (Mon-Fri)</span>
+              {/* Seletor de idioma mobile RESTORED */}
+              <div className="mt-6 border-t pt-4">
+                <span className="text-sm font-medium text-gray-500 block mb-2">
+                  {headerTranslations.languageSelector || 'Select Language'}
+                </span>
+                <div className="flex justify-center space-x-2">
+                  <motion.button
+                    onClick={() => {
+                      setLanguage('en');
+                      closeMobileMenu();
+                    }}
+                    className={`px-3 py-1 rounded-md transition-colors duration-200 ${
+                      language === 'en' ? 'bg-gray-200' : 'bg-white hover:bg-gray-100'
+                    }`}
+                    whileTap={{ scale: 0.95 }}
+                    dangerouslySetInnerHTML={{ __html: flags.en }}
+                    aria-label="Switch to English"
+                  />
+                  <motion.button
+                    onClick={() => {
+                      setLanguage('de');
+                      closeMobileMenu();
+                    }}
+                    className={`px-3 py-1 rounded-md transition-colors duration-200 ${
+                      language === 'de' ? 'bg-gray-200' : 'bg-white hover:bg-gray-100'
+                    }`}
+                    whileTap={{ scale: 0.95 }}
+                    dangerouslySetInnerHTML={{ __html: flags.de }}
+                    aria-label="Wechseln zu Deutsch"
+                  />
                 </div>
               </div>
             </nav>

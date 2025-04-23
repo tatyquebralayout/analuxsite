@@ -1,26 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useLanguage } from '../contexts/useLanguage';
-import { translations } from '../utils/translations';
-
-// Definir interface para a seção notFound nas traduções
-interface WithNotFound {
-  notFound?: {
-    title: string;
-    message: string;
-    backHome: string;
-  };
-}
+import { useTranslation } from 'react-i18next';
 
 const NotFound: React.FC = () => {
-  const { language } = useLanguage();
-  const t = translations[language as keyof typeof translations] as WithNotFound;
-
-  // Fallback texts for 404 page
-  const title = 'Page Not Found';
-  const message = 'Sorry, the page you are looking for does not exist or has been moved.';
-  const backHome = 'Back to Home';
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-white">
@@ -40,7 +24,7 @@ const NotFound: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {t.notFound?.title || title}
+          {t('notFound.title', 'Page Not Found')}
         </motion.h2>
 
         <motion.p
@@ -49,7 +33,10 @@ const NotFound: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          {t.notFound?.message || message}
+          {t(
+            'notFound.message',
+            'Sorry, the page you are looking for does not exist or has been moved.'
+          )}
         </motion.p>
 
         <motion.div
@@ -63,7 +50,7 @@ const NotFound: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {t.notFound?.backHome || backHome}
+              {t('notFound.backHome', 'Back to Home')}
             </motion.button>
           </Link>
         </motion.div>

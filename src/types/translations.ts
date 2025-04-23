@@ -5,8 +5,6 @@ export interface HeroSection {
   headline: string;
   subtitle: string;
   primaryCTA: string;
-  secondaryCTA?: string;
-  image?: string;
 }
 
 export interface AdvantagesSection {
@@ -16,6 +14,16 @@ export interface AdvantagesSection {
   years: { title: string; description: string };
   space: { title: string; description: string };
   attention: { title: string; description: string };
+  common?: {
+    backButton: string;
+    readMore: string;
+    viewAll: string;
+    submit: string;
+    loading: string;
+    priceLabel?: string;
+    taxInfo?: string;
+    learnMore?: string;
+  };
 }
 
 export interface ServiceItemDetail {
@@ -70,14 +78,28 @@ export interface ServicesSection {
   grooming?: ServiceItemDetail;
 }
 
+interface ServiceHighlightItem {
+  title: string;
+  description: string;
+  button?: string;
+  locationHint?: string;
+}
+
 export interface AboutSection {
   title: string;
+  homeSectionTitle?: string;
   subtitle?: string;
   description: string | string[];
   button?: string;
   team?: {
     title: string;
     description?: string;
+  };
+  serviceHighlights?: {
+    daycare: ServiceHighlightItem;
+    hotel: ServiceHighlightItem;
+    training: ServiceHighlightItem;
+    taxi: ServiceHighlightItem;
   };
 }
 
@@ -92,13 +114,7 @@ export interface TeamSection {
   title: string;
   subtitle?: string;
   button?: string;
-  ceo?: TeamMember;
-  manager?: TeamMember;
-  trainer?: TeamMember;
-  member1?: TeamMember;
-  member2?: TeamMember;
-  member3?: TeamMember;
-  member4?: TeamMember;
+  members: TeamMember[];
 }
 
 export interface TestimonialsSection {
@@ -130,10 +146,14 @@ export interface GallerySection {
 export interface FAQSection {
   title: string;
   subtitle?: string;
+  viewAll?: string;
   items: Array<{
     question: string;
     answer: string;
   }>;
+  small?: string;
+  medium?: string;
+  large?: string;
 }
 
 export interface ContactSection {
@@ -175,6 +195,9 @@ export interface LocationSection {
   taxiDescription?: string;
   publicTransport?: string[];
   mapTitle?: string;
+  taxiArea?: string;
+  parking?: string;
+  parkingDescription?: string;
 }
 
 export interface PartnershipSection {
@@ -197,55 +220,16 @@ export interface ServicePageSection {
 
 // Define a estrutura para cada seção de traduções
 export interface TranslationSchema {
-  // Common elements across pages
-  common?: {
-    backButton: string;
-    readMore: string;
-    viewAll: string;
-    submit: string;
-    loading: string;
-  };
-
-  // Header section
-  header: {
-    home: string;
-    services: string;
-    about: string;
-    partnership: string;
-    contact: string;
-    bookNow: string;
-    everyday: string;
-    languages?: string;
-    appointments?: string;
-    closeMenu?: string;
-    openMenu?: string;
+  header?: {
+    home?: string;
+    about?: string;
+    services?: string;
+    contact?: string;
+    bookNow?: string;
     languageSelector?: string;
+    openMenu?: string;
+    closeMenu?: string;
   };
-
-  // Footer section
-  footer: {
-    weekdays: string;
-    weekends: string;
-    quickLinks: string;
-    followUs: string;
-    privacy: string;
-    terms: string;
-    newsletter: string;
-    newsletterText: string;
-    emailPlaceholder: string;
-    subscribe: string;
-    subscribeSuccess: string;
-    rights: string;
-  };
-
-  // 404 Not found page
-  notFound?: {
-    title: string;
-    message: string;
-    backHome: string;
-  };
-
-  // Seções específicas
   hero?: HeroSection;
   advantages?: AdvantagesSection;
   services?: ServicesSection;

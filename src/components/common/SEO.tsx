@@ -39,4 +39,5 @@ const SEO: React.FC<SEOProps> = ({ title, description, keywords, image, url }) =
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default SEO;

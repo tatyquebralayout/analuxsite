@@ -4,10 +4,10 @@ import { PerformanceProvider } from './contexts/PerformanceContext';
 
 /**
  * Componente principal da aplicação
- * 
+ *
  * Este componente envolve toda a aplicação com o PerformanceProvider
  * para gerenciar otimizações de performance em toda a aplicação.
- * 
+ *
  * O PerformanceProvider detecta capacidades do dispositivo e preferências
  * do usuário para ajustar animações e efeitos visuais.
  */

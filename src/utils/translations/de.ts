@@ -62,30 +62,36 @@ export const de: TranslationSchema = {
   team: {
     title: 'Unsere TEAM',
     button: 'Lernen Sie unser Team kennen',
-    member1: {
-      name: 'Daniel León',
-      role: 'Hundebetreuung und Hundetrainer',
-      description:
-        'Daniel ist ein liebevoller und verantwortungsbewusster Betreuer, der sich mit Herz um alle Bedürfnisse Ihres Hundes kümmert – von der Pflege über das Futter bis hin zum Spiel und der täglichen Zuwendung.',
-    },
-    member2: {
-      name: 'Danillo Pires',
-      role: 'Hundebetreuung, Hundetrainer & Buchhaltung',
-      description:
-        'Danillo leitet AmanLux Dogs mit viel Erfahrung, Organisationstalent und einer tiefen Liebe zu Hunden. Als erfahrener Hundebetreuer und -trainer stellt er sicher, dass alle Dienstleistungen auf höchstem Niveau und mit grösster Sorgfalt ausgeführt werden.',
-    },
-    member3: {
-      name: 'Caroline Sousa',
-      role: 'Hundebetreuung',
-      description:
-        'Caroline sorgt mit viel Einfühlungsvermögen und Hingabe dafür, dass sich jeder Hund bei uns wohlfühlt. Pflege, Spielzeit und liebevolle Aufmerksamkeit stehen bei ihr an erster Stelle.',
-    },
-    member4: {
-      name: 'Chamo',
-      role: 'CEO | Chihuahua',
-      description:
-        'Ich bin hier, um zu zeigen, dass Grösse keine Rolle spielt! Bei AmanLux Dogs ist der Spass garantiert – und Bellen ist unsere offizielle Sprache.',
-    },
+    members: [
+      {
+        name: 'Daniel León',
+        role: 'Hundebetreuung und Hundetrainer',
+        description:
+          'Daniel ist ein liebevoller und verantwortungsbewusster Betreuer, der sich mit Herz um alle Bedürfnisse Ihres Hundes kümmert – von der Pflege über das Futter bis hin zum Spiel und der täglichen Zuwendung.',
+        image: '', // Add image URL here later
+      },
+      {
+        name: 'Danillo Pires',
+        role: 'Hundebetreuung, Hundetrainer & Buchhaltung',
+        description:
+          'Danillo leitet AmanLux Dogs mit viel Erfahrung, Organisationstalent und einer tiefen Liebe zu Hunden. Als erfahrener Hundebetreuer und -trainer stellt er sicher, dass alle Dienstleistungen auf höchstem Niveau und mit grösster Sorgfalt ausgeführt werden.',
+        image: '', // Add image URL here later
+      },
+      {
+        name: 'Caroline Sousa',
+        role: 'Hundebetreuung',
+        description:
+          'Caroline sorgt mit viel Einfühlungsvermögen und Hingabe dafür, dass sich jeder Hund bei uns wohlfühlt. Pflege, Spielzeit und liebevolle Aufmerksamkeit stehen bei ihr an erster Stelle.',
+        image: '', // Add image URL here later
+      },
+      {
+        name: 'Chamo',
+        role: 'CEO | Chihuahua',
+        description:
+          'Ich bin hier, um zu zeigen, dass Grösse keine Rolle spielt! Bei AmanLux Dogs ist der Spass garantiert – und Bellen ist unsere offizielle Sprache.',
+        image: '', // Add image URL here later
+      },
+    ],
   },
 
   // Gallery section

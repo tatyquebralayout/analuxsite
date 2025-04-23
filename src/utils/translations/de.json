@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Home",
+    "about": "Über uns",
+    "services": "Angebot",
+    "contact": "Termine",
+    "bookNow": "Termine"
+  },
+  "hero": {
+    "headline": "Ein Ort voller Liebe – für Welpen, Erwachsene und Seniorenhunde",
+    "subtitle": "Weil Ihr Hund ein Familienmitglied ist – und nur das Beste verdient.",
+    "primaryCTA": "Über uns"
+  },
+  "about": {
+    "title": "Über uns",
+    "homeSectionTitle": "Denn wir wissen: Ihr Hund ist ein Teil Ihrer Familie – und verdient nur das Beste.",
+    "description": [
+      "Willkommen bei AmanLux Dogs – Ihrer exklusiven Hundetagesstätte und Ihrem liebevollen Hundehotel in Zürich, wo jeder Hund als Familienmitglied willkommen ist.",
+      "Wir bieten nicht einfach nur Betreuung – bei AmanLux Dogs erlebt Ihr Hund einen Tag voller Liebe, Geborgenheit und Abenteuer. In unserem 220 Quadratmeter grossen Haus mit einem liebevoll gestalteten Garten hat Ihr Vierbeiner viel Platz zum Spielen, zur Sozialisation und zum Entdecken.",
+      "Unsere Arbeit basiert auf Vertrauen, Qualität und Herz. Mit der offiziellen Bewilligung WHgH2021147 des Veterinäramts garantieren wir höchste Standards in Sachen Sicherheit und Wohlbefinden.",
+      "Bei AmanLux Dogs ist Ihr Hund nie allein – er ist immer in fürsorglichen und erfahrenen Händen.",
+      "Wir holen Ihren Hund direkt bei Ihnen zu Hause ab und bringen ihn nach einem erlebnisreichen Tag voller Zuwendung und Freude sicher zurück.",
+      "Denn wir wissen: Ihr Hund ist ein Teil Ihrer Familie – und verdient nur das Beste."
+    ],
+    "serviceHighlights": {
+      "daycare": {
+        "title": "Tagesbetreuung",
+        "description": "Wir bieten Ihrem vierbeinigen besten Freund ein einzigartiges Erlebnis voller Freude, Komfort und Fürsorge während des Betreuungstages.",
+        "button": "Zur Seite Hundebetreuung"
+      },
+      "hotel": {
+        "title": "Übernachtung und Wochenende",
+        "description": "Wenn Ihr Hund über Nacht oder am Wochenende bei uns bleibt, kümmern wir uns liebevoll um alles.\nWir stellen bequeme Betten, kuschelige Decken und Spielzeug zur Verfügung – alles, was Ihr Hund für Komfort und Wohlbefinden braucht, ist bereits da.\nSie müssen nichts mitbringen – ausser dem gewohnten Futter Ihres Hundes.\nDenn bei AmanLux Dogs ist für alles gesorgt.",
+        "button": "Zur Seite Hundebetreuung"
+      },
+      "training": {
+        "title": "Hundetraining",
+        "description": "Unser Training kombiniert Fachwissen, Geduld und ganz viel Liebe.\nOb Welpe oder erwachsener Hund – wir unterstützen Sie dabei, Vertrauen, Kommunikation und gutes Verhalten aufzubauen.",
+        "button": "Zur Seite Hundetraining"
+      },
+      "taxi": {
+        "title": "Taxi Dog-Service",
+        "description": "Unser Taxi-Dog-Service in Zürich und Umgebung ist im Preis für die Tagesbetreuung und das Hundehotel inbegriffen.\nWir verfügen über zwei Fahrzeuge mit festen Routen. Bitte beachten Sie:\nAm Wochenende und an Feiertagen steht der Service nicht zur Verfügung.\nFragen Sie uns gerne, ob Ihre Adresse auf einer unserer Routen liegt.\nKunden ausserhalb dieser Gebiete treffen wir gerne an einem zentralen Ort in Zürich.",
+        "locationHint": "Unser Standort: Flaach, umgeben von Natur – Ihr Hund wird es lieben!"
+      }
+    },
+    "team": {
+      "title": "Unser Team",
+      "description": "Lernen Sie die Menschen hinter AmanLux Dogs kennen."
+    }
+  }
+}

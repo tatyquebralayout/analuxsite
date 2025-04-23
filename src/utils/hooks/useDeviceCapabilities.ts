@@ -49,7 +49,7 @@ export function useDeviceCapabilities(): DeviceCapabilities {
       const canvas = document.createElement('canvas');
       const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
       supportsWebGL = !!gl;
-    } catch (e) {
+    } catch {
       supportsWebGL = false;
     }
 
@@ -91,9 +91,10 @@ export function useDeviceCapabilities(): DeviceCapabilities {
 
       // Operação intensiva - o resultado não é usado, mas a operação precisa
       // ser executada para medir a performance
-      let dummy = 0;
+
+      let _dummy = 0;
       for (let i = 0; i < 100000; i++) {
-        dummy += Math.sqrt(Math.random() * 10000);
+        _dummy += Math.sqrt(Math.random() * 10000);
       }
 
       const testDuration = performance.now() - testStart;
@@ -135,9 +136,7 @@ export function useDeviceCapabilities(): DeviceCapabilities {
       darkModeMediaQuery.addEventListener('change', handleDarkModeChange);
     } else {
       // Fallback para navegadores antigos (deprecated)
-      // @ts-expect-error - API antiga para compatibilidade com navegadores mais antigos
       reducedMotionMediaQuery.addListener(handleReducedMotionChange);
-      // @ts-expect-error - API antiga para compatibilidade com navegadores mais antigos
       darkModeMediaQuery.addListener(handleDarkModeChange);
     }
 
@@ -148,9 +147,7 @@ export function useDeviceCapabilities(): DeviceCapabilities {
         darkModeMediaQuery.removeEventListener('change', handleDarkModeChange);
       } else {
         // Fallback para navegadores antigos (deprecated)
-        // @ts-expect-error - API antiga para compatibilidade com navegadores mais antigos
         reducedMotionMediaQuery.removeListener(handleReducedMotionChange);
-        // @ts-expect-error - API antiga para compatibilidade com navegadores mais antigos
         darkModeMediaQuery.removeListener(handleDarkModeChange);
       }
     };

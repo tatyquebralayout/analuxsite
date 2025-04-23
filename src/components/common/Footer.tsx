@@ -119,12 +119,12 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
                     {language === 'pt'
                       ? 'Fechado'
                       : language === 'es'
-                      ? 'Cerrado'
-                      : language === 'fr'
-                      ? 'Fermé'
-                      : language === 'de'
-                      ? 'Geschlossen'
-                      : 'Closed'}
+                        ? 'Cerrado'
+                        : language === 'fr'
+                          ? 'Fermé'
+                          : language === 'de'
+                            ? 'Geschlossen'
+                            : 'Closed'}
                   </p>
                 </div>
               </motion.div>

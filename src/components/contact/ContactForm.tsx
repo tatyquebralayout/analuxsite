@@ -2,16 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { translations } from '../../utils/translations';
 import emailjs from '@emailjs/browser';
-import { TranslationSchema } from '../../types';
+import { useTranslation } from 'react-i18next';
 
+// Step 1: Remove or comment out the ContactFormProps interface
+/*
 interface ContactFormProps {
   language: string;
 }
+*/
 
-const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
-  const t = translations[language as keyof typeof translations] as TranslationSchema;
+// Step 2: Change the component definition
+// const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
+const ContactForm: React.FC = () => {
+  const { t } = useTranslation();
+
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -30,13 +35,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  // Inicializa o EmailJS apenas uma vez
   useEffect(() => {
     try {
       emailjs.init('AmgBu5KTBSjqp5HVm');
       console.log('EmailJS inicializado com sucesso');
 
-      // Verificar se as configurações do EmailJS estão definidas
       const serviceID = 'service_2lih55m';
       const templateID = 'template_2lih55m';
       const publicKey = 'AmgBu5KTBSjqp5HVm';
@@ -58,56 +61,23 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Helper para obter o texto do serviço
   function getServiceText() {
-    if (!t.services) return formData.service;
-
-    let serviceTitle = '';
-
-    switch (formData.service) {
-      case 'daycare':
-        serviceTitle = t.services.daycare?.title || '';
-        break;
-      case 'hotel':
-        serviceTitle = t.services.hotel?.title || '';
-        break;
-      case 'training':
-        serviceTitle = t.services.training?.title || '';
-        break;
-      case 'taxi':
-        serviceTitle = t.services.taxi?.title || '';
-        break;
-      case 'grooming':
-        serviceTitle = t.services.grooming?.title || '';
-        break;
-      default:
-        serviceTitle = formData.service;
-    }
-
-    return serviceTitle || formData.service;
+    const serviceKey = `services.${formData.service}.title`;
+    return t(serviceKey, formData.service);
   }
 
-  // Função simplificada para enviar e-mail
   const sendEmail = async () => {
-    if (!t.contact || !t.services) {
-      console.log('❌ t.contact ou t.services está undefined, abortando envio');
-      return;
-    }
-
-    // Validação básica
     if (!formData.name || !formData.phone || !formData.email || !formData.message) {
       console.log('❌ Validação falhou, alguns campos estão vazios');
-      alert('Por favor, preencha todos os campos obrigatórios');
+      alert(t('contact.validationError', 'Por favor, preencha todos os campos obrigatórios'));
       return;
     }
 
     console.log('✅ Validação passou, preparando para enviar email');
 
-    // Configurações do EmailJS
     const serviceID = 'service_2lih55m';
     const templateID = 'template_2lih55m';
 
-    // Preparação dos parâmetros para o e-mail
     const templateParams = {
       from_name: formData.name,
       reply_to: formData.email,
@@ -116,7 +86,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
       dog_count: formData.dogCount,
       dog_size: formData.dogSize,
       service_requested: formData.service,
-      // Informações adicionais
       serviceText: getServiceText(),
       site_name: 'AmanluxDog',
       date: new Date().toLocaleDateString(),
@@ -130,7 +99,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
     console.log('📧 Usando templateID:', templateID);
 
     try {
-      // Envio do e-mail
       console.time('Tempo de envio do email');
       const response = await emailjs.send(serviceID, templateID, templateParams);
       console.timeEnd('Tempo de envio do email');
@@ -141,10 +109,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
         timestamp: new Date().toISOString(),
       });
 
-      // Atualiza o estado para mostrar mensagem de sucesso
       setSubmitStatus('success');
-
-      // Limpa o formulário após envio bem-sucedido
       setFormData({
         name: '',
         phone: '',
@@ -154,10 +119,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
         service: 'daycare',
         message: '',
       });
-
       console.log('✅ Formulário limpo após envio bem-sucedido');
 
-      // Rola suavemente até a mensagem de sucesso
       setTimeout(() => {
         const successMessage = document.querySelector('.success-message');
         if (successMessage) {
@@ -169,7 +132,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
       }, 100);
     } catch (error) {
       console.error('❌ Erro ao enviar email:', error);
-      // Log detalhado do erro para diagnóstico
       if (error instanceof Error) {
         console.error('❌ Detalhes do erro:', {
           name: error.name,
@@ -178,12 +140,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
           timestamp: new Date().toISOString(),
         });
       }
-
       setSubmitStatus('error');
-
       console.log('⚠️ Preparando para mostrar mensagem de erro');
 
-      // Rola suavemente até a mensagem de erro
       setTimeout(() => {
         const errorMessage = document.querySelector('.error-message');
         if (errorMessage) {
@@ -199,11 +158,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
     }
   };
 
-  // Manipulador de submissão simplificado
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); // Esta linha é essencial e suficiente
+    e.preventDefault();
     console.log('📝 Formulário submetido, prevenindo comportamento padrão');
-
     if (!isSubmitting) {
       sendEmail();
     } else {
@@ -223,12 +180,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
     }),
   };
 
-  // Renderização condicional do formulário
   const renderFormContent = () => {
-    // Verificar se t.contact e t.services existem
-    if (!t.contact || !t.services) return null;
-
-    // Mensagem de sucesso
     if (submitStatus === 'success') {
       return (
         <motion.div
@@ -238,38 +190,27 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
           exit={{ opacity: 0, height: 0 }}
         >
           <div className="flex items-center mb-4">
-            <svg
-              className="w-12 h-12 mr-4 text-green-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M5 13l4 4L19 7"
-              ></path>
-            </svg>
-            <h3 className="text-xl font-semibold">Mensagem Enviada!</h3>
+            <h3 className="text-xl font-semibold">
+              {t('contact.successTitle', 'Mensagem Enviada!')}
+            </h3>
           </div>
           <p className="mb-4">
-            {t.contact.successMessage ||
-              'Sua mensagem foi enviada com sucesso. Entraremos em contato em breve!'}
+            {t(
+              'contact.successMessage',
+              'Sua mensagem foi enviada com sucesso. Entraremos em contato em breve!'
+            )}
           </p>
           <button
-            type="button" // type="button" para não acionar o formulário
+            type="button"
             onClick={() => setSubmitStatus('idle')}
             className="mt-4 px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
           >
-            Enviar outra mensagem
+            {t('contact.sendAnother', 'Enviar outra mensagem')}
           </button>
         </motion.div>
       );
     }
 
-    // Mensagem de erro
     if (submitStatus === 'error') {
       return (
         <motion.div
@@ -279,38 +220,38 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
           exit={{ opacity: 0, height: 0 }}
         >
           <div className="flex items-center mb-4">
-            <svg
-              className="w-12 h-12 mr-4 text-red-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            <h3 className="text-xl font-semibold">Erro ao Enviar</h3>
+            <h3 className="text-xl font-semibold">{t('contact.errorTitle', 'Erro ao Enviar')}</h3>
           </div>
           <p className="mb-4">
-            {t.contact?.errorMessage ||
-              'Houve um erro ao enviar sua mensagem. Por favor, tente novamente ou entre em contato por telefone.'}
+            {t(
+              'contact.errorMessage',
+              'Houve um erro ao enviar sua mensagem. Por favor, tente novamente ou entre em contato por telefone.'
+            )}
           </p>
           <button
-            type="button" // type="button" para não acionar o formulário
+            type="button"
             onClick={() => setSubmitStatus('idle')}
             className="mt-4 px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
           >
-            {'Tentar novamente'}
+            {t('contact.tryAgain', 'Tentar novamente')}
           </button>
         </motion.div>
       );
     }
 
-    // Formulário padrão
+    const dogCountOptions = t('contact.dogCountOptions', {
+      returnObjects: true,
+      defaultValue: ['1', '2', '3 or +'],
+    });
+    const dogSizeOptions = t('contact.dogSizeOptions', {
+      returnObjects: true,
+      defaultValue: ['Small (up to 10kg)', 'Large (10kg+)'],
+    });
+    const serviceOptions = t('contact.serviceOptions', {
+      returnObjects: true,
+      defaultValue: ['Daycare', 'Boarding', 'Training'],
+    });
+
     return (
       <motion.div
         className="max-w-lg"
@@ -327,7 +268,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
             custom={0}
           >
             <label htmlFor="name" className="form-label">
-              {t.contact?.name || 'Name'}
+              {t('contact.name', 'Name *')}
             </label>
             <input
               type="text"
@@ -348,7 +289,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
             custom={1}
           >
             <label htmlFor="phone" className="form-label">
-              {t.contact?.phone || 'Phone'}
+              {t('contact.phone', 'Phone *')}
             </label>
             <input
               type="tel"
@@ -369,7 +310,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
             custom={2}
           >
             <label htmlFor="email" className="form-label">
-              {t.contact?.email || 'Email'}
+              {t('contact.email', 'Email *')}
             </label>
             <input
               type="email"
@@ -392,88 +333,74 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
             <div className="flex space-x-4">
               <div className="w-1/2">
                 <label htmlFor="dogCount" className="form-label">
-                  {t.contact?.dogCount || 'Dog Count'}
+                  {t('contact.dogCount', 'How many dogs? *')}
                 </label>
                 <select
                   id="dogCount"
                   name="dogCount"
                   value={formData.dogCount}
                   onChange={handleChange}
-                  className="form-input"
+                  required
+                  className="form-select"
                 >
-                  {t.contact?.dogCountOptions?.map((option, index) => (
-                    <option key={index} value={String(index + 1)}>
-                      {option}
-                    </option>
-                  )) || (
-                    <>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3+</option>
-                    </>
-                  )}
+                  {Array.isArray(dogCountOptions) &&
+                    dogCountOptions.map((option, index) => (
+                      <option key={index} value={option}>
+                        {option}
+                      </option>
+                    ))}
                 </select>
               </div>
               <div className="w-1/2">
                 <label htmlFor="dogSize" className="form-label">
-                  {t.contact?.dogSize || 'Dog Size'}
+                  {t('contact.dogSize', 'Dog size *')}
                 </label>
                 <select
                   id="dogSize"
                   name="dogSize"
                   value={formData.dogSize}
                   onChange={handleChange}
-                  className="form-input"
+                  required
+                  className="form-select"
                 >
-                  {t.contact?.dogSizeOptions?.map((option, index) => (
-                    <option key={index} value={index === 0 ? 'small' : 'large'}>
-                      {option}
-                    </option>
-                  )) || (
-                    <>
-                      <option value="small">Klein</option>
-                      <option value="large">Groß</option>
-                    </>
-                  )}
+                  {Array.isArray(dogSizeOptions) &&
+                    dogSizeOptions.map((option, index) => (
+                      <option key={index} value={option.toLowerCase().split(' ')[0]}>
+                        {option}
+                      </option>
+                    ))}
                 </select>
               </div>
             </div>
           </motion.div>
 
           <motion.div
-            className="mb-6"
+            className="mb-4"
             variants={inputVariants}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
             custom={4}
           >
             <label htmlFor="service" className="form-label">
-              {t.contact?.service || 'Service'}
+              {t('contact.service', 'Service *')}
             </label>
             <select
               id="service"
               name="service"
               value={formData.service}
               onChange={handleChange}
-              className="form-input"
+              required
+              className="form-select"
             >
-              {t.contact?.serviceOptions?.map((option, index) => (
-                <option key={index} value={['daycare', 'hotel', 'training'][index] || 'daycare'}>
-                  {option}
-                </option>
-              )) || (
-                <>
-                  <option value="daycare">{t.services?.daycare?.title || 'Daycare'}</option>
-                  <option value="hotel">{t.services?.hotel?.title || 'Hotel'}</option>
-                  <option value="training">{t.services?.training?.title || 'Training'}</option>
-                  {t.services?.taxi && (
-                    <option value="taxi">{t.services.taxi.title || 'Taxi'}</option>
-                  )}
-                  {t.services?.grooming && (
-                    <option value="grooming">{t.services.grooming.title || 'Grooming'}</option>
-                  )}
-                </>
-              )}
+              {Array.isArray(serviceOptions) &&
+                serviceOptions.map((option, index) => (
+                  <option
+                    key={index}
+                    value={option.toLowerCase().split(' ')[0].replace('betreuung', '')}
+                  >
+                    {option}
+                  </option>
+                ))}
             </select>
           </motion.div>
 
@@ -485,7 +412,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
             custom={5}
           >
             <label htmlFor="message" className="form-label">
-              {t.contact?.message || 'Message'}
+              {t('contact.message', 'Message *')}
             </label>
             <textarea
               id="message"
@@ -494,128 +421,81 @@ const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
               onChange={handleChange}
               required
               rows={4}
-              className="form-input resize-none"
-            />
+              className="form-textarea"
+            ></textarea>
           </motion.div>
 
-          {/* Status de envio */}
-          {isSubmitting && (
-            <motion.div
-              className="mb-4 p-4 bg-blue-50 text-blue-600 rounded-md shadow-sm border border-blue-100"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              <div className="flex items-center">
-                <svg
-                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-                <span>{'Enviando mensagem...'}</span>
-              </div>
-            </motion.div>
-          )}
-
-          <motion.button
-            type="submit"
-            className="w-full btn-primary py-3 relative"
+          <motion.div
+            className="text-center"
             variants={inputVariants}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
             custom={6}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            disabled={isSubmitting}
           >
-            {isSubmitting ? (
-              <>
-                <span className="opacity-0">{t.contact?.submit || 'Submit'}</span>
-                <span className="absolute inset-0 flex items-center justify-center">
-                  <svg
-                    className="animate-spin h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                </span>
-              </>
-            ) : (
-              t.contact?.submit || 'Submit'
-            )}
-          </motion.button>
+            <motion.button
+              type="submit"
+              disabled={isSubmitting}
+              className={`btn btn-primary w-full md:w-auto ${
+                isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
+              whileHover={!isSubmitting ? { scale: 1.05 } : {}}
+              whileTap={!isSubmitting ? { scale: 0.95 } : {}}
+            >
+              {isSubmitting
+                ? t('contact.submitting', 'Sending...')
+                : t('contact.submit', 'Send Now')}
+            </motion.button>
+          </motion.div>
         </form>
-
-        <motion.p
-          className="text-gray-500 text-sm mt-4 text-center"
-          variants={inputVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          custom={7}
-        >
-          {t.contact?.promise || 'We promise to respond quickly.'}
-        </motion.p>
-
-        <motion.div
-          className="flex items-center justify-center mt-6 gap-2"
-          variants={inputVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          custom={8}
-        >
-          <Phone size={18} className="text-primary" />
-          <span>{t.contact?.or || 'Or'} +41 76 575 09 77</span>
-        </motion.div>
       </motion.div>
     );
   };
 
-  if (!t.contact || !t.services) {
-    return null;
-  }
-
   return (
-    <section id="contact" className="py-16 bg-white lg:w-1/2" ref={ref}>
+    <section id="contact" className="py-16 bg-white" ref={ref}>
       <div className="container mx-auto px-4">
-        <motion.h2
-          className="headline2 mb-8"
-          initial={{ opacity: 0, y: -20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-          transition={{ duration: 0.6 }}
-        >
-          {t.contact?.title || 'Contact Us'}
-        </motion.h2>
+        <div className="flex flex-wrap justify-center">
+          <div className="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
+            <motion.h2
+              className="headline2 text-center mb-6"
+              initial={{ opacity: 0, y: -20 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+              transition={{ duration: 0.6 }}
+            >
+              {t('contact.title', 'Contact Us')}
+            </motion.h2>
+            <motion.p
+              className="text-center text-gray-600 mb-8"
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              {t('contact.requiredFields', 'Fields marked with * are required')}
+            </motion.p>
+            {renderFormContent()}
+          </div>
 
-        {/* Renderização condicional do conteúdo do formulário */}
-        {renderFormContent()}
+          <div className="w-full lg:w-1/2 px-4 flex flex-col justify-center">
+            <motion.div
+              className="text-center lg:text-left"
+              initial={{ opacity: 0, x: 50 }}
+              animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <p className="body1 mb-4">
+                {t('contact.promise', 'We promise to respond within 24 hours.')}
+              </p>
+              <p className="body1 mb-6">{t('contact.or', 'Or call us:')}</p>
+              <a
+                href={`tel:${t('location.phone', '+123456789')}`}
+                className="flex items-center justify-center lg:justify-start text-primary hover:text-primary-dark transition-colors text-xl font-semibold"
+              >
+                <Phone size={24} className="mr-2" />
+                <span>{t('location.phone', '+123456789')}</span>
+              </a>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

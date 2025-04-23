@@ -1,6 +1,6 @@
 import React from 'react';
-import { useLanguage } from '../contexts/useLanguage';
 import Hero from '../components/home/Hero';
+import QuickServices from '../components/home/QuickServices';
 import Advantages from '../components/home/Advantages';
 import Testimonials from '../components/home/Testimonials';
 import Gallery from '../components/home/Gallery';
@@ -11,12 +11,11 @@ import SEO from '../components/common/SEO';
 /**
  * Componente da página inicial
  *
- * Agrega todos os componentes que formam a página inicial,
- * obtendo o idioma atual do contexto de idioma.
+ * Agrega todos os componentes que formam a página inicial.
  */
 const Home: React.FC = () => {
-  // Obtém o idioma atual do contexto
-  const { language } = useLanguage();
+  // Remove language prop getting if not used elsewhere
+  // const { language } = useLanguage();
 
   return (
     <>
@@ -25,13 +24,14 @@ const Home: React.FC = () => {
         description="Liebevolle Hundebetreuung, Hundehotel und Hundetraining in Flaach, Zürich. Sicherer Transport inklusive."
         keywords="Hundebetreuung Zürich, Hundehotel Zürich, Hundetagesstätte Flaach, Hundetraining, AmanluxDog"
       />
-      <Hero language={language} />
-      <Advantages language={language} />
+      <Hero />
+      <QuickServices />
+      <Advantages />
       {/* <Services language={language} /> */}
-      <Testimonials language={language} />
-      <Gallery language={language} />
-      <Faq language={language} />
-      <InstagramFeed language={language} />
+      <Testimonials />
+      <Gallery />
+      <Faq />
+      <InstagramFeed />
       {/* <ContactSection language={language} /> */}
     </>
   );

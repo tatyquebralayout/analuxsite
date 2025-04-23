@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "contact": "Appointments",
+    "bookNow": "Appointments"
+  },
+  "hero": {
+    "headline": "A place full of love - for puppies, adults, and senior dogs",
+    "subtitle": "Because your dog is a family member - and deserves only the best.",
+    "primaryCTA": "About Us"
+  },
+  "about": {
+    "title": "About Us",
+    "homeSectionTitle": "Because we know: Your dog is part of your family – and deserves only the best.",
+    "description": [
+      "Welcome to AmanLux Dogs – your exclusive dog daycare and loving dog hotel in Zurich, where every dog is welcomed as a family member.",
+      "We don't just offer care – at AmanLux Dogs, your dog experiences a day full of love, security, and adventure. In our 220 square meter house with a lovingly designed garden, your four-legged friend has plenty of space to play, socialize, and explore.",
+      "Our work is based on trust, quality, and heart. With the official permit WHgH2021147 from the Veterinary Office, we guarantee the highest standards in safety and well-being.",
+      "At AmanLux Dogs, your dog is never alone – they are always in caring and experienced hands.",
+      "We pick up your dog directly from your home and bring them back safely after an eventful day full of attention and joy.",
+      "Because we know: Your dog is part of your family – and deserves only the best."
+    ],
+    "serviceHighlights": {
+      "daycare": {
+        "title": "Daycare",
+        "description": "We offer your four-legged best friend a unique experience full of joy, comfort, and care during the daycare day.",
+        "button": "To Dog Care Page"
+      },
+      "hotel": {
+        "title": "Overnight and Weekend",
+        "description": "When your dog stays with us overnight or on the weekend, we take loving care of everything.\nWe provide comfortable beds, cozy blankets, and toys – everything your dog needs for comfort and well-being is already there.\nYou don't need to bring anything – except your dog's usual food.\nBecause at AmanLux Dogs, everything is taken care of.",
+        "button": "To Dog Care Page"
+      },
+      "training": {
+        "title": "Dog Training",
+        "description": "Our training combines expertise, patience, and a lot of love.\nWhether puppy or adult dog – we support you in building trust, communication, and good behavior.",
+        "button": "To Dog Training Page"
+      },
+      "taxi": {
+        "title": "Taxi Dog Service",
+        "description": "Our Taxi Dog Service in Zurich and the surrounding area is included in the price for daycare and the dog hotel.\nWe have two vehicles with fixed routes. Please note:\nThe service is not available on weekends and public holidays.\nPlease feel free to ask us if your address is on one of our routes.\nWe are happy to meet clients outside these areas at a central location in Zurich.",
+        "locationHint": "Our location: Flaach, surrounded by nature – your dog will love it!"
+      }
+    },
+    "team": {
+      "title": "Our Team",
+      "description": "Meet the people behind AmanLux Dogs."
+    }
+  }
+}

@@ -1,8 +1,13 @@
 import React from 'react';
 import SEO from '../components/common/SEO';
 import { motion } from 'framer-motion';
+import TrainingSection from '../components/services/TrainingSection';
+import HundetrainingContactForm from '../components/services/HundetrainingContactForm';
+import { useTranslation } from 'react-i18next';
 
 const HundetrainingPage: React.FC = () => {
+  const { t } = useTranslation();
+
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -15,15 +20,191 @@ const HundetrainingPage: React.FC = () => {
     },
   };
 
+  const socialTrainingData = {
+    id: 'social-training',
+    bgColor: 'gray-50' as const,
+    layoutReverse: false,
+    imageInfo: {
+      placeholderText: t('hundetraining.certificate.imageLabel'),
+    },
+    detailsTitle: t('hundetraining.socialTraining.detailsTitle'),
+    detailsList: [
+      {
+        label: t('hundetraining.socialTraining.whenLabel'),
+        value: t('hundetraining.socialTraining.whenValue'),
+      },
+      {
+        label: t('hundetraining.socialTraining.durationLabel'),
+        value: t('hundetraining.socialTraining.durationValue'),
+      },
+      {
+        label: t('hundetraining.socialTraining.locationLabel'),
+        value: t('hundetraining.socialTraining.locationValue'),
+      },
+      {
+        label: t('hundetraining.socialTraining.groupsLabel'),
+        value: t('hundetraining.socialTraining.groupsValue'),
+      },
+    ],
+    priceList: [
+      {
+        label: t('hundetraining.socialTraining.singleSessionLabel'),
+        value: t('hundetraining.socialTraining.singleSessionValue'),
+      },
+      {
+        label: t('hundetraining.socialTraining.packageLabel'),
+        value: t('hundetraining.socialTraining.packageValue'),
+      },
+    ],
+    priceLabel: t('common.priceLabel'),
+    taxInfoLabel: t('common.taxInfo'),
+    contentTitle: t('hundetraining.socialTraining.contentTitle'),
+    contentParagraphs: [
+      t('hundetraining.socialTraining.paragraph1'),
+      t('hundetraining.socialTraining.paragraph2'),
+      t('hundetraining.socialTraining.paragraph3'),
+      t('hundetraining.socialTraining.paragraph4'),
+      t('hundetraining.socialTraining.paragraph5'),
+      t('hundetraining.socialTraining.paragraph6'),
+      t('hundetraining.socialTraining.paragraph7'),
+    ],
+    contentListItems: [
+      t('hundetraining.socialTraining.listItem1'),
+      t('hundetraining.socialTraining.listItem2'),
+      t('hundetraining.socialTraining.listItem3'),
+    ],
+    subContentSections: [
+      {
+        title: t('hundetraining.socialTraining.subSection1Title'),
+        paragraphs: [t('hundetraining.socialTraining.subSection1Paragraph')],
+      },
+      {
+        title: t('hundetraining.socialTraining.subSection2Title'),
+        paragraphs: [t('hundetraining.socialTraining.subSection2Paragraph')],
+      },
+    ],
+  };
+
+  const impulskontrolleData = {
+    id: 'impulskontrolle',
+    bgColor: 'white' as const,
+    layoutReverse: true,
+    imageInfo: {
+      placeholderText: t('hundetraining.certificate.imageLabel'),
+    },
+    detailsTitle: t('hundetraining.impulseControl.detailsTitle'),
+    detailsList: [
+      {
+        label: t('hundetraining.impulseControl.whenLabel'),
+        value: t('hundetraining.impulseControl.whenValue'),
+      },
+      {
+        label: t('hundetraining.impulseControl.durationLabel'),
+        value: t('hundetraining.impulseControl.durationValue'),
+      },
+      {
+        label: t('hundetraining.impulseControl.locationLabel'),
+        value: t('hundetraining.impulseControl.locationValue'),
+      },
+      {
+        label: t('hundetraining.impulseControl.groupsLabel'),
+        value: t('hundetraining.impulseControl.groupsValue'),
+      },
+    ],
+    priceList: [
+      {
+        label: t('hundetraining.impulseControl.singleSessionLabel'),
+        value: t('hundetraining.impulseControl.singleSessionValue'),
+      },
+      {
+        label: t('hundetraining.impulseControl.packageLabel'),
+        value: t('hundetraining.impulseControl.packageValue'),
+      },
+    ],
+    priceLabel: t('common.priceLabel'),
+    taxInfoLabel: t('common.taxInfo'),
+    contentTitle: t('hundetraining.impulseControl.contentTitle'),
+    contentParagraphs: [
+      t('hundetraining.impulseControl.paragraph1'),
+      t('hundetraining.impulseControl.paragraph2'),
+      t('hundetraining.impulseControl.paragraph3'),
+    ],
+    contentListItems: [
+      t('hundetraining.impulseControl.listItem1'),
+      t('hundetraining.impulseControl.listItem2'),
+      t('hundetraining.impulseControl.listItem3'),
+      t('hundetraining.impulseControl.listItem4'),
+    ],
+    subContentSections: [
+      {
+        title: t('hundetraining.impulseControl.goalTitle'),
+        paragraphs: [t('hundetraining.impulseControl.goalParagraph')],
+      },
+    ],
+  };
+
+  const leinenfuehrigkeitData = {
+    id: 'leinenfuehrigkeit',
+    bgColor: 'gray-50' as const,
+    layoutReverse: false,
+    imageInfo: {
+      placeholderText: t('hundetraining.certificate.imageLabel'),
+    },
+    detailsTitle: t('hundetraining.leashTraining.detailsTitle'),
+    detailsList: [
+      {
+        label: t('hundetraining.leashTraining.durationLabel'),
+        value: t('hundetraining.leashTraining.durationValue'),
+      },
+      {
+        label: t('hundetraining.leashTraining.participantsLabel'),
+        value: t('hundetraining.leashTraining.participantsValue'),
+      },
+      {
+        label: t('hundetraining.leashTraining.locationLabel'),
+        value: t('hundetraining.leashTraining.locationValue'),
+      },
+      {
+        label: t('hundetraining.leashTraining.stimulusLevelLabel'),
+        value: t('hundetraining.leashTraining.stimulusLevelValue'),
+      },
+    ],
+    priceList: [
+      {
+        label: t('hundetraining.leashTraining.singleSessionLabel'),
+        value: t('hundetraining.leashTraining.singleSessionValue'),
+      },
+      {
+        label: t('hundetraining.leashTraining.packageLabel'),
+        value: t('hundetraining.leashTraining.packageValue'),
+      },
+    ],
+    priceLabel: t('common.priceLabel'),
+    taxInfoLabel: t('common.taxInfo'),
+    contentTitle: t('hundetraining.leashTraining.contentTitle'),
+    contentParagraphs: [
+      t('hundetraining.leashTraining.paragraph1'),
+      t('hundetraining.leashTraining.paragraph2'),
+      t('hundetraining.leashTraining.paragraph3'),
+      t('hundetraining.leashTraining.paragraph4'),
+      t('hundetraining.leashTraining.paragraph5'),
+    ],
+    subContentSections: [
+      {
+        title: t('hundetraining.leashTraining.goalTitle'),
+        paragraphs: [t('hundetraining.leashTraining.goalParagraph')],
+      },
+    ],
+  };
+
   return (
     <>
       <SEO
-        title="Hundetraining - AmanLux Dogs"
-        description="Die Körpersprache ist eine der wichtigsten Arten, wie Hunde mit uns und ihrer Umwelt kommunizieren."
+        title={t('hundetraining.hero.title')}
+        description={t('hundetraining.hero.subtitle1')}
         keywords="Hundetraining, social walking, impulskontrolle, leinenführigkeit, privatunterricht, hundetrainer, zürich"
       />
 
-      {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-light to-primary py-16 text-center text-white">
         <div className="container mx-auto px-4">
           <motion.h1
@@ -32,7 +213,7 @@ const HundetrainingPage: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="headline1 mb-4"
           >
-            Hundetraining
+            {t('hundetraining.hero.title')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -40,8 +221,7 @@ const HundetrainingPage: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="body1 max-w-2xl mx-auto"
           >
-            Die Körpersprache ist eine der wichtigsten Arten, wie Hunde mit uns und ihrer Umwelt
-            kommunizieren.
+            {t('hundetraining.hero.subtitle1')}
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -49,9 +229,7 @@ const HundetrainingPage: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="body1 max-w-2xl mx-auto mt-4"
           >
-            Unser Ziel beim Training ist es, das gegenseitige Verständnis zwischen Mensch und Hund
-            zu vertiefen, die Sozialisierung zu fördern und ein harmonisches Zusammenleben in
-            verschiedenen Alltagssituationen zu ermöglichen.
+            {t('hundetraining.hero.subtitle2')}
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -59,239 +237,24 @@ const HundetrainingPage: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="body1 max-w-2xl mx-auto mt-4"
           >
-            Mit Geduld, Einfühlungsvermögen und positiver Bestärkung schaffen wir eine
-            vertrauensvolle Beziehung – die beste Grundlage für ein glückliches Miteinander.
+            {t('hundetraining.hero.subtitle3')}
           </motion.p>
         </div>
       </section>
 
-      {/* Certificate Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 text-center">
           <div className="w-48 h-48 mx-auto bg-gray-200 rounded-lg shadow-md flex items-center justify-center text-gray-400 mb-6">
-            <span>Trainerzertifikat</span>
+            <span>{t('hundetraining.certificate.imageLabel')}</span>
           </div>
-          <p className="body1 text-gray-600">Offizielles Trainerzertifikat von Danillo Balbino</p>
+          <p className="body1 text-gray-600">{t('hundetraining.certificate.description')}</p>
         </div>
       </section>
 
-      {/* Social Training und Social Walking */}
-      <motion.section
-        className="py-16 bg-gray-50"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        variants={sectionVariants}
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-start gap-8">
-            <div className="md:w-1/2">
-              <div className="w-full h-64 md:h-80 bg-gray-200 rounded-lg shadow-lg flex items-center justify-center mb-4">
-                <span className="text-gray-400">Foto: Danillo mit Hunden</span>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="headline4 mb-4">🐕‍🦺 Social Training & Social Walking</h3>
-                <p className="body2 mb-2">🗓 Wann: Termine werden noch bekannt gegeben</p>
-                <p className="body2 mb-2">⏱ Dauer: 90 Minuten</p>
-                <p className="body2 mb-4">
-                  📍 Ort: Verschiedene Locations – je nach Ziel der Einheit mit vielen, wenigen oder
-                  keinen Menschen ausser der Gruppe (z. B. Parks, Strassen oder Wälder)
-                </p>
-                <p className="body2 mb-4">
-                  👥 Gruppen: 8–10 Hunde, jeweils mit einer Begleitperson
-                </p>
-                <hr className="my-4" />
-                <h4 className="headline6 mb-2">💰 Preis:</h4>
-                <p className="body2 mb-2">Einzelsession: CHF 55.00</p>
-                <p className="body2 mb-2">10er-Paket: CHF 450.00 (gültig für 6 Monate)</p>
-                <p className="body2">Preise exkl. MwSt</p>
-              </div>
-            </div>
-            <div className="md:w-1/2">
-              <h2 className="headline3 mb-4">
-                Warum Social Training & Social Walking so wichtig sind
-              </h2>
-              <p className="body1 text-gray-600 mb-4">
-                Das Verhalten eines Hundes hängt stark davon ab, wie gut er die soziale Struktur
-                versteht, in der er lebt – also seine Rolle in der Familie, in der Gruppe und in der
-                Gesellschaft.
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                Manche Verhaltensweisen, die für uns Menschen unangenehm oder unerwünscht
-                erscheinen, haben oft tiefere Ursachen, die nicht sofort erkennbar sind.
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                Deshalb ist es entscheidend, dass wir lernen, diese Signale richtig zu deuten – nur
-                so können wir unseren Hunden wirklich helfen.
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                Viele Probleme entstehen durch fehlende oder unzureichende Sozialisierung.
-              </p>
-              <p className="body1 text-gray-600 mb-4">Beispiele dafür sind:</p>
-              <ul className="list-disc pl-6 mb-4 text-gray-600">
-                <li>Angst vor anderen Hunden</li>
-                <li>Unsicherheit gegenüber Kindern, fremden Menschen oder Katzen</li>
-                <li>Bellen, Fluchtverhalten oder sogar aggressives Verhalten</li>
-              </ul>
-              <p className="body1 text-gray-600 mb-4">
-                Diese Verhaltensmuster lassen sich nicht durch Strafen, sondern nur durch gezieltes
-                Training und kontinuierliche Sozialisierung verbessern.
-              </p>
-              <p className="body1 text-gray-600 mb-6">
-                Und je früher man damit beginnt, desto nachhaltiger sind die Ergebnisse.
-              </p>
+      <TrainingSection {...socialTrainingData} />
+      <TrainingSection {...impulskontrolleData} />
+      <TrainingSection {...leinenfuehrigkeitData} />
 
-              <hr className="my-6" />
-
-              <h3 className="headline4 mb-4">🐕 Was ist Social Walking?</h3>
-              <p className="body1 text-gray-600 mb-6">
-                Beim Social Walking spaziert der Hund gemeinsam mit seinem Besitzer und anderen
-                Hunden in einer Gruppe – in Umgebungen mit unterschiedlichen Reizen, wie Parks,
-                Straßen oder Wäldern. Der Hund lernt dabei, gelassener auf verschiedene Situationen,
-                Geräusche, Menschen und andere Tiere zu reagieren – immer in sicherer Begleitung.
-              </p>
-
-              <hr className="my-6" />
-
-              <h3 className="headline4 mb-4">🎓 Was ist Social Training?</h3>
-              <p className="body1 text-gray-600 mb-6">
-                Das Social Training ist eine ergänzende Trainingseinheit, bei der gezielt am
-                Verhalten des Hundes gearbeitet wird – unter Berücksichtigung seiner Persönlichkeit,
-                seiner Bedürfnisse und seiner Grenzen. Unser Ziel ist es, ein harmonisches
-                Miteinander zu fördern – mit Geduld, Respekt und positiver Verstärkung.
-              </p>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Impulskontrolle und Gehorsamkeitstraining */}
-      <motion.section
-        className="py-16 bg-white"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        variants={sectionVariants}
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row-reverse items-start gap-8">
-            <div className="md:w-1/2">
-              <div className="w-full h-64 md:h-80 bg-gray-200 rounded-lg shadow-lg flex items-center justify-center mb-4">
-                <span className="text-gray-400">Foto: Trainer mit Hund</span>
-              </div>
-              <div className="bg-gray-50 p-6 rounded-lg shadow-md">
-                <h3 className="headline4 mb-4">🧠 Impulskontrolle & Gehorsamkeitstraining</h3>
-                <p className="body2 mb-2">🗓 Wann: Termine werden noch bekannt gegeben</p>
-                <p className="body2 mb-2">⏱ Dauer: 60 Minuten</p>
-                <p className="body2 mb-4">
-                  📍 Ort: Verschiedene Locations im Kanton Zürich – z. B. Parks, Strassen oder
-                  Wälder
-                </p>
-                <p className="body2 mb-4">👥 Gruppen: 4–6 Hunde, jeweils mit einer Begleitperson</p>
-                <hr className="my-4" />
-                <h4 className="headline6 mb-2">💰 Preis:</h4>
-                <p className="body2 mb-2">Einzelsession: CHF 70.00</p>
-                <p className="body2 mb-2">10er-Paket: CHF 650.00 (gültig für 6 Monate)</p>
-                <p className="body2">Preise exkl. MwSt</p>
-              </div>
-            </div>
-            <div className="md:w-1/2">
-              <h2 className="headline3 mb-4">🐾 Worum geht es in diesem Training?</h2>
-              <p className="body1 text-gray-600 mb-4">
-                Ungehorsamkeit und fehlende Impulskontrolle können für Mensch und Hund
-                gleichermassen frustrierend sein. Oft entstehen diese Herausforderungen aus
-                Unsicherheit, mangelnder Orientierung oder fehlendem Training.
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                Viele dieser Probleme lassen sich vermeiden, wenn der Hund lernt, seinem Menschen zu
-                vertrauen, auf ihn zu achten und klare Kommandos zu verstehen.
-              </p>
-              <p className="body1 text-gray-600 mb-4">In diesem Kurs lernt Ihr Hund,</p>
-              <ul className="list-disc pl-6 mb-4 text-gray-600">
-                <li>sich besser zu konzentrieren,</li>
-                <li>
-                  Impulse zu kontrollieren (z. B. bei Reizen wie anderen Hunden, Katzen oder
-                  Geräuschen),
-                </li>
-                <li>zuverlässig auf Kommandos zu reagieren,</li>
-                <li>und gelassener in Alltagssituationen zu bleiben.</li>
-              </ul>
-              <p className="body1 text-gray-600 mb-4">
-                Das Ziel ist eine harmonische, sichere und entspannte Beziehung – damit Spaziergänge
-                wieder Freude machen und Vertrauen wächst. 🐕❤️
-              </p>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Leinenführigkeit */}
-      <motion.section
-        className="py-16 bg-gray-50"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        variants={sectionVariants}
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-start gap-8">
-            <div className="md:w-1/2">
-              <div className="w-full h-64 md:h-80 bg-gray-200 rounded-lg shadow-lg flex items-center justify-center mb-4">
-                <span className="text-gray-400">Foto: Hund an der Leine</span>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="headline4 mb-4">
-                  🐕‍🦺 Leinenführigkeit – Training für entspannte Spaziergänge
-                </h3>
-                <h4 className="headline6 mb-2">💰 Preis:</h4>
-                <p className="body2 mb-2">Einzelsession: CHF 70.00</p>
-                <p className="body2 mb-2">10er-Paket: CHF 650.00 (gültig für 6 Monate)</p>
-                <p className="body2 mb-4">Preise exkl. MwSt</p>
-                <hr className="my-4" />
-                <h4 className="headline6 mb-2">🗓 Trainingsdetails</h4>
-                <p className="body2 mb-2">– Dauer: 90 Minuten</p>
-                <p className="body2 mb-2">– Teilnehmer: 3 Hunde + 3 Bezugspersonen</p>
-                <p className="body2 mb-2">
-                  – Ort: Verschiedene Locations im Kanton Zürich (Parks, Strassen oder Wälder)
-                </p>
-                <p className="body2 mb-2">
-                  – Reizlevel: mit vielen, wenigen oder keinen externen Einflüssen – je nach
-                  Trainingsziel
-                </p>
-              </div>
-            </div>
-            <div className="md:w-1/2">
-              <h2 className="headline3 mb-4">🐾 Worum geht es in diesem Kurs?</h2>
-              <p className="body1 text-gray-600 mb-4">
-                Zieht Ihr Hund an der Leine, obwohl Sie ihn immer wieder bitten, damit aufzuhören?
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                Reagiert er plötzlich stark, wenn er andere Hunde, Katzen, Autos oder Menschen
-                sieht?
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                Fühlen Sie sich auf Spaziergängen gestresst oder überfordert?
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                Dann ist dieser Kurs genau das Richtige für Sie.
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                Wir helfen Ihnen, die Kontrolle zurückzugewinnen – mit Geduld, positiver
-                Kommunikation und gezielten Techniken. Ihr Hund lernt, sich besser zu konzentrieren,
-                ruhiger zu bleiben und achtsam an Ihrer Seite zu laufen.
-              </p>
-              <hr className="my-6" />
-              <h4 className="headline5 mb-2">Ziel:</h4>
-              <p className="body1 text-gray-600 mb-4">
-                Ein harmonisches, sicheres Miteinander an der Leine – für entspannte und freudige
-                Spaziergänge, bei denen Sie und Ihr Hund wieder im Einklang unterwegs sind. 🐾
-              </p>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Privatunterricht */}
       <motion.section
         className="py-16 bg-white"
         initial="hidden"
@@ -330,7 +293,6 @@ const HundetrainingPage: React.FC = () => {
         </div>
       </motion.section>
 
-      {/* Online-Beratung */}
       <motion.section
         className="py-16 bg-gray-50"
         initial="hidden"
@@ -375,7 +337,6 @@ const HundetrainingPage: React.FC = () => {
         </div>
       </motion.section>
 
-      {/* Contact Form */}
       <motion.section
         className="py-16 bg-white"
         initial="hidden"
@@ -386,111 +347,10 @@ const HundetrainingPage: React.FC = () => {
         <div className="container mx-auto px-4">
           <h2 className="headline3 text-center mb-8">Kontakt für Hundetraining</h2>
           <p className="text-center mb-6 text-gray-600">Felder mit * sind Pflichtfelder</p>
-
-          <div className="max-w-2xl mx-auto">
-            <form className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block mb-2 font-medium">
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full p-3 border border-gray-300 rounded-md"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block mb-2 font-medium">
-                  Telefonnummer *
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  className="w-full p-3 border border-gray-300 rounded-md"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="service" className="block mb-2 font-medium">
-                  Trainingsart *
-                </label>
-                <select
-                  id="service"
-                  className="w-full p-3 border border-gray-300 rounded-md"
-                  required
-                >
-                  <option value="grundkommandos">Grundkommandos</option>
-                  <option value="leinentraining">Leinentraining</option>
-                  <option value="problembewaltigung">Problembewältigung</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="dogs" className="block mb-2 font-medium">
-                  Wie viele Hunde? *
-                </label>
-                <select id="dogs" className="w-full p-3 border border-gray-300 rounded-md" required>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3 oder mehr</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block mb-2 font-medium">Hundegrosse *</label>
-                <div className="flex gap-4">
-                  <label className="flex items-center">
-                    <input type="checkbox" className="mr-2" />
-                    Kleiner (bis 10 kg)
-                  </label>
-                  <label className="flex items-center">
-                    <input type="checkbox" className="mr-2" />
-                    Grosse (ab 10 kg)
-                  </label>
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block mb-2 font-medium">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full p-3 border border-gray-300 rounded-md"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block mb-2 font-medium">
-                  Nachricht *
-                </label>
-                <textarea
-                  id="message"
-                  rows={5}
-                  className="w-full p-3 border border-gray-300 rounded-md"
-                  required
-                ></textarea>
-              </div>
-
-              <div>
-                <button
-                  type="submit"
-                  className="bg-primary text-white py-3 px-6 rounded-md hover:bg-primary-dark transition"
-                >
-                  Absenden
-                </button>
-              </div>
-            </form>
-          </div>
+          <HundetrainingContactForm />
         </div>
       </motion.section>
 
-      {/* Contact Info Section */}
       <motion.section
         className="py-16 bg-gray-50"
         initial="hidden"
@@ -501,7 +361,6 @@ const HundetrainingPage: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row gap-8">
             <div className="md:w-1/2">
-              {/* Map placeholder - replace with actual Google Maps embed */}
               <div className="h-80 bg-gray-300 rounded-lg"></div>
             </div>
             <div className="md:w-1/2">

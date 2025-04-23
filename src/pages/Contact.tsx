@@ -1,13 +1,15 @@
 import React from 'react';
-import { useLanguage } from '../contexts/useLanguage';
-import { translations } from '../utils/translations';
-import { TranslationSchema } from '../types';
+// import { useLanguage } from '../contexts/useLanguage'; // Remover
+// import { translations } from '../utils/translations'; // Remover
+// import { TranslationSchema } from '../types'; // Remover
 import SEO from '../components/common/SEO';
 import ContactForm from '../components/contact/ContactForm';
+import { useTranslation } from 'react-i18next'; // Adicionar
 
 const ContactPage: React.FC = () => {
-  const { language } = useLanguage();
-  const t = translations[language as keyof typeof translations] as TranslationSchema;
+  // const { language } = useLanguage(); // Remover
+  // const t_old = translations[language as keyof typeof translations] as TranslationSchema; // Remover
+  const { t } = useTranslation(); // Apenas t é necessário
 
   // Removendo todos os event listeners e handlers globais
   // para permitir que o formulário funcione corretamente
@@ -15,12 +17,14 @@ const ContactPage: React.FC = () => {
   return (
     <div>
       <SEO
-        title={t.contact?.title || 'Contact Us'}
-        description={t.contact?.promise || 'Contact AmanluxDog for inquiries about our services.'}
+        // title={t_old.contact?.title || 'Contact Us'}
+        // description={t_old.contact?.promise || 'Contact AmanluxDog for inquiries about our services.'}
+        title={t('contact.title', 'Contact Us')} // Usar t()
+        description={t('contact.promise', 'Contact AmanluxDog for inquiries about our services.')} // Usar t()
         keywords="contact amanluxdog, hundebetreuung kontakt, hundetraining kontakt"
       />
       <div className="container mx-auto px-4 py-12 font-sans">
-        <ContactForm language={language} />
+        <ContactForm />
       </div>
     </div>
   );

@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 
 /**
  * Hook personalizado para persistir estado no localStorage
- * 
+ *
  * Permite armazenar e recuperar valores do localStorage com
  * tipagem forte, sincronizando o estado entre diferentes abas/janelas.
- * 
+ *
  * @param key - Chave para armazenar o valor no localStorage
  * @param initialValue - Valor inicial caso não exista no localStorage
  * @returns Um array com o valor armazenado e uma função para atualizá-lo
@@ -37,10 +37,10 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
     try {
       // Permite que o valor seja uma função (como o setState do React)
       const valueToStore = value instanceof Function ? value(storedValue) : value;
-      
+
       // Atualiza o estado
       setStoredValue(valueToStore);
-      
+
       // Salva no localStorage
       if (typeof window !== 'undefined') {
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
@@ -57,9 +57,9 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
         setStoredValue(JSON.parse(e.newValue));
       }
     };
-    
+
     window.addEventListener('storage', handleStorageChange);
-    
+
     return () => {
       window.removeEventListener('storage', handleStorageChange);
     };
