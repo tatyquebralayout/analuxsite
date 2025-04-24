@@ -5,6 +5,12 @@ import { useInView } from 'react-intersection-observer';
 import videoUrl from '../assets/video/hero_banner.mp4';
 import translations from '../utils/translations/de.json';
 import emailjs from '@emailjs/browser';
+import carinhoImg from '../assets/images/carinho.png';
+import crecheImg from '../assets/images/creche.png';
+import sleepIcon from '../assets/images/svg/sleep.png';
+import hotelImg from '../assets/images/hotel.png';
+import taxiIcon from '../assets/images/svg/taxidog.png';
+import taxiImg from '../assets/images/taxidogfot.png';
 
 const HundebetreuungPage: React.FC = () => {
   const { ref: videoRef, inView: videoInView } = useInView({
@@ -136,7 +142,7 @@ const HundebetreuungPage: React.FC = () => {
               className="flex justify-center"
             >
               <img
-                src="/src/assets/images/carinho.png"
+                src={carinhoImg}
                 alt="Hundebetreuung bei AmanLux Dogs"
                 className="w-auto h-auto max-h-80"
               />
@@ -348,7 +354,7 @@ const HundebetreuungPage: React.FC = () => {
                 <div className="bg-primary-light p-1">
                   <div className="w-full overflow-hidden" style={{ aspectRatio: '4/3' }}>
                     <img
-                      src="/src/assets/images/creche.png"
+                      src={crecheImg}
                       alt="Hunde in der Tagesbetreuung"
                       className="w-full h-full object-contain bg-white"
                     />
@@ -372,11 +378,7 @@ const HundebetreuungPage: React.FC = () => {
           <div className="flex flex-col md:flex-row-reverse items-center gap-8">
             <div className="md:w-1/2">
               <div className="flex items-center mb-6">
-                <img
-                  src="/src/assets/images/svg/sleep.png"
-                  alt="Sleep Icon"
-                  className="w-12 h-12 mr-4"
-                />
+                <img src={sleepIcon} alt="Sleep Icon" className="w-12 h-12 mr-4" />
                 <h2 className="headline3 font-sour-gummy text-primary">{t.hotel.title}</h2>
               </div>
               <p className="body1 text-gray-600 mb-4">{t.hotel.description.split('\n')[0]}</p>
@@ -387,7 +389,7 @@ const HundebetreuungPage: React.FC = () => {
             <div className="md:w-1/2 flex justify-center">
               <div className="w-full rounded-lg overflow-hidden" style={{ aspectRatio: '4/3' }}>
                 <img
-                  src="/src/assets/images/hotel.png"
+                  src={hotelImg}
                   alt="Hunde Übernachtung"
                   className="w-full h-full object-contain bg-white"
                 />
@@ -409,11 +411,7 @@ const HundebetreuungPage: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="md:w-1/2">
               <div className="flex items-center mb-6">
-                <img
-                  src="/src/assets/images/svg/taxidog.png"
-                  alt="Taxi Dog Icon"
-                  className="w-12 h-12 mr-4"
-                />
+                <img src={taxiIcon} alt="Taxi Dog Icon" className="w-12 h-12 mr-4" />
                 <h2 className="headline3 font-sour-gummy text-primary-light">Taxi Dog-Service</h2>
               </div>
               <p className="body1 text-gray-600 mb-4">
@@ -445,7 +443,7 @@ const HundebetreuungPage: React.FC = () => {
             <div className="md:w-1/2 flex justify-center">
               <div className="w-full rounded-lg overflow-hidden" style={{ aspectRatio: '4/3' }}>
                 <img
-                  src="/src/assets/images/taxidogfot.png"
+                  src={taxiImg}
                   alt="Taxi Dog Service"
                   className="w-full h-full object-contain bg-white"
                 />

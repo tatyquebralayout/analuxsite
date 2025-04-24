@@ -5,6 +5,19 @@ import HundetrainingContactForm from '../components/services/HundetrainingContac
 import { useTranslation } from 'react-i18next';
 import { Calendar, Clock, MapPin, Users, DollarSign, Activity } from 'lucide-react';
 
+// Importações das imagens e ícones locais
+import adestramentoImg from '../assets/images/adestramento.png';
+import certificadoImg from '../assets/images/certificado.png';
+import socialTrainingIcon from '../assets/images/svg/socialtraing.png';
+import bannerSocialImg from '../assets/images/banner_social.png';
+import treinamentoIcon from '../assets/images/svg/treinamento.png';
+import bannerTreinamentoImg from '../assets/images/banner_treinamento.png';
+import sempuxarIcon from '../assets/images/sempuxar.png';
+import bannerCursoImg from '../assets/images/banner_curso.png';
+import particularIcon from '../assets/images/particular_ICON.jpg.png';
+import bannerParticularImg from '../assets/images/banner_PARTICILAR.png';
+import bannerOnlineImg from '../assets/images/banner_online.png';
+
 const HundetrainingPage: React.FC = () => {
   const { t } = useTranslation();
 
@@ -58,7 +71,7 @@ const HundetrainingPage: React.FC = () => {
               >
                 <div className="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden">
                   <img
-                    src="/src/assets/images/adestramento.png"
+                    src={adestramentoImg}
                     alt="Hundetraining bei AmanLux Dogs"
                     className="w-full h-full object-cover"
                     onError={e => {
@@ -83,7 +96,7 @@ const HundetrainingPage: React.FC = () => {
                 transition={{ duration: 0.8 }}
               >
                 <img
-                  src="/src/assets/images/certificado.png"
+                  src={certificadoImg}
                   alt="Hundetrainer Zertifikat"
                   className="w-full rounded-lg shadow-md"
                 />
@@ -121,7 +134,7 @@ const HundetrainingPage: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-center mb-8">
             <img
-              src="/src/assets/images/svg/socialtraing.png"
+              src={socialTrainingIcon}
               alt="Social Training und Social Walking"
               className="h-[120px] w-[120px]"
             />
@@ -256,7 +269,7 @@ const HundetrainingPage: React.FC = () => {
                 <div className="w-full md:w-1/2 flex items-center justify-center">
                   <div className="w-full h-full flex items-center">
                     <img
-                      src="/src/assets/images/banner_social.png"
+                      src={bannerSocialImg}
                       alt="Warum Social Training & Social Walking so wichtig sind"
                       className="w-full h-auto rounded-lg shadow-sm object-cover"
                     />
@@ -272,7 +285,7 @@ const HundetrainingPage: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-center mb-10">
             <img
-              src="/src/assets/images/svg/treinamento.png"
+              src={treinamentoIcon}
               alt="Impulskontrolle und Gehorsamkeitstraining"
               className="h-[120px] w-[120px]"
             />
@@ -377,7 +390,7 @@ const HundetrainingPage: React.FC = () => {
                 </div>
                 <div className="w-full md:w-1/2">
                   <img
-                    src="/src/assets/images/banner_treinamento.png"
+                    src={bannerTreinamentoImg}
                     alt="Impulskontrolle und Gehorsamkeitstraining"
                     className="w-full h-auto object-cover rounded-lg"
                   />
@@ -391,11 +404,7 @@ const HundetrainingPage: React.FC = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex justify-center mb-10">
-            <img
-              src="/src/assets/images/sempuxar.png"
-              alt="Training des Hundes"
-              className="h-[120px] w-[120px]"
-            />
+            <img src={sempuxarIcon} alt="Training des Hundes" className="h-[120px] w-[120px]" />
           </div>
           <h2 className="headline2 text-primary font-sour-gummy text-center mb-14">
             Training des Hundes, damit er beim Spaziergang nicht mehr an der Leine zieht
@@ -447,7 +456,7 @@ const HundetrainingPage: React.FC = () => {
                 <div className="w-full md:w-3/5">
                   <div className="overflow-hidden rounded-lg">
                     <img
-                      src="/src/assets/images/banner_curso.png"
+                      src={bannerCursoImg}
                       alt="Hund an der Leine Training"
                       className="w-full h-auto object-cover rounded-lg transform hover:scale-105 transition duration-300"
                     />
@@ -531,11 +540,7 @@ const HundetrainingPage: React.FC = () => {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-center mb-10">
-            <img
-              src="/src/assets/images/particular_ICON.jpg.png"
-              alt="Privatunterricht"
-              className="h-[120px] w-[120px]"
-            />
+            <img src={particularIcon} alt="Privatunterricht" className="h-[120px] w-[120px]" />
           </div>
           <h2 className="headline2 text-primary font-sour-gummy text-center mb-14">
             Privatunterricht
@@ -547,7 +552,7 @@ const HundetrainingPage: React.FC = () => {
               <div className="bg-white p-4 rounded-lg shadow-sm md:col-span-3">
                 <div className="overflow-hidden rounded-lg w-full">
                   <img
-                    src="/src/assets/images/banner_PARTICILAR.png"
+                    src={bannerParticularImg}
                     alt="Privatunterricht Banner"
                     className="w-full h-auto object-cover rounded-lg transform hover:scale-105 transition duration-300"
                   />
@@ -626,7 +631,7 @@ const HundetrainingPage: React.FC = () => {
           <div className="max-w-4xl mx-auto">
             <div className="mb-10 flex justify-center">
               <img
-                src="/src/assets/images/banner_online.png"
+                src={bannerOnlineImg}
                 alt="Online-Beratung"
                 className="w-[85%] md:w-3/4 lg:w-3/5 h-auto rounded-lg shadow-md"
               />

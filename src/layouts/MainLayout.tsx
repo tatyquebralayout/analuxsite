@@ -21,7 +21,6 @@ const MainLayout: React.FC = () => {
   const { i18n } = useTranslation();
   const location = useLocation();
 
-  // Usa o hook para rolar para o topo ao mudar de página
   useScrollToTop();
 
   const currentLanguage = i18n.language.split('-')[0];
