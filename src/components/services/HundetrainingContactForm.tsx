@@ -6,8 +6,7 @@ interface FormData {
   user_phone: string;
   training_service: string;
   dog_count: string;
-  dog_size_small: boolean;
-  dog_size_large: boolean;
+  dog_size: string;
   user_email: string;
   message: string;
 }
@@ -21,8 +20,7 @@ const HundetrainingContactForm: React.FC = () => {
     user_phone: '',
     training_service: '',
     dog_count: '',
-    dog_size_small: false,
-    dog_size_large: false,
+    dog_size: '',
     user_email: '',
     message: '',
   });
@@ -32,20 +30,11 @@ const HundetrainingContactForm: React.FC = () => {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    const { name, value, type } = e.target;
-
-    if (type === 'checkbox') {
-      const { checked } = e.target as HTMLInputElement;
-      setFormData(prev => ({
-        ...prev,
-        [name]: checked,
-      }));
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -53,7 +42,7 @@ const HundetrainingContactForm: React.FC = () => {
     if (!form.current) return;
 
     // Validação simples (ex: checkbox de tamanho)
-    if (!formData.dog_size_small && !formData.dog_size_large) {
+    if (!formData.dog_size) {
       setFormStatus('error');
       setFormMessage('Bitte wählen Sie mindestens eine Hundegrösse aus.');
       return;
@@ -69,7 +58,7 @@ const HundetrainingContactForm: React.FC = () => {
 
     // Prepara os parâmetros para EmailJS (sendForm lê os names, mas podemos enviar dados extras)
     // Certifique-se que seu template EmailJS espera variáveis com os mesmos nomes que os atributos 'name' do form.
-    // Ex: {{user_name}}, {{user_phone}}, {{training_service}}, {{dog_count}}, {{dog_size_small}}, {{dog_size_large}}, {{user_email}}, {{message}}
+    // Ex: {{user_name}}, {{user_phone}}, {{training_service}}, {{dog_count}}, {{dog_size}}, {{user_email}}, {{message}}
 
     emailjs.sendForm(serviceID, templateID, form.current, publicKey).then(
       result => {
@@ -82,8 +71,7 @@ const HundetrainingContactForm: React.FC = () => {
           user_phone: '',
           training_service: '',
           dog_count: '',
-          dog_size_small: false,
-          dog_size_large: false,
+          dog_size: '',
           user_email: '',
           message: '',
         });
@@ -101,10 +89,11 @@ const HundetrainingContactForm: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto">
+      <p className="text-center mb-8 text-gray-600">Fields marked with an * are required</p>
       <form ref={form} onSubmit={handleSubmit} className="space-y-6">
         {/* Name Input */}
         <div>
-          <label htmlFor="name" className="block mb-2 font-medium">
+          <label htmlFor="name" className="block mb-2 font-bold text-primary">
             Name *
           </label>
           <input
@@ -121,7 +110,7 @@ const HundetrainingContactForm: React.FC = () => {
 
         {/* Phone Input */}
         <div>
-          <label htmlFor="phone" className="block mb-2 font-medium">
+          <label htmlFor="phone" className="block mb-2 font-bold text-primary">
             Telefonnummer *
           </label>
           <input
@@ -138,8 +127,8 @@ const HundetrainingContactForm: React.FC = () => {
 
         {/* Service Select */}
         <div>
-          <label htmlFor="service" className="block mb-2 font-medium">
-            Trainingsart *
+          <label htmlFor="service" className="block mb-2 font-bold text-primary">
+            Angebot *
           </label>
           <select
             id="service"
@@ -153,17 +142,16 @@ const HundetrainingContactForm: React.FC = () => {
             <option value="" disabled>
               Bitte auswählen
             </option>
-            <option value="grundkommandos">Grundkommandos</option>
-            <option value="leinentraining">Leinentraining</option>
-            <option value="problembewaltigung">Problembewältigung</option>
-            {/* Adicionar outras opções se necessário */}
+            <option value="tagesbetreuung">Tagesbetreuung</option>
+            <option value="ferienbetreuung">Ferienbetreuung</option>
+            <option value="hundetraining">Hundetraining</option>
           </select>
         </div>
 
         {/* Dog Count Select */}
         <div>
-          <label htmlFor="dogs" className="block mb-2 font-medium">
-            Wie viele Hunde? *
+          <label htmlFor="dogs" className="block mb-2 font-bold text-primary">
+            Wie viele hunde? *
           </label>
           <select
             id="dogs"
@@ -179,19 +167,20 @@ const HundetrainingContactForm: React.FC = () => {
             </option>
             <option value="1">1</option>
             <option value="2">2</option>
-            <option value="3">3 oder mehr</option>
+            <option value="3">3 oder +</option>
           </select>
         </div>
 
-        {/* Dog Size Checkboxes */}
+        {/* Dog Size Radio Buttons */}
         <div>
-          <label className="block mb-2 font-medium">Hundegrosse *</label>
+          <label className="block mb-2 font-bold text-primary">Hundegrosse *</label>
           <div className="flex gap-4">
             <label className="flex items-center">
               <input
-                type="checkbox"
-                name="dog_size_small"
-                checked={formData.dog_size_small}
+                type="radio"
+                name="dog_size"
+                value="Kleiner (bis 10 kg)"
+                checked={formData.dog_size === 'Kleiner (bis 10 kg)'}
                 onChange={handleChange}
                 className="mr-2"
                 disabled={formStatus === 'loading'}
@@ -200,9 +189,10 @@ const HundetrainingContactForm: React.FC = () => {
             </label>
             <label className="flex items-center">
               <input
-                type="checkbox"
-                name="dog_size_large"
-                checked={formData.dog_size_large}
+                type="radio"
+                name="dog_size"
+                value="Grosse (ab 10 kg)"
+                checked={formData.dog_size === 'Grosse (ab 10 kg)'}
                 onChange={handleChange}
                 className="mr-2"
                 disabled={formStatus === 'loading'}
@@ -217,7 +207,7 @@ const HundetrainingContactForm: React.FC = () => {
 
         {/* Email Input */}
         <div>
-          <label htmlFor="email" className="block mb-2 font-medium">
+          <label htmlFor="email" className="block mb-2 font-bold text-primary">
             Email *
           </label>
           <input
@@ -234,7 +224,7 @@ const HundetrainingContactForm: React.FC = () => {
 
         {/* Message Textarea */}
         <div>
-          <label htmlFor="message" className="block mb-2 font-medium">
+          <label htmlFor="message" className="block mb-2 font-bold text-primary">
             Nachricht *
           </label>
           <textarea

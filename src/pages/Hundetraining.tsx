@@ -1,10 +1,9 @@
 import React from 'react';
 import SEO from '../components/common/SEO';
 import { motion } from 'framer-motion';
-import TrainingSection from '../components/services/TrainingSection';
 import HundetrainingContactForm from '../components/services/HundetrainingContactForm';
 import { useTranslation } from 'react-i18next';
-import { Calendar, Clock, MapPin, Users, DollarSign } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, DollarSign, Activity } from 'lucide-react';
 
 const HundetrainingPage: React.FC = () => {
   const { t } = useTranslation();
@@ -19,118 +18,6 @@ const HundetrainingPage: React.FC = () => {
         ease: 'easeOut',
       },
     },
-  };
-
-  const impulskontrolleData = {
-    id: 'impulskontrolle',
-    bgColor: 'white' as const,
-    layoutReverse: true,
-    imageInfo: {
-      placeholderText: t('hundetraining.certificate.imageLabel'),
-    },
-    detailsTitle: t('hundetraining.impulseControl.detailsTitle'),
-    detailsList: [
-      {
-        label: t('hundetraining.impulseControl.whenLabel'),
-        value: t('hundetraining.impulseControl.whenValue'),
-      },
-      {
-        label: t('hundetraining.impulseControl.durationLabel'),
-        value: t('hundetraining.impulseControl.durationValue'),
-      },
-      {
-        label: t('hundetraining.impulseControl.locationLabel'),
-        value: t('hundetraining.impulseControl.locationValue'),
-      },
-      {
-        label: t('hundetraining.impulseControl.groupsLabel'),
-        value: t('hundetraining.impulseControl.groupsValue'),
-      },
-    ],
-    priceList: [
-      {
-        label: t('hundetraining.impulseControl.singleSessionLabel'),
-        value: t('hundetraining.impulseControl.singleSessionValue'),
-      },
-      {
-        label: t('hundetraining.impulseControl.packageLabel'),
-        value: t('hundetraining.impulseControl.packageValue'),
-      },
-    ],
-    priceLabel: t('common.priceLabel'),
-    taxInfoLabel: t('common.taxInfo'),
-    contentTitle: t('hundetraining.impulseControl.contentTitle'),
-    contentParagraphs: [
-      t('hundetraining.impulseControl.paragraph1'),
-      t('hundetraining.impulseControl.paragraph2'),
-      t('hundetraining.impulseControl.paragraph3'),
-    ],
-    contentListItems: [
-      t('hundetraining.impulseControl.listItem1'),
-      t('hundetraining.impulseControl.listItem2'),
-      t('hundetraining.impulseControl.listItem3'),
-      t('hundetraining.impulseControl.listItem4'),
-    ],
-    subContentSections: [
-      {
-        title: t('hundetraining.impulseControl.goalTitle'),
-        paragraphs: [t('hundetraining.impulseControl.goalParagraph')],
-      },
-    ],
-  };
-
-  const leinenfuehrigkeitData = {
-    id: 'leinenfuehrigkeit',
-    bgColor: 'gray-50' as const,
-    layoutReverse: false,
-    imageInfo: {
-      placeholderText: t('hundetraining.certificate.imageLabel'),
-    },
-    detailsTitle: t('hundetraining.leashTraining.detailsTitle'),
-    detailsList: [
-      {
-        label: t('hundetraining.leashTraining.durationLabel'),
-        value: t('hundetraining.leashTraining.durationValue'),
-      },
-      {
-        label: t('hundetraining.leashTraining.participantsLabel'),
-        value: t('hundetraining.leashTraining.participantsValue'),
-      },
-      {
-        label: t('hundetraining.leashTraining.locationLabel'),
-        value: t('hundetraining.leashTraining.locationValue'),
-      },
-      {
-        label: t('hundetraining.leashTraining.stimulusLevelLabel'),
-        value: t('hundetraining.leashTraining.stimulusLevelValue'),
-      },
-    ],
-    priceList: [
-      {
-        label: t('hundetraining.leashTraining.singleSessionLabel'),
-        value: t('hundetraining.leashTraining.singleSessionValue'),
-      },
-      {
-        label: t('hundetraining.leashTraining.packageLabel'),
-        value: t('hundetraining.leashTraining.packageValue'),
-      },
-    ],
-    priceLabel: t('common.priceLabel'),
-    taxInfoLabel: t('common.taxInfo'),
-    contentTitle: t('hundetraining.leashTraining.contentTitle'),
-    contentParagraphs: [
-      t('hundetraining.leashTraining.paragraph1'),
-      t('hundetraining.leashTraining.paragraph2'),
-      t('hundetraining.leashTraining.paragraph3'),
-      t('hundetraining.leashTraining.paragraph4'),
-      t('hundetraining.leashTraining.paragraph5'),
-    ],
-    subContentSections: [
-      {
-        title: t('hundetraining.leashTraining.goalTitle'),
-        paragraphs: [t('hundetraining.leashTraining.goalParagraph')],
-      },
-    ],
   };
 
   return (
@@ -234,8 +121,8 @@ const HundetrainingPage: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-center mb-8">
             <img
-              src="/src/assets/images/svg/treinamento.png"
-              alt="Hundetraining"
+              src="/src/assets/images/svg/socialtraing.png"
+              alt="Social Training und Social Walking"
               className="h-[120px] w-[120px]"
             />
           </div>
@@ -324,7 +211,6 @@ const HundetrainingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Nova seção horizontal com o conteúdo da antiga segunda coluna */}
       <section className="py-8 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -372,7 +258,7 @@ const HundetrainingPage: React.FC = () => {
                     <img
                       src="/src/assets/images/banner_social.png"
                       alt="Warum Social Training & Social Walking so wichtig sind"
-                      className="w-full h-auto rounded-lg shadow-sm object-contain"
+                      className="w-full h-auto rounded-lg shadow-sm object-cover"
                     />
                   </div>
                 </div>
@@ -382,90 +268,417 @@ const HundetrainingPage: React.FC = () => {
         </div>
       </section>
 
-      <TrainingSection {...impulskontrolleData} />
-      <TrainingSection {...leinenfuehrigkeitData} />
-
-      <motion.section
-        className="py-16 bg-white"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        variants={sectionVariants}
-      >
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="headline2 text-center mb-6">Privatunterricht</h2>
-            <h3 className="headline4 text-center mb-6">💬 Individuell. Persönlich. Effektiv.</h3>
-            <p className="body1 text-gray-600 mb-4 text-center">
-              In unserem Einzeltraining (60 Minuten) gehen wir gezielt auf die Herausforderungen
-              ein, die Sie mit Ihrem Hund erleben. Gemeinsam entwickeln wir Lösungen, die genau zu
-              Ihnen, Ihrem Alltag und der Persönlichkeit Ihres Hundes passen.
-            </p>
-            <p className="body1 text-gray-600 mb-6 text-center">
-              Unser Ziel: Ein harmonisches Miteinander – abgestimmt auf Ihre individuellen
-              Bedürfnisse.
-            </p>
-            <hr className="my-6" />
-            <h4 className="headline5 text-center mb-4">💰 Preise:</h4>
-            <ul className="space-y-2 text-center mb-6">
-              <li>– Einzelstunde: CHF 80.00</li>
-              <li>– 10er-Paket: CHF 650.00 (gültig für 6 Monate)</li>
-              <li>– Fahrtkosten: CHF 1.00 pro Kilometer (ab Standort Flaach)</li>
-            </ul>
-            <p className="body1 text-gray-600 text-center">
-              Ob Verhaltenstraining, Alltagssituationen oder spezielle Themen – wir sind an Ihrer
-              Seite, um Sie und Ihren Hund bestmöglich zu begleiten. 🐶🤝
-            </p>
-            <div className="w-full h-64 bg-gray-200 rounded-lg shadow-lg flex items-center justify-center mt-8">
-              <span className="text-gray-400">Foto: Trainer mit Hund</span>
+          <div className="flex justify-center mb-10">
+            <img
+              src="/src/assets/images/svg/treinamento.png"
+              alt="Impulskontrolle und Gehorsamkeitstraining"
+              className="h-[120px] w-[120px]"
+            />
+          </div>
+          <h2 className="headline2 text-primary font-sour-gummy text-center mb-14">
+            Impulskontrolle und Gehorsamkeitstraining
+          </h2>
+
+          {/* Coluna centralizada com informações */}
+          <div className="max-w-3xl mx-auto mb-14 flex justify-center">
+            <div className="bg-white p-8 md:p-10 rounded-lg shadow-sm w-full max-w-2xl">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-6 w-6 text-primary-light flex-shrink-0" />
+                    <h3 className="text-xl font-medium text-primary">Wann:</h3>
+                  </div>
+                  <p className="text-gray-700 pl-8">Termine werden noch bekannt gegeben</p>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-6 w-6 text-primary-light flex-shrink-0" />
+                    <h3 className="text-xl font-medium text-primary">Dauer:</h3>
+                  </div>
+                  <p className="text-gray-700 pl-8">60 Minuten</p>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-6 w-6 text-primary-light flex-shrink-0" />
+                    <h3 className="text-xl font-medium text-primary">Ort:</h3>
+                  </div>
+                  <p className="text-gray-700 pl-8">
+                    Verschiedene Locations im Kanton Zürich – z. B. Parks, Strassen oder Wälder
+                  </p>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Users className="h-6 w-6 text-primary-light flex-shrink-0" />
+                    <h3 className="text-xl font-medium text-primary">Gruppen:</h3>
+                  </div>
+                  <p className="text-gray-700 pl-8">4–6 Hunde, jeweils mit einer Begleitperson</p>
+                </div>
+
+                <div className="md:col-span-2 mt-6 pt-6 border-t border-gray-200">
+                  <div className="flex items-center gap-2 mb-4">
+                    <DollarSign className="h-6 w-6 text-primary-light flex-shrink-0" />
+                    <h3 className="text-xl font-medium text-primary">Preis:</h3>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pl-8">
+                    <div className="space-y-2">
+                      <p className="font-medium text-primary-dark">Einzelsession:</p>
+                      <p className="text-gray-700 pl-3 text-lg">CHF 70.00</p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <p className="font-medium text-primary-dark">10er-Paket:</p>
+                      <p className="text-gray-700 pl-3 text-lg">CHF 650.00</p>
+                      <p className="text-gray-600 pl-3">(gültig für 6 Monate)</p>
+                    </div>
+                  </div>
+
+                  <p className="text-sm text-gray-500 mt-6 pl-8">Preise exkl. MwSt</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Nova seção para texto e imagem */}
+          <div className="max-w-6xl mx-auto mt-8">
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="w-full md:w-1/2">
+                  <div className="body1 space-y-4">
+                    <p>
+                      Ungehorsamkeit und fehlende Impulskontrolle können für Mensch und Hund
+                      gleichermassen frustrierend sein. Oft entstehen diese Herausforderungen aus
+                      Unsicherheit, mangelnder Orientierung oder fehlendem Training.
+                    </p>
+                    <p>
+                      Viele dieser Probleme lassen sich vermeiden, wenn der Hund lernt, seinem
+                      Menschen zu vertrauen, auf ihn zu achten und klare Kommandos zu verstehen.
+                    </p>
+                    <p>In diesem Kurs lernt Ihr Hund,</p>
+                    <ul className="list-disc list-inside">
+                      <li>sich besser zu konzentrieren,</li>
+                      <li>
+                        Impulse zu kontrollieren (z. B. bei Reizen wie anderen Hunden, Katzen oder
+                        Geräuschen),
+                      </li>
+                      <li>zuverlässig auf Kommandos zu reagieren,</li>
+                      <li>und gelassener in Alltagssituationen zu bleiben.</li>
+                    </ul>
+                    <p>
+                      Das Ziel ist eine harmonische, sichere und entspannte Beziehung – damit
+                      Spaziergänge wieder Freude machen und Vertrauen wächst.
+                    </p>
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2">
+                  <img
+                    src="/src/assets/images/banner_treinamento.png"
+                    alt="Impulskontrolle und Gehorsamkeitstraining"
+                    className="w-full h-auto object-cover rounded-lg"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      <motion.section
-        className="py-16 bg-gray-50"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        variants={sectionVariants}
-      >
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="headline2 text-center mb-6">Online-Beratung</h2>
-            <h3 className="headline4 text-center mb-6">
-              💻 Online-Beratung – Für einen gelungenen Start mit Ihrem neuen Hund
-            </h3>
-            <p className="body1 text-gray-600 mb-4 text-center">
-              Haben Sie kürzlich einen Hund adoptiert – oder planen Sie, bald ein neues
-              Familienmitglied bei sich aufzunehmen?
-            </p>
-            <p className="body1 text-gray-600 mb-4 text-center">
-              Die ersten Wochen sind entscheidend für eine stabile Bindung und ein harmonisches
-              Zusammenleben.
-            </p>
-            <p className="body1 text-gray-600 mb-4 text-center">
-              Wir begleiten Sie in dieser wichtigen Phase mit einfühlsamer Beratung per Video- oder
-              Onlinegespräch.
-            </p>
-            <p className="body1 text-gray-600 mb-4 text-center">
-              Ob vor der Ankunft oder in den ersten Tagen nach dem Einzug – wir sind für Sie da.
-            </p>
-            <p className="body1 text-gray-600 mb-6 text-center">
-              Auf Wunsch kann auch ein persönliches Treffen (60 Minuten) vereinbart werden.
-            </p>
-            <hr className="my-6" />
-            <h4 className="headline5 text-center mb-4">💰 Preis:</h4>
-            <ul className="space-y-2 text-center mb-6">
-              <li>– CHF 80.00 pro Beratung (online oder vor Ort)</li>
-              <li>– Fahrtkosten: CHF 1.00 pro Kilometer (ab Standort Flaach)</li>
-            </ul>
-            <div className="w-full h-64 bg-gray-200 rounded-lg shadow-lg flex items-center justify-center mt-8">
-              <span className="text-gray-400">Foto: Online-Beratung</span>
+          <div className="flex justify-center mb-10">
+            <img
+              src="/src/assets/images/sempuxar.png"
+              alt="Training des Hundes"
+              className="h-[120px] w-[120px]"
+            />
+          </div>
+          <h2 className="headline2 text-primary font-sour-gummy text-center mb-14">
+            Training des Hundes, damit er beim Spaziergang nicht mehr an der Leine zieht
+          </h2>
+
+          {/* Duas colunas abaixo do título */}
+          <div className="max-w-6xl mx-auto mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Primeira coluna */}
+              <div className="bg-white p-8 rounded-lg shadow-sm flex items-center">
+                <h3 className="headline3 text-primary">
+                  Leinenführigkeit – Training für entspannte Spaziergänge
+                </h3>
+              </div>
+
+              {/* Segunda coluna */}
+              <div className="bg-white p-8 rounded-lg shadow-sm flex items-center">
+                <div className="w-full">
+                  <div className="flex items-center gap-2 mb-6">
+                    <DollarSign className="h-6 w-6 text-primary-light flex-shrink-0" />
+                    <h3 className="text-xl font-medium text-primary">Preis:</h3>
+                  </div>
+
+                  <div className="pl-8 space-y-5">
+                    <div className="flex items-baseline justify-between">
+                      <p className="font-medium text-primary-dark">Einzelsession:</p>
+                      <p className="text-gray-700 text-lg">CHF 70.00</p>
+                    </div>
+
+                    <div className="space-y-1">
+                      <div className="flex items-baseline justify-between">
+                        <p className="font-medium text-primary-dark">10er-Paket:</p>
+                        <p className="text-gray-700 text-lg">CHF 650.00</p>
+                      </div>
+                      <p className="text-gray-600 text-right text-sm">(gültig für 6 Monate)</p>
+                    </div>
+
+                    <p className="text-sm text-gray-500 mt-4">Preise exkl. MwSt</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Nova seção para texto e imagem */}
+          <div className="max-w-6xl mx-auto mt-12">
+            <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="w-full md:w-3/5">
+                  <div className="overflow-hidden rounded-lg">
+                    <img
+                      src="/src/assets/images/banner_curso.png"
+                      alt="Hund an der Leine Training"
+                      className="w-full h-auto object-cover rounded-lg transform hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                </div>
+                <div className="w-full md:w-2/5">
+                  <div className="body1 space-y-4 text-gray-600">
+                    <p>
+                      Zieht Ihr Hund an der Leine, obwohl Sie ihn immer wieder bitten, damit
+                      aufzuhören?
+                    </p>
+                    <p>
+                      Reagiert er plötzlich stark, wenn er andere Hunde, Katzen, Autos oder Menschen
+                      sieht?
+                    </p>
+                    <p>Fühlen Sie sich auf Spaziergängen gestresst oder überfordert?</p>
+                    <p className="font-medium text-primary-dark">
+                      Dann ist dieser Kurs genau das Richtige für Sie.
+                    </p>
+                    <p>
+                      Wir helfen Ihnen, die Kontrolle zurückzugewinnen – mit Geduld, positiver
+                      Kommunikation und gezielten Techniken. Ihr Hund lernt, sich besser zu
+                      konzentrieren, ruhiger zu bleiben und achtsam an Ihrer Seite zu laufen.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Duas novas colunas: Trainingsdetails e Ziel */}
+          <div className="max-w-6xl mx-auto mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Primeira coluna - Trainingsdetails */}
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <h3 className="text-xl font-medium text-primary mb-6">Trainingsdetails</h3>
+                <ul className="space-y-5 text-gray-600">
+                  <li className="flex items-start gap-3">
+                    <Clock className="h-6 w-6 text-primary-light mt-0.5 flex-shrink-0" />
+                    <div>
+                      <span className="font-semibold text-primary-light">Dauer:</span> 90 Minuten
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Users className="h-6 w-6 text-primary-light mt-0.5 flex-shrink-0" />
+                    <div>
+                      <span className="font-semibold text-primary-light">Teilnehmer:</span> 3 Hunde
+                      + 3 Bezugspersonen
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <MapPin className="h-6 w-6 text-primary-light mt-0.5 flex-shrink-0" />
+                    <div>
+                      <span className="font-semibold text-primary-light">Ort:</span> Verschiedene
+                      Locations im Kanton Zürich (Parks, Strassen oder Wälder)
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Activity className="h-6 w-6 text-primary-light mt-0.5 flex-shrink-0" />
+                    <div>
+                      <span className="font-semibold text-primary-light">Reizlevel:</span> mit
+                      vielen, wenigen oder keinen externen Einflüssen – je nach Trainingsziel
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Segunda coluna - Ziel */}
+              <div className="bg-white p-8 rounded-lg shadow-sm flex flex-col justify-center">
+                <h3 className="text-xl font-medium text-primary mb-6">Ziel:</h3>
+                <p className="text-gray-600">
+                  Ein harmonisches, sicheres Miteinander an der Leine – für entspannte und freudige
+                  Spaziergänge, bei denen Sie und Ihr Hund wieder im Einklang unterwegs sind.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
+
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center mb-10">
+            <img
+              src="/src/assets/images/particular_ICON.jpg.png"
+              alt="Privatunterricht"
+              className="h-[120px] w-[120px]"
+            />
+          </div>
+          <h2 className="headline2 text-primary font-sour-gummy text-center mb-14">
+            Privatunterricht
+          </h2>
+
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-stretch">
+              {/* Coluna esquerda - Banner (maior) */}
+              <div className="bg-white p-4 rounded-lg shadow-sm md:col-span-3">
+                <div className="overflow-hidden rounded-lg w-full">
+                  <img
+                    src="/src/assets/images/banner_PARTICILAR.png"
+                    alt="Privatunterricht Banner"
+                    className="w-full h-auto object-cover rounded-lg transform hover:scale-105 transition duration-300"
+                  />
+                </div>
+              </div>
+
+              {/* Coluna direita - Texto (menor) na metade inferior */}
+              <div
+                className="bg-white p-8 rounded-lg shadow-sm md:col-span-2 flex flex-col"
+                style={{ minHeight: '400px' }}
+              >
+                <div className="flex-grow min-h-[40%]"></div>
+                <div className="body1 space-y-6 text-gray-600 pb-6">
+                  <p>
+                    In unserem Einzeltraining (60 Minuten) gehen wir gezielt auf die
+                    Herausforderungen ein, die Sie mit Ihrem Hund erleben. Gemeinsam entwickeln wir
+                    Lösungen, die genau zu Ihnen, Ihrem Alltag und der Persönlichkeit Ihres Hundes
+                    passen.
+                  </p>
+                  <p>
+                    <span className="font-medium text-primary-dark">Unser Ziel:</span> Ein
+                    harmonisches Miteinander – abgestimmt auf Ihre individuellen Bedürfnisse.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Preços e informações adicionais */}
+            <div className="max-w-4xl mx-auto mt-12 bg-white p-8 rounded-lg shadow-sm">
+              <div className="mb-8">
+                <div className="flex items-center gap-2 mb-6">
+                  <DollarSign className="h-6 w-6 text-primary-light flex-shrink-0" />
+                  <h3 className="text-xl font-medium text-primary">Preise:</h3>
+                </div>
+
+                <ul className="pl-9 space-y-4 text-gray-600">
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary-light font-medium">–</span>
+                    <p>
+                      <span className="font-medium">Einzelstunde:</span> CHF 80.00
+                    </p>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary-light font-medium">–</span>
+                    <p>
+                      <span className="font-medium">10er-Paket:</span> CHF 650.00 (gültig für 6
+                      Monate)
+                    </p>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary-light font-medium">–</span>
+                    <p>
+                      <span className="font-medium">Fahrtkosten:</span> CHF 1.00 pro Kilometer (ab
+                      Standort Flaach)
+                    </p>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="border-t border-gray-200 my-6"></div>
+
+              <div className="flex items-start gap-3 mt-8">
+                <Activity className="h-6 w-6 text-primary-light mt-1 flex-shrink-0" />
+                <p className="text-gray-600">
+                  Ob Verhaltenstraining, Alltagssituationen oder spezielle Themen – wir sind an
+                  Ihrer Seite, um Sie und Ihren Hund bestmöglich zu begleiten.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="mb-10 flex justify-center">
+              <img
+                src="/src/assets/images/banner_online.png"
+                alt="Online-Beratung"
+                className="w-[85%] md:w-3/4 lg:w-3/5 h-auto rounded-lg shadow-md"
+              />
+            </div>
+
+            <div className="text-center">
+              <h2 className="headline2 text-primary font-sour-gummy mb-8">
+                Für einen gelungenen Start mit Ihrem neuen Hund
+              </h2>
+            </div>
+
+            <div className="body1 space-y-4 text-gray-600 max-w-3xl mx-auto">
+              <p>
+                Haben Sie kürzlich einen Hund adoptiert – oder planen Sie, bald ein neues
+                Familienmitglied bei sich aufzunehmen?
+              </p>
+              <p>
+                Die ersten Wochen sind entscheidend für eine stabile Bindung und ein harmonisches
+                Zusammenleben.
+              </p>
+              <p>
+                Wir begleiten Sie in dieser wichtigen Phase mit einfühlsamer Beratung per Video-
+                oder Onlinegespräch.
+              </p>
+              <p>
+                Ob vor der Ankunft oder in den ersten Tagen nach dem Einzug – wir sind für Sie da.
+              </p>
+              <p>Auf Wunsch kann auch ein persönliches Treffen (60 Minuten) vereinbart werden.</p>
+
+              <div className="border-t border-gray-200 my-6"></div>
+
+              <div className="mt-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <DollarSign className="h-6 w-6 text-primary-light flex-shrink-0" />
+                  <h3 className="text-xl font-medium text-primary">Preis:</h3>
+                </div>
+
+                <ul className="pl-9 space-y-3 text-gray-600">
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary-light font-medium">–</span>
+                    <p>CHF 80.00 pro Beratung (online oder vor Ort)</p>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary-light font-medium">–</span>
+                    <p>Fahrtkosten: CHF 1.00 pro Kilometer (ab Standort Flaach)</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <motion.section
         className="py-16 bg-white"
@@ -475,90 +688,8 @@ const HundetrainingPage: React.FC = () => {
         variants={sectionVariants}
       >
         <div className="container mx-auto px-4">
-          <h2 className="headline3 text-center mb-8">Kontakt für Hundetraining</h2>
-          <p className="text-center mb-6 text-gray-600">Felder mit * sind Pflichtfelder</p>
+          <h2 className="headline2 text-primary font-sour-gummy text-center mb-8">Kontakt</h2>
           <HundetrainingContactForm />
-        </div>
-      </motion.section>
-
-      <motion.section
-        className="py-16 bg-gray-50"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        variants={sectionVariants}
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="md:w-1/2">
-              <div className="h-80 bg-gray-300 rounded-lg"></div>
-            </div>
-            <div className="md:w-1/2">
-              <ul className="space-y-4">
-                <li className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-white">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <span className="text-lg">Zürich</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-white">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                    </svg>
-                  </div>
-                  <span className="text-lg">+41 76 575 09 77</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-white">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                    </svg>
-                  </div>
-                  <span className="text-lg">info@amanlux.com</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-white">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <span className="text-lg">Mon - Fre / 7:00 AM - 6:30 PM</span>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
       </motion.section>
     </>
