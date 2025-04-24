@@ -13,7 +13,8 @@ node_modules
 .pnp.js
 
 # Build
-dist
+# Removendo dist para permitir o deploy no Render
+# dist
 dist-ssr
 *.local
 

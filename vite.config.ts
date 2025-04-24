@@ -9,4 +9,17 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  build: {
+    outDir: 'dist', // Explicitamente define o diretório de saída
+    emptyOutDir: true, // Limpa o diretório antes de construir
+  },
+  server: {
+    // Permite que qualquer host acesse a aplicação
+    hmr: {
+      host: 'localhost',
+    },
+    cors: true,
+    strictPort: true,
+    host: true, // Permite acesso externo
+  },
 });

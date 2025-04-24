@@ -1,0 +1,17 @@
+services:
+  - name: analuxsite
+    type: web
+    buildCommand: npm install && npm run build
+    publishDirectory: dist
+    staticPublishPath: ./dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600
+      - path: /_redirects
+        name: Cache-Control
+        value: no-cache
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
