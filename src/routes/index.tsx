@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import LoadingScreen from '../components/common/LoadingScreen';
 
@@ -10,6 +10,7 @@ const Contact = lazy(() => import('../pages/Contact'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const Hundebetreuung = lazy(() => import('../pages/Hundebetreuung'));
 const Hundetraining = lazy(() => import('../pages/Hundetraining'));
+const Partnership = lazy(() => import('../pages/Partnership'));
 
 /**
  * Configuração de rotas da aplicação
@@ -30,21 +31,20 @@ const Hundetraining = lazy(() => import('../pages/Hundetraining'));
  */
 const AppRoutes: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Suspense fallback={<LoadingScreen />}>
-        <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<Home />} />
-            <Route path="services" element={<Hundebetreuung />} />
-            <Route path="services/hundetraining" element={<Hundetraining />} />
-            <Route path="about" element={<About />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="404" element={<NotFound />} />
-            <Route path="*" element={<Navigate to="/404" replace />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    <Suspense fallback={<LoadingScreen />}>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="services" element={<Hundebetreuung />} />
+          <Route path="services/hundetraining" element={<Hundetraining />} />
+          <Route path="about" element={<About />} />
+          <Route path="partnership" element={<Partnership />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="404" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/404" replace />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };
 

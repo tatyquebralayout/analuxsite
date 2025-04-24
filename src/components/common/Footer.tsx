@@ -166,7 +166,9 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
             <h3 className="headline6 mb-6 font-sour-gummy">{t?.footer?.followUs || 'Follow Us'}</h3>
             <div className="flex space-x-4 mb-6">
               <motion.a
-                href="#"
+                href="https://www.instagram.com/amanluxdogs/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-primary hover:bg-accent text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors"
                 variants={socialIconVariants}
                 custom={0}

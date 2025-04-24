@@ -3,6 +3,7 @@ import { Handshake, Award, Users, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
+import bannerImage from '../../assets/images/banner_parceria.png';
 
 const Partnership: React.FC = () => {
   const { ref, inView } = useInView({
@@ -36,6 +37,17 @@ const Partnership: React.FC = () => {
   return (
     <section id="partnership" className="py-16 bg-neutral-surface" ref={ref}>
       <div className="container mx-auto px-4">
+        <div className="mb-12">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.8 }}
+            className="rounded-lg overflow-hidden shadow-lg max-w-4xl mx-auto"
+          >
+            <img src={bannerImage} alt="Partnership Hero" className="w-full h-auto object-cover" />
+          </motion.div>
+        </div>
+
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}

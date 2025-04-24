@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { Link } from 'react-router-dom';
 import ContactImage from '../../assets/images/contato.png'; // Import the image
 
 // Definir tipos para as props, se necessário, como o idioma
@@ -73,14 +74,14 @@ const ContactSection: React.FC<ContactSectionProps> = () => {
               damit Ihr Hund in einem sicheren, liebevollen und naturnahen Umfeld aufblüht. Denn bei
               uns ist Ihr Hund mehr als ein Gast – er ist Teil der Familie.
             </p>
-            <motion.a
-              href="#contact" // Leva para a seção de contato real (presumivelmente no Footer ou página separada)
-              className="inline-block bg-white text-accent font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 ease-in-out hover:bg-gray-100 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent-light focus:ring-offset-2 focus:ring-offset-[#ffe202]"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Kontaktieren Sie uns
-            </motion.a>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                to="/contact"
+                className="inline-block bg-white text-accent font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 ease-in-out hover:bg-gray-100 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent-light focus:ring-offset-2 focus:ring-offset-[#ffe202]"
+              >
+                Kontaktieren Sie uns
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </motion.div>
