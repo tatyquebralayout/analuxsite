@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AppRoutes from './routes';
 import { PerformanceProvider } from './contexts/PerformanceContext';
 
@@ -12,6 +12,16 @@ import { PerformanceProvider } from './contexts/PerformanceContext';
  * do usuário para ajustar animações e efeitos visuais.
  */
 function App() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return <div>Carregando...</div>;
+  }
+
   return (
     <PerformanceProvider>
       <AppRoutes />

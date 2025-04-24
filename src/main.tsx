@@ -4,7 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 import './index.css';
-import './i18n'; // Import i18n configuration
+import './i18n-fixed'; // Alterado de './i18n' para './i18n-fixed'
 
 /**
  * Ponto de entrada da aplicação
