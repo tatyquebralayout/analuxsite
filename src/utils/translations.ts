@@ -79,14 +79,14 @@ export const translations: { [key: string]: TranslationSchema } = {
           role: 'Dog Care & Dog Trainer',
           description:
             "Daniel is a caring, responsible handler who looks after every one of your dog's needs-from grooming and feeding to playtime and daily affection.",
-          image: '', // Add image URL later
+          image: '/src/assets/images/daniel_foto.png',
         },
         {
           name: 'Danillo Pires',
           role: 'Dog Care, Dog Trainer & Accounting',
           description:
             'Danillo runs AmanLux Dogs with extensive experience, strong organizational skills, and a deep love for dogs. As an accomplished caretaker and trainer, he makes sure every service is delivered to the highest standard and with the utmost care.',
-          image: '', // Add image URL later
+          image: '/src/assets/images/danilo_foto.png',
         },
         {
           name: 'Caroline Sousa',
@@ -98,8 +98,9 @@ export const translations: { [key: string]: TranslationSchema } = {
         {
           name: 'Chamo',
           role: 'CEO | Chihuahua',
-          description: 'Chamo description placeholder', // Simplified placeholder
-          image: '', // Add image URL later
+          description:
+            'Ich bin hier, um zu zeigen, dass Grösse keine Rolle spielt! Bei AmanLux Dogs ist der Spass garantiert – und Bellen ist unsere offizielle Sprache.',
+          image: '/src/assets/images/chamo banner_hero.png',
         },
       ],
     },
@@ -419,14 +420,14 @@ export const translations: { [key: string]: TranslationSchema } = {
           role: 'Hundebetreuung und Hundetrainer',
           description:
             'Daniel ist ein liebevoller und verantwortungsbewusster Betreuer, der sich mit Herz um alle Bedürfnisse Ihres Hundes kümmert – von der Pflege über das Futter bis hin zum Spiel und der täglichen Zuwendung.',
-          image: '', // Add image URL later
+          image: '/src/assets/images/daniel_foto.png',
         },
         {
           name: 'Danillo Pires',
           role: 'Hundebetreuung, Hundetrainer & Buchhaltung',
           description:
             'Danillo leitet AmanLux Dogs mit viel Erfahrung, Organisationstalent und einer tiefen Liebe zu Hunden. Als erfahrener Hundebetreuer und -trainer stellt er sicher, dass alle Dienstleistungen auf höchstem Niveau und mit grösster Sorgfalt ausgeführt werden.',
-          image: '', // Add image URL later
+          image: '/src/assets/images/danilo_foto.png',
         },
         {
           name: 'Caroline Sousa',
@@ -440,7 +441,7 @@ export const translations: { [key: string]: TranslationSchema } = {
           role: 'CEO | Chihuahua',
           description:
             'Ich bin hier, um zu zeigen, dass Grösse keine Rolle spielt! Bei AmanLux Dogs ist der Spass garantiert – und Bellen ist unsere offizielle Sprache.',
-          image: '', // Add image URL later
+          image: '/src/assets/images/chamo banner_hero.png',
         },
       ],
     },
