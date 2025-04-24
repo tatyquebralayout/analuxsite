@@ -155,7 +155,7 @@ const HundebetreuungPage: React.FC = () => {
       <section ref={videoRef} className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center">
-            {/* Left Column: Video with Mask */}
+            // Left Column: Video with Mask
             <div className="w-full lg:w-1/2 flex justify-center items-center">
               <motion.div
                 className="w-[85%] h-full flex items-center justify-center mt-[74px]"
@@ -163,14 +163,14 @@ const HundebetreuungPage: React.FC = () => {
                 animate={videoInView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.8 }}
               >
-                {/* Container for aspect ratio */}
+                // Container for aspect ratio
                 <div className="relative w-full aspect-square">
-                  {/* Inline SVG for mask definition */}
+                  // Inline SVG for mask definition
                   <svg viewBox="0 0 300 300" width="0" height="0" style={{ position: 'absolute' }}>
                     <defs>
                       <mask id={maskId} maskUnits="userSpaceOnUse">
                         <g transform="translate(0, 300) scale(0.05, -0.05)">
-                          {/* Paths define the mask shape - paw print */}
+                          // Paths define the mask shape - paw print
                           <path
                             fill="white"
                             d="M2585 5891 c-266 -95 -430 -313 -569 -756 -86 -277 -71 -661 38 -943 92 -238 255 -392 414 -392 168 0 297 70 423 232 154 197 239 394 310 718 6 25 13 115 17 200 10 197 -10 359 -64 520 -74 224 -190 359 -355 415 -84 29 -144 31 -214 6z"
@@ -195,8 +195,7 @@ const HundebetreuungPage: React.FC = () => {
                       </mask>
                     </defs>
                   </svg>
-
-                  {/* Video element - Apply mask */}
+                  // Video element - Apply mask
                   <video
                     src={videoUrl}
                     autoPlay
@@ -220,8 +219,7 @@ const HundebetreuungPage: React.FC = () => {
                 </div>
               </motion.div>
             </div>
-
-            {/* Right Column: Text Content */}
+            // Right Column: Text Content
             <div className="w-full lg:w-1/2 flex items-center">
               <motion.div
                 className="w-full max-w-md mx-auto pt-10 lg:pt-0"
