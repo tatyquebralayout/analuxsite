@@ -17,7 +17,7 @@ import './i18n-fixed'; // Alterado de './i18n' para './i18n-fixed'
  */
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <HelmetProvider>
         <App />
       </HelmetProvider>
