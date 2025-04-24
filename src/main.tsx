@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
-// import { BrowserRouter } from 'react-router-dom'; // Removido
+import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 import './index.css';
 import './i18n'; // Import i18n configuration
@@ -17,10 +17,10 @@ import './i18n'; // Import i18n configuration
  */
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* <BrowserRouter> // Removido */}
-    <HelmetProvider>
-      <App />
-    </HelmetProvider>
-    {/* </BrowserRouter> // Removido */}
+    <BrowserRouter>
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    </BrowserRouter>
   </StrictMode>
 );
