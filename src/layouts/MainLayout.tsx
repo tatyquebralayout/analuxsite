@@ -5,6 +5,7 @@ import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import { useTranslation } from 'react-i18next';
+import { useScrollToTop } from '../utils/hooks';
 
 /**
  * Layout principal da aplicação
@@ -19,6 +20,9 @@ import { useTranslation } from 'react-i18next';
 const MainLayout: React.FC = () => {
   const { i18n } = useTranslation();
   const location = useLocation();
+
+  // Usa o hook para rolar para o topo ao mudar de página
+  useScrollToTop();
 
   const currentLanguage = i18n.language.split('-')[0];
 

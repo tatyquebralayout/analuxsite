@@ -2,6 +2,7 @@ import React from 'react';
 import { Phone, Mail, Clock, Instagram, Facebook } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { Link } from 'react-router-dom';
 import { translations } from '../../utils/translations';
 import { TranslationSchema } from '../../types';
 
@@ -114,49 +115,39 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <motion.a
-                  href="#home"
-                  className="hover:text-accent transition-colors"
-                  whileHover={{ x: 5 }}
-                >
-                  {t?.header?.home || 'Home'}
-                </motion.a>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link to="/" className="hover:text-accent transition-colors">
+                    {t?.header?.home || 'Home'}
+                  </Link>
+                </motion.div>
               </li>
               <li>
-                <motion.a
-                  href="#services"
-                  className="hover:text-accent transition-colors"
-                  whileHover={{ x: 5 }}
-                >
-                  {t?.header?.services || 'Services'}
-                </motion.a>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link to="/services" className="hover:text-accent transition-colors">
+                    {t?.header?.services || 'Services'}
+                  </Link>
+                </motion.div>
               </li>
               <li>
-                <motion.a
-                  href="#about"
-                  className="hover:text-accent transition-colors"
-                  whileHover={{ x: 5 }}
-                >
-                  {t?.header?.about || 'About Us'}
-                </motion.a>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link to="/about" className="hover:text-accent transition-colors">
+                    {t?.header?.about || 'About Us'}
+                  </Link>
+                </motion.div>
               </li>
               <li>
-                <motion.a
-                  href="#partnership"
-                  className="hover:text-accent transition-colors"
-                  whileHover={{ x: 5 }}
-                >
-                  {t?.header?.partnership || 'Partnership'}
-                </motion.a>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link to="/partnership" className="hover:text-accent transition-colors">
+                    {t?.header?.partnership || 'Partnership'}
+                  </Link>
+                </motion.div>
               </li>
               <li>
-                <motion.a
-                  href="#contact"
-                  className="hover:text-accent transition-colors"
-                  whileHover={{ x: 5 }}
-                >
-                  {t?.header?.contact || 'Contact'}
-                </motion.a>
+                <motion.div whileHover={{ x: 5 }}>
+                  <Link to="/contact" className="hover:text-accent transition-colors">
+                    {t?.header?.contact || 'Contact'}
+                  </Link>
+                </motion.div>
               </li>
             </ul>
           </motion.div>
