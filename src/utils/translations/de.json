@@ -48,5 +48,10 @@
       "title": "Unser Team",
       "description": "Lernen Sie die Menschen hinter AmanLux Dogs kennen."
     }
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "message": "Es tut uns leid, aber die gesuchte Seite existiert nicht oder wurde verschoben.",
+    "backHome": "Zurück zur Startseite"
   }
 }

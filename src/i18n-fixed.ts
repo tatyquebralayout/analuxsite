@@ -16,8 +16,8 @@ const resources = {
   },
 };
 
-// Inicializa o i18n sem o detector de idioma
-i18n.use(initReactI18next).init({
+// Configurações comuns
+const commonConfig = {
   debug: import.meta.env.MODE === 'development',
   fallbackLng: 'de',
   supportedLngs: ['de', 'en'],
@@ -25,16 +25,24 @@ i18n.use(initReactI18next).init({
     escapeValue: false,
   },
   resources: resources,
-});
+};
 
-// Adiciona o detector de idioma somente no cliente
+// Inicialização com verificação de ambiente
 if (typeof window !== 'undefined') {
-  i18n.use(LanguageDetector).init({
-    detection: {
-      order: ['localStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
-      lookupLocalStorage: 'i18nextLng',
-    },
-  });
+  // No cliente (browser), usa o detector de idioma
+  i18n
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+      ...commonConfig,
+      detection: {
+        order: ['localStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
+        lookupLocalStorage: 'i18nextLng',
+      },
+    });
+} else {
+  // Em ambiente SSR, inicializa sem o detector
+  i18n.use(initReactI18next).init(commonConfig);
 }
 
 export default i18n;
