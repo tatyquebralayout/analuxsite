@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import TrainingSection from '../components/services/TrainingSection';
 import HundetrainingContactForm from '../components/services/HundetrainingContactForm';
 import { useTranslation } from 'react-i18next';
+import { Calendar, Clock, MapPin, Users, DollarSign } from 'lucide-react';
 
 const HundetrainingPage: React.FC = () => {
   const { t } = useTranslation();
@@ -18,71 +19,6 @@ const HundetrainingPage: React.FC = () => {
         ease: 'easeOut',
       },
     },
-  };
-
-  const socialTrainingData = {
-    id: 'social-training',
-    bgColor: 'gray-50' as const,
-    layoutReverse: false,
-    imageInfo: {
-      placeholderText: t('hundetraining.certificate.imageLabel'),
-    },
-    detailsTitle: t('hundetraining.socialTraining.detailsTitle'),
-    detailsList: [
-      {
-        label: t('hundetraining.socialTraining.whenLabel'),
-        value: t('hundetraining.socialTraining.whenValue'),
-      },
-      {
-        label: t('hundetraining.socialTraining.durationLabel'),
-        value: t('hundetraining.socialTraining.durationValue'),
-      },
-      {
-        label: t('hundetraining.socialTraining.locationLabel'),
-        value: t('hundetraining.socialTraining.locationValue'),
-      },
-      {
-        label: t('hundetraining.socialTraining.groupsLabel'),
-        value: t('hundetraining.socialTraining.groupsValue'),
-      },
-    ],
-    priceList: [
-      {
-        label: t('hundetraining.socialTraining.singleSessionLabel'),
-        value: t('hundetraining.socialTraining.singleSessionValue'),
-      },
-      {
-        label: t('hundetraining.socialTraining.packageLabel'),
-        value: t('hundetraining.socialTraining.packageValue'),
-      },
-    ],
-    priceLabel: t('common.priceLabel'),
-    taxInfoLabel: t('common.taxInfo'),
-    contentTitle: t('hundetraining.socialTraining.contentTitle'),
-    contentParagraphs: [
-      t('hundetraining.socialTraining.paragraph1'),
-      t('hundetraining.socialTraining.paragraph2'),
-      t('hundetraining.socialTraining.paragraph3'),
-      t('hundetraining.socialTraining.paragraph4'),
-      t('hundetraining.socialTraining.paragraph5'),
-      t('hundetraining.socialTraining.paragraph6'),
-      t('hundetraining.socialTraining.paragraph7'),
-    ],
-    contentListItems: [
-      t('hundetraining.socialTraining.listItem1'),
-      t('hundetraining.socialTraining.listItem2'),
-      t('hundetraining.socialTraining.listItem3'),
-    ],
-    subContentSections: [
-      {
-        title: t('hundetraining.socialTraining.subSection1Title'),
-        paragraphs: [t('hundetraining.socialTraining.subSection1Paragraph')],
-      },
-      {
-        title: t('hundetraining.socialTraining.subSection2Title'),
-        paragraphs: [t('hundetraining.socialTraining.subSection2Paragraph')],
-      },
-    ],
   };
 
   const impulskontrolleData = {
@@ -205,53 +141,247 @@ const HundetrainingPage: React.FC = () => {
         keywords="Hundetraining, social walking, impulskontrolle, leinenführigkeit, privatunterricht, hundetrainer, zürich"
       />
 
-      <section className="bg-gradient-to-r from-primary-light to-primary py-16 text-center text-white">
+      <section className="bg-primary-light py-16 text-white">
         <div className="container mx-auto px-4">
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="headline1 mb-4"
-          >
-            {t('hundetraining.hero.title')}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="body1 max-w-2xl mx-auto"
-          >
-            {t('hundetraining.hero.subtitle1')}
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="body1 max-w-2xl mx-auto mt-4"
-          >
-            {t('hundetraining.hero.subtitle2')}
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="body1 max-w-2xl mx-auto mt-4"
-          >
-            {t('hundetraining.hero.subtitle3')}
-          </motion.p>
+          <div className="flex flex-col md:flex-row items-center max-w-6xl mx-auto">
+            <div className="w-full md:w-1/2 flex justify-center">
+              <motion.div
+                className="max-w-lg p-8"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+              >
+                <motion.h1
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="headline1 mb-6 leading-tight font-sour-gummy"
+                >
+                  Mehr als nur Kommandos – eine vertrauensvolle Beziehung zwischen Mensch und Hund
+                  aufbauen
+                </motion.h1>
+              </motion.div>
+            </div>
+            <div className="w-full md:w-1/2 flex justify-center mt-10 md:mt-0">
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative"
+              >
+                <div className="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden">
+                  <img
+                    src="/src/assets/images/adestramento.png"
+                    alt="Hundetraining bei AmanLux Dogs"
+                    className="w-full h-full object-cover"
+                    onError={e => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = 'https://via.placeholder.com/400?text=Hundetraining';
+                    }}
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="w-48 h-48 mx-auto bg-gray-200 rounded-lg shadow-md flex items-center justify-center text-gray-400 mb-6">
-            <span>{t('hundetraining.certificate.imageLabel')}</span>
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
+            <div className="w-full md:w-1/2">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <img
+                  src="/src/assets/images/certificado.png"
+                  alt="Hundetrainer Zertifikat"
+                  className="w-full rounded-lg shadow-md"
+                />
+              </motion.div>
+            </div>
+            <div className="w-full md:w-1/2">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <h2 className="headline2 text-primary font-sour-gummy mb-6">Hundetraining</h2>
+                <div className="space-y-4">
+                  <p className="body1 text-gray-600">
+                    Die Körpersprache ist eine der wichtigsten Arten, wie Hunde mit uns und ihrer
+                    Umwelt kommunizieren.
+                  </p>
+                  <p className="body1 text-gray-600">
+                    Unser Ziel beim Training ist es, das gegenseitige Verständnis zwischen Mensch
+                    und Hund zu vertiefen, die Sozialisierung zu fördern und ein harmonisches
+                    Zusammenleben in verschiedenen Alltagssituationen zu ermöglichen.
+                  </p>
+                  <p className="body1 text-gray-600">
+                    Mit Geduld, Einfühlungsvermögen und positiver Bestärkung schaffen wir eine
+                    vertrauensvolle Beziehung – die beste Grundlage für ein glückliches Miteinander.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </div>
-          <p className="body1 text-gray-600">{t('hundetraining.certificate.description')}</p>
         </div>
       </section>
 
-      <TrainingSection {...socialTrainingData} />
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center mb-8">
+            <img
+              src="/src/assets/images/svg/treinamento.png"
+              alt="Hundetraining"
+              className="h-[120px] w-[120px]"
+            />
+          </div>
+          <h2 className="headline2 text-primary font-sour-gummy text-center mb-12">
+            Social Training und Social Walking
+          </h2>
+
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Primeira coluna */}
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="body1 space-y-4">
+                <div className="flex items-start gap-3">
+                  <Calendar className="h-5 w-5 text-primary-light mt-0.5 flex-shrink-0" />
+                  <span>
+                    <span className="font-medium text-primary">Wann:</span> Termine werden noch
+                    bekannt gegeben
+                  </span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Clock className="h-5 w-5 text-primary-light mt-0.5 flex-shrink-0" />
+                  <span>
+                    <span className="font-medium text-primary">Dauer:</span> 90 Minuten
+                  </span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <MapPin className="h-5 w-5 text-primary-light mt-0.5 flex-shrink-0" />
+                  <span>
+                    <span className="font-medium text-primary">Ort:</span> Verschiedene Locations –
+                    je nach Ziel der Einheit mit vielen, wenigen oder keinen Menschen ausser der
+                    Gruppe (z. B. Parks, Strassen oder Wälder)
+                  </span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Users className="h-5 w-5 text-primary-light mt-0.5 flex-shrink-0" />
+                  <span>
+                    <span className="font-medium text-primary">Gruppen:</span> 8–10 Hunde, jeweils
+                    mit einer Begleitperson
+                  </span>
+                </div>
+                <div className="border-t border-gray-200 my-5"></div>
+                <div className="flex items-start gap-3">
+                  <DollarSign className="h-5 w-5 text-primary-light mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-primary">Preis:</p>
+                    <p className="mt-2">
+                      <span className="font-medium text-primary">Einzelsession: CHF 55.00</span>
+                    </p>
+                    <p className="mt-1">
+                      <span className="font-medium text-primary">10er-Paket: CHF 450.00</span>{' '}
+                      (gültig für 6 Monate)
+                    </p>
+                    <p className="text-sm text-gray-500 mt-2">Preise exkl. MwSt</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Segunda coluna */}
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <h3 className="headline4 mb-4 text-primary-dark">Was ist Social Walking?</h3>
+              <p className="body1 text-gray-600 mb-4">
+                Beim Social Walking spaziert der Hund gemeinsam mit seinem Besitzer und anderen
+                Hunden in einer Gruppe – in Umgebungen mit unterschiedlichen Reizen, wie Parks,
+                Straßen oder Wäldern.
+              </p>
+              <p className="body1 text-gray-600">
+                Der Hund lernt dabei, gelassener auf verschiedene Situationen, Geräusche, Menschen
+                und andere Tiere zu reagieren – immer in sicherer Begleitung.
+              </p>
+            </div>
+
+            {/* Terceira coluna */}
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <h3 className="headline4 mb-4 text-primary-dark">Was ist Social Training?</h3>
+              <p className="body1 text-gray-600 mb-4">
+                Das Social Training ist eine ergänzende Trainingseinheit, bei der gezielt am
+                Verhalten des Hundes gearbeitet wird – unter Berücksichtigung seiner Persönlichkeit,
+                seiner Bedürfnisse und seiner Grenzen.
+              </p>
+              <p className="body1 text-gray-600">
+                Unser Ziel ist es, ein harmonisches Miteinander zu fördern – mit Geduld, Respekt und
+                positiver Verstärkung.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Nova seção horizontal com o conteúdo da antiga segunda coluna */}
+      <section className="py-8 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="flex flex-col md:flex-row gap-6">
+                <div className="w-full md:w-1/2 flex items-center">
+                  <div className="body1 text-gray-600 space-y-2 max-w-xl">
+                    <p className="mb-3">
+                      Das Verhalten eines Hundes hängt stark davon ab, wie gut er die soziale
+                      Struktur versteht, in der er lebt – also seine Rolle in der Familie, in der
+                      Gruppe und in der Gesellschaft.
+                    </p>
+
+                    <p>
+                      Manche Verhaltensweisen, die für uns Menschen unangenehm oder unerwünscht
+                      erscheinen, haben oft tiefere Ursachen, die nicht sofort erkennbar sind.
+                    </p>
+
+                    <p>
+                      Deshalb ist es entscheidend, dass wir lernen, diese Signale richtig zu deuten
+                      – nur so können wir unseren Hunden wirklich helfen.
+                    </p>
+
+                    <div>
+                      <p className="mb-1">
+                        Viele Probleme entstehen durch fehlende oder unzureichende Sozialisierung.
+                        Beispiele dafür sind:
+                      </p>
+                      <ul className="pl-5 list-disc mb-2">
+                        <li>Angst vor anderen Hunden</li>
+                        <li>Unsicherheit gegenüber Kindern, fremden Menschen oder Katzen</li>
+                        <li>Bellen, Fluchtverhalten oder sogar aggressives Verhalten</li>
+                      </ul>
+                    </div>
+
+                    <p>
+                      Diese Verhaltensmuster lassen sich nicht durch Strafen, sondern nur durch
+                      gezieltes Training und kontinuierliche Sozialisierung verbessern. Und je
+                      früher man damit beginnt, desto nachhaltiger sind die Ergebnisse.
+                    </p>
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2 flex items-center justify-center">
+                  <div className="w-full h-full flex items-center">
+                    <img
+                      src="/src/assets/images/banner_social.png"
+                      alt="Warum Social Training & Social Walking so wichtig sind"
+                      className="w-full h-auto rounded-lg shadow-sm object-contain"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <TrainingSection {...impulskontrolleData} />
       <TrainingSection {...leinenfuehrigkeitData} />
 
