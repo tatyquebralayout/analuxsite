@@ -301,18 +301,20 @@ const HundebetreuungPage: React.FC = () => {
                   {t('about.serviceHighlights.hotel.title')}
                 </h2>
               </div>
-              <p className="body1 text-gray-600 mb-4">
-                {t('about.serviceHighlights.hotel.description.split(\n)[0]')}
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                {t('about.serviceHighlights.hotel.description.split(\n)[1]')}
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                {t('about.serviceHighlights.hotel.description.split(\n)[2]')}
-              </p>
-              <p className="body1 text-gray-600 mb-6">
-                {t('about.serviceHighlights.hotel.description.split(\n)[3]')}
-              </p>
+              {(() => {
+                const hotelDescription = t('about.serviceHighlights.hotel.description');
+                const descriptionParagraphs = hotelDescription ? hotelDescription.split('\n') : [];
+                return descriptionParagraphs.map((paragraph, index) => (
+                  <p
+                    key={index}
+                    className={`body1 text-gray-600 ${
+                      index === descriptionParagraphs.length - 1 ? 'mb-6' : 'mb-4'
+                    }`}
+                  >
+                    {paragraph}
+                  </p>
+                ));
+              })()}
             </div>
             <div className="md:w-1/2 flex justify-center">
               <div className="w-full rounded-lg overflow-hidden aspect-ratio-4-3">
