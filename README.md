@@ -1,22 +1,16 @@
-# AmanluxDog - Premium Dog Care Website
+# Analux - Premium Dog Care Website
 
-![AmanluxDog Logo](https://iili.io/3dgK2Zg.png)
+![Analux Logo](https://iili.io/3dgK2Zg.png)
 
 ## Overview
 
-AmanluxDog is a premium dog care services website built with React, TypeScript, and Tailwind CSS. The website offers a multilingual experience (Portuguese, English, Spanish, French, and German) and showcases various dog care services, including daycare, hotel, training, taxi service, and grooming.
+Analux is a premium dog care services website built with React, TypeScript, and Tailwind CSS. The website is presented in German and showcases various dog care services, including daycare, hotel, training, taxi service, and grooming.
 
 ## Live Demo
 
 Check out the live demo: [AmanluxDog Website](https://frolicking-pothos-f0e419.netlify.app)
 
 ## Features
-
-### 🌐 Multilingual Support
-
-- Complete translations in 5 languages (Portuguese, English, Spanish, French, German)
-- Easy language switching with flag icons
-- Modular translation system for easy maintenance
 
 ### 🎨 Modern UI/UX
 
@@ -59,19 +53,19 @@ Check out the live demo: [AmanluxDog Website](https://frolicking-pothos-f0e419.n
 - **Icons**: Lucide React
 - **Animations**: Framer Motion
 - **Build Tool**: Vite
-- **Code Quality**: ESLint
+- **Code Quality**: ESLint (config: `eslint.config.js`), Prettier (config: `.prettierrc`)
 
 ## Project Structure
 
 ```
-amanluxdog-website/
+analuxsite/
 ├── public/
 │   └── vite.svg
 ├── src/
 │   ├── assets/
-│   │   ├── flags/
-│   │   │   └── index.ts
-│   │   └── index.ts
+│   │   ├── video/
+│   │   ├── images/
+│   │   └── index.ts      // Este index.ts é de assets
 │   ├── components/
 │   │   ├── about/
 │   │   │   └── Team.tsx
@@ -116,18 +110,17 @@ amanluxdog-website/
 │   │   │   ├── usePerformanceOptimizer.ts
 │   │   │   └── useScrollToTop.ts
 │   │   └── translations/
-│   │       ├── de.ts
-│   │       ├── en.ts
-│   │       ├── es.ts
-│   │       ├── fr.ts
-│   │       ├── index.ts
-│   │       ├── pt.ts
-│   │       └── types.ts
+│   │       ├── de/           // Diretório com as traduções em alemão
+│   │       │   ├── common.ts
+│   │       │   ├── index.ts
+│   │       │   └── pages.ts
+│   │       ├── index.ts      // Agregador principal de traduções (agora apenas para alemão)
+│   │       └── types.ts      // Tipos para as traduções
 │   ├── App.tsx
 │   ├── index.css
 │   ├── main.tsx
 │   └── vite-env.d.ts
-├── .eslintrc.js
+├── eslint.config.js
 ├── index.html
 ├── package.json
 ├── postcss.config.js
@@ -187,8 +180,8 @@ amanluxdog-website/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/amanluxdog-website.git
-cd amanluxdog-website
+git clone https://github.com/tatyquebralayout/analuxsite.git
+cd analuxsite
 ```
 
 2. Install dependencies:
@@ -219,6 +212,20 @@ yarn build
 
 The built files will be in the `dist` directory.
 
+### Available Scripts
+
+In the project directory, you can run:
+
+- `npm run dev`: Runs the app in development mode.
+- `npm run build`: Builds the app for production to the `dist` folder.
+- `npm run render-build`: Custom build script, possibly for a specific hosting service like Render.
+- `npm run start`: Serves the production build from the `dist` folder.
+- `npm run lint`: Lints the project files using ESLint.
+- `npm run preview`: Serves the production build locally for preview.
+- `npm run test`: Runs tests using Vitest.
+- `npm run test:ui`: Runs tests with the Vitest UI.
+- `npm run coverage`: Generates a test coverage report.
+
 ## Deployment
 
 The website is deployed on Netlify. You can deploy your own version by:
@@ -247,8 +254,7 @@ The website is compatible with:
 
 The website uses cookies for:
 
-1. Language preference
-2. Performance settings
+1. Performance settings
 
 Users can opt out of cookies through privacy settings.
 

@@ -14,7 +14,7 @@ node_modules
 
 # Build
 # Removendo dist para permitir o deploy no Render
-# dist
+dist
 dist-ssr
 *.local
 
@@ -26,6 +26,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.vscode/
 
 # Environment variables
 .env

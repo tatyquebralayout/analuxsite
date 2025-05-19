@@ -3,16 +3,12 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 // Import translation files
-import translationDE from './utils/translations/de.json';
-import translationEN from './utils/translations/en.json';
+import translationDE from './utils/translations/de';
 
-// Set resources for both languages
+// Set resources for German language only
 const resources = {
   de: {
     translation: translationDE,
-  },
-  en: {
-    translation: translationEN,
   },
 };
 
@@ -20,7 +16,7 @@ const resources = {
 const commonConfig = {
   debug: import.meta.env.MODE === 'development',
   fallbackLng: 'de',
-  supportedLngs: ['de', 'en'],
+  supportedLngs: ['de'],
   interpolation: {
     escapeValue: false,
   },
@@ -29,7 +25,7 @@ const commonConfig = {
 
 // Inicialização com verificação de ambiente
 if (typeof window !== 'undefined') {
-  // No cliente (browser), usa o detector de idioma
+  // No cliente (browser), usa o detector de idioma, mas ele sempre resolverá para 'de' ou fallback
   i18n
     .use(LanguageDetector)
     .use(initReactI18next)

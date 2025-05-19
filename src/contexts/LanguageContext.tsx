@@ -4,8 +4,8 @@ import React, { createContext } from 'react';
  * Interface que define a estrutura do contexto de idioma
  */
 export interface LanguageContextType {
-  language: string; // Código do idioma atual (pt, en, es, fr, de)
-  setLanguage: (lang: string) => void; // Função para alterar o idioma
+  language: string; // Código do idioma atual (será sempre 'de')
+  // setLanguage não é mais necessário pois o idioma é fixo
 }
 
 /**
@@ -20,11 +20,11 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
  * Provider do contexto de idioma
  *
  * Componente que fornece o contexto de idioma para seus filhos.
- * Recebe o valor atual do idioma e a função para alterá-lo.
+ * Recebe o valor atual do idioma.
  */
 export const LanguageProvider: React.FC<{
   children: React.ReactNode;
-  value: LanguageContextType;
+  value: LanguageContextType; // O valor conterá { language: 'de' }
 }> = ({ children, value }) => {
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };

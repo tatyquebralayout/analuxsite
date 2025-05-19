@@ -4,27 +4,26 @@ import { Phone, Mail, MapPin, Clock, Menu as MenuIcon, X, ChevronDown } from 'lu
 import { Menu } from '@headlessui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { translations } from '../../utils/translations';
-import { flags } from '../../assets/flags';
 import { TranslationSchema } from '../../types';
 
 /**
- * Interface de propriedades do componente Header (Restored)
+ * Interface de propriedades do componente Header
  */
 interface HeaderProps {
-  language: string; // Idioma atual
-  setLanguage: (lang: string) => void; // Função para alterar o idioma
+  language: string; // Idioma atual (sempre 'de')
 }
 
 /**
  * Componente de cabeçalho da aplicação
  *
  * Responsável por exibir a barra superior com informações de contato,
- * navegação principal, seletor de idiomas e botão de menu para mobile.
+ * navegação principal e botão de menu para mobile.
+ * O seletor de idiomas foi removido pois o site agora é apenas em Alemão.
  *
  * Implementa comportamento responsivo e efeito de scroll que fixa o
  * cabeçalho no topo da página quando o usuário rola para baixo.
  */
-const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
+const Header: React.FC<HeaderProps> = ({ language }) => {
   // Get translations based on the passed language prop
   const t = translations[language as keyof typeof translations] as TranslationSchema;
 
@@ -209,7 +208,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                     to="/about"
                     className="text-primary text-lg font-medium px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors"
                   >
-                    {headerTranslations.about || 'About Us'}
+                    {headerTranslations.about || 'About'}
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{ y: -2 }}>
@@ -217,7 +216,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                     to="/partnership"
                     className="text-primary text-lg font-medium px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors"
                   >
-                    Partnership
+                    {headerTranslations.partnership || 'Partnership'}
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{ y: -2 }}>
@@ -230,47 +229,15 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                 </motion.div>
               </nav>
 
-              {/* Botão de destaque e seletor de idioma (Restored language selector) */}
-              <div className="hidden md:flex items-center space-x-4">
-                <motion.button
-                  className="btn-primary flex items-center gap-2"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+              {/* Botão de orçamento - Estilo Aprimorado */}
+              <motion.div whileHover={{ scale: 1.05 }} className="hidden md:block mr-4">
+                <Link
+                  to="/contact"
+                  className="bg-primary text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-primary-dark transition-colors duration-300"
                 >
-                  <Clock size={16} />
                   {headerTranslations.bookNow || 'Book Now'}
-                </motion.button>
-
-                {/* Seletor de idioma RESTORED */}
-                <div
-                  className="flex border rounded-md overflow-hidden"
-                  role="group"
-                  aria-label={headerTranslations.languageSelector || 'Select Language'}
-                >
-                  <motion.button
-                    onClick={() => setLanguage('en')}
-                    className={`px-2 py-1 text-sm flex items-center justify-center transition-colors duration-200 ${
-                      language === 'en' ? 'bg-gray-200' : 'bg-white hover:bg-gray-100'
-                    }`}
-                    title="English"
-                    aria-label="Switch to English"
-                    whileHover={{ y: -1 }}
-                    whileTap={{ scale: 0.95 }}
-                    dangerouslySetInnerHTML={{ __html: flags.en }}
-                  />
-                  <motion.button
-                    onClick={() => setLanguage('de')}
-                    className={`px-2 py-1 text-sm flex items-center justify-center transition-colors duration-200 ${
-                      language === 'de' ? 'bg-gray-200' : 'bg-white hover:bg-gray-100'
-                    }`}
-                    title="Deutsch"
-                    aria-label="Wechseln zu Deutsch"
-                    whileHover={{ y: -1 }}
-                    whileTap={{ scale: 0.95 }}
-                    dangerouslySetInnerHTML={{ __html: flags.de }}
-                  />
-                </div>
-              </div>
+                </Link>
+              </motion.div>
 
               {/* Botão do menu mobile */}
               <motion.button
@@ -328,14 +295,14 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                 className="font-medium hover:text-primary transition-colors"
                 onClick={closeMobileMenu}
               >
-                {headerTranslations.about || 'About Us'}
+                {headerTranslations.about || 'About'}
               </Link>
               <Link
                 to="/partnership"
                 className="font-medium hover:text-primary transition-colors"
                 onClick={closeMobileMenu}
               >
-                Partnership
+                {headerTranslations.partnership || 'Partnership'}
               </Link>
               <Link
                 to="/contact"
@@ -350,42 +317,8 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
                 whileTap={{ scale: 0.95 }}
                 onClick={closeMobileMenu}
               >
-                <Clock size={16} />
                 {headerTranslations.bookNow || 'Book Now'}
               </motion.button>
-
-              {/* Seletor de idioma mobile RESTORED */}
-              <div className="mt-6 border-t pt-4">
-                <span className="text-sm font-medium text-gray-500 block mb-2">
-                  {headerTranslations.languageSelector || 'Select Language'}
-                </span>
-                <div className="flex justify-center space-x-2">
-                  <motion.button
-                    onClick={() => {
-                      setLanguage('en');
-                      closeMobileMenu();
-                    }}
-                    className={`px-3 py-1 rounded-md transition-colors duration-200 ${
-                      language === 'en' ? 'bg-gray-200' : 'bg-white hover:bg-gray-100'
-                    }`}
-                    whileTap={{ scale: 0.95 }}
-                    dangerouslySetInnerHTML={{ __html: flags.en }}
-                    aria-label="Switch to English"
-                  />
-                  <motion.button
-                    onClick={() => {
-                      setLanguage('de');
-                      closeMobileMenu();
-                    }}
-                    className={`px-3 py-1 rounded-md transition-colors duration-200 ${
-                      language === 'de' ? 'bg-gray-200' : 'bg-white hover:bg-gray-100'
-                    }`}
-                    whileTap={{ scale: 0.95 }}
-                    dangerouslySetInnerHTML={{ __html: flags.de }}
-                    aria-label="Wechseln zu Deutsch"
-                  />
-                </div>
-              </div>
             </nav>
           </motion.div>
         )}

@@ -3,7 +3,7 @@ import SEO from '../components/common/SEO';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import videoUrl from '../assets/video/hero_banner.mp4';
-import translations from '../utils/translations/de.json';
+import { useTranslation } from 'react-i18next';
 import emailjs from '@emailjs/browser';
 import carinhoImg from '../assets/images/carinho.png';
 import crecheImg from '../assets/images/creche.png';
@@ -13,6 +13,7 @@ import taxiIcon from '../assets/images/svg/taxidog.png';
 import taxiImg from '../assets/images/taxidogfot.png';
 
 const HundebetreuungPage: React.FC = () => {
+  const { t } = useTranslation();
   const { ref: videoRef, inView: videoInView } = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -32,9 +33,6 @@ const HundebetreuungPage: React.FC = () => {
 
   // Define mask ID
   const maskId = 'hundebetreuung-video-mask';
-
-  // Acesse as traduções
-  const t = translations.about.serviceHighlights;
 
   // Inicializando o EmailJS
   React.useEffect(() => {
@@ -105,9 +103,15 @@ const HundebetreuungPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Hundebetreuung - AmanLux Dogs"
-        description="Tagesbetreuung, Übernachtung und Wochenende für Ihren Hund in Zürich."
-        keywords="Hundebetreuung, Hundehotel, Hundetagesstätte, Zürich, Übernachtung, Wochenende"
+        title={t('seo.hundebetreuung.title', 'Hundebetreuung - AmanLux Dogs')}
+        description={t(
+          'seo.hundebetreuung.description',
+          'Tagesbetreuung, Übernachtung und Wochenende für Ihren Hund in Zürich.'
+        )}
+        keywords={t(
+          'seo.hundebetreuung.keywords',
+          'Hundebetreuung, Hundehotel, Hundetagesstätte, Zürich, Übernachtung, Wochenende'
+        )}
       />
 
       {/* Hero Section */}
@@ -121,7 +125,10 @@ const HundebetreuungPage: React.FC = () => {
                 transition={{ duration: 0.6 }}
                 className="headline1 mb-6 leading-tight font-sour-gummy"
               >
-                Betreuung, die über den Alltag hinausgeht – mit Liebe, Achtsamkeit und Vertrauen.
+                {t(
+                  'hundebetreuungPage.hero.title',
+                  'Betreuung, die über den Alltag hinausgeht – mit Liebe, Achtsamkeit und Vertrauen.'
+                )}
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -129,9 +136,10 @@ const HundebetreuungPage: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="body1 text-white"
               >
-                Während Sie sich um Ihre Verpflichtungen kümmern, sorgen wir für den, der zu Hause
-                sehnsüchtig auf Sie wartet – mit der gleichen Zuwendung und Geborgenheit, die er von
-                Ihnen kennt.
+                {t(
+                  'hundebetreuungPage.hero.subtitle',
+                  'Während Sie sich um Ihre Verpflichtungen kümmern, sorgen wir für den, der zu Hause sehnsüchtig auf Sie wartet – mit der gleichen Zuwendung und Geborgenheit, die er von Ihnen kennt.'
+                )}
               </motion.p>
             </div>
 
@@ -377,12 +385,22 @@ const HundebetreuungPage: React.FC = () => {
             <div className="md:w-1/2">
               <div className="flex items-center mb-6">
                 <img src={sleepIcon} alt="Sleep Icon" className="w-12 h-12 mr-4" />
-                <h2 className="headline3 font-sour-gummy text-primary">{t.hotel.title}</h2>
+                <h2 className="headline3 font-sour-gummy text-primary">
+                  {t('about.serviceHighlights.hotel.title')}
+                </h2>
               </div>
-              <p className="body1 text-gray-600 mb-4">{t.hotel.description.split('\n')[0]}</p>
-              <p className="body1 text-gray-600 mb-4">{t.hotel.description.split('\n')[1]}</p>
-              <p className="body1 text-gray-600 mb-4">{t.hotel.description.split('\n')[2]}</p>
-              <p className="body1 text-gray-600 mb-6">{t.hotel.description.split('\n')[3]}</p>
+              <p className="body1 text-gray-600 mb-4">
+                {t('about.serviceHighlights.hotel.description.split(\n)[0]')}
+              </p>
+              <p className="body1 text-gray-600 mb-4">
+                {t('about.serviceHighlights.hotel.description.split(\n)[1]')}
+              </p>
+              <p className="body1 text-gray-600 mb-4">
+                {t('about.serviceHighlights.hotel.description.split(\n)[2]')}
+              </p>
+              <p className="body1 text-gray-600 mb-6">
+                {t('about.serviceHighlights.hotel.description.split(\n)[3]')}
+              </p>
             </div>
             <div className="md:w-1/2 flex justify-center">
               <div className="w-full rounded-lg overflow-hidden" style={{ aspectRatio: '4/3' }}>
