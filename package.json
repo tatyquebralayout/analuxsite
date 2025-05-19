@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp -r public/* dist/ || copy public\\* dist\\",
-    "render-build": "vite build && echo 'Build completed. Checking dist directory...' && (ls -la dist || dir dist) && cp -r public/* dist/ || xcopy public\\* dist\\ /Y",
+    "build": "vite build",
+    "render-build": "vite build",
     "start": "npx serve -s dist",
     "lint": "eslint .",
     "preview": "vite preview",

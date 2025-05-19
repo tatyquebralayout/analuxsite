@@ -43,9 +43,9 @@ const VideoHighlight: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           {/* Container for aspect ratio - adjusted width/height potentially */}
-          <div className="relative w-full max-w-xl mx-auto" style={{ aspectRatio: '600 / 617' }}>
+          <div className="relative w-full max-w-xl mx-auto video-aspect-ratio-container">
             {/* Inline SVG for mask definition */}
-            <svg viewBox="0 0 600 617" width="0" height="0" style={{ position: 'absolute' }}>
+            <svg viewBox="0 0 600 617" width="0" height="0" className="svg-defs-absolute">
               <defs>
                 <mask id={maskId} maskUnits="userSpaceOnUse">
                   <g transform="translate(0, 617) scale(0.1, -0.1)">
@@ -82,17 +82,8 @@ const VideoHighlight: React.FC = () => {
               loop
               muted
               playsInline
-              className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
-              style={{
-                maskImage: `url(#${maskId})`,
-                WebkitMaskImage: `url(#${maskId})`,
-                maskSize: 'contain',
-                WebkitMaskSize: 'contain',
-                maskRepeat: 'no-repeat',
-                WebkitMaskRepeat: 'no-repeat',
-                maskPosition: 'center',
-                WebkitMaskPosition: 'center',
-              }}
+              className="absolute top-0 left-0 w-full h-full object-cover rounded-lg video-paw-mask"
+              style={{ '--mask-url': `url(#${maskId})` } as React.CSSProperties}
             />
           </div>
         </motion.div>

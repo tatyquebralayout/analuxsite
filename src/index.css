@@ -131,3 +131,27 @@ html {
   mask-position: center;
   -webkit-mask-position: center;
 }
+
+.maps-iframe {
+  border: 0;
+}
+
+.contact-section-image {
+  max-width: 450px;
+}
+
+.testimonial-text-container {
+  min-height: 150px;
+}
+
+.video-aspect-ratio-container {
+  aspect-ratio: 600 / 617;
+}
+
+.svg-defs-absolute {
+  position: absolute;
+}
+
+.aspect-ratio-4-3 {
+  aspect-ratio: 4 / 3;
+}

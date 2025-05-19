@@ -57,7 +57,7 @@ Check out the live demo: [AmanluxDog Website](https://frolicking-pothos-f0e419.n
 
 ## Project Structure
 
-```
+```text
 analuxsite/
 ├── public/
 │   └── vite.svg

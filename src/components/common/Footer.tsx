@@ -191,9 +191,8 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
                 src="https://maps.google.com/maps?q=Hauptstrasse%208416%20Flaach%2C%20Switzerland&t=&z=14&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
-                style={{ border: 0 }}
+                className="maps-iframe"
                 allowFullScreen={false}
-                loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Amanlux Dog Location Map"
               ></iframe>

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import emailjs from '@emailjs/browser';
 import carinhoImg from '../assets/images/carinho.png';
-import crecheImg from '../assets/images/creche.png';
+// import crecheImg from '../assets/images/creche.png'; // Removido, pois não é mais usado
 import sleepIcon from '../assets/images/svg/sleep.png';
 import hotelImg from '../assets/images/hotel.png';
 import taxiIcon from '../assets/images/svg/taxidog.png';
@@ -198,17 +198,25 @@ const HundebetreuungPage: React.FC = () => {
           </motion.h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             {[
-              'hund1.jpg',
-              'hund2.jpg',
-              'hund3.jpg',
-              'hund4.jpg',
-              'hund5.jpg',
-              'hund6.jpg',
-              'hund7.jpg',
-              'hund8.jpg',
-            ].map((image, index) => (
+              'https://i.postimg.cc/cJ3HjDQF/Whats-App-Image-2025-05-13-at-08-00-00.jpg',
+              'https://i.postimg.cc/5tQYJ9Mq/Whats-App-Image-2025-05-13-at-08-00-00-1.jpg',
+              'https://i.postimg.cc/tT0140q0/Whats-App-Image-2025-05-13-at-08-00-00-2.jpg',
+              'https://i.postimg.cc/50wXHPyX/Whats-App-Image-2025-05-13-at-08-00-00-3.jpg',
+              'https://i.postimg.cc/6qtyCd4Y/Whats-App-Image-2025-05-13-at-08-00-00-4.jpg',
+              'https://i.postimg.cc/HnzjzVQH/Whats-App-Image-2025-05-13-at-08-00-00-5.jpg',
+              'https://i.postimg.cc/c41vHBSJ/Whats-App-Image-2025-05-13-at-08-00-00-6.jpg',
+              'https://i.postimg.cc/7YBfTJHn/Whats-App-Image-2025-05-13-at-08-00-00-7.jpg',
+              'https://i.postimg.cc/jSLC6qC0/Whats-App-Image-2025-05-13-at-08-00-00-8.jpg',
+              'https://i.postimg.cc/jSpqzzGP/Whats-App-Image-2025-05-13-at-08-00-01.jpg',
+              'https://i.postimg.cc/hjbG4fZx/Whats-App-Image-2025-05-13-at-08-00-01-1.jpg',
+              'https://i.postimg.cc/SRSxnkHP/Whats-App-Image-2025-05-13-at-08-00-01-2.jpg',
+              'https://i.postimg.cc/Kj0vLC28/Whats-App-Image-2025-05-13-at-08-00-01-3.jpg',
+              'https://i.postimg.cc/nV2L69Df/Whats-App-Image-2025-05-13-at-08-00-01-4.jpg',
+              'https://i.postimg.cc/DyzzFfrJ/Whats-App-Image-2025-05-13-at-08-00-01-5.jpg',
+              'https://i.postimg.cc/QxndMLm6/Whats-App-Image-2025-05-13-at-08-00-01-6.jpg',
+            ].map((imageUrl, index) => (
               <motion.div
-                key={image}
+                key={imageUrl}
                 className="relative overflow-hidden rounded-lg shadow-md aspect-square"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -219,34 +227,12 @@ const HundebetreuungPage: React.FC = () => {
                     '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
                 }}
               >
-                {/* Espaço reservado para imagem */}
-                <div className="bg-primary-light/20 w-full h-full flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-primary-light text-5xl mb-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-16 w-16 mx-auto"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <p className="text-primary font-medium">Bild {index + 1}</p>
-                    <p className="text-sm text-gray-500">galeria/{image}</p>
-                  </div>
-                </div>
-                {/* Imagem real (comentada até que exista)
-                <img 
-                  src={`/src/assets/images/galeria/${image}`}
+                <img
+                  src={imageUrl}
                   alt={`Hundebetreuung Bild ${index + 1}`}
                   className="w-full h-full object-cover"
-                /> 
-                */}
+                  loading="lazy"
+                />
               </motion.div>
             ))}
           </div>
@@ -283,14 +269,14 @@ const HundebetreuungPage: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="bg-primary-light p-1">
-                  <div className="w-full overflow-hidden" style={{ aspectRatio: '4/3' }}>
-                    <img
-                      src={crecheImg}
-                      alt="Hunde in der Tagesbetreuung"
-                      className="w-full h-full object-contain bg-white"
-                    />
-                  </div>
+                <div className="w-full overflow-hidden aspect-ratio-4-3">
+                  <img
+                    src={
+                      'https://i.postimg.cc/jSwdw8kR/Whats-App-Image-2025-05-13-at-08-00-01-7.jpg'
+                    }
+                    alt="Hunde in der Tagesbetreuung"
+                    className="w-full h-full object-contain bg-white"
+                  />
                 </div>
               </motion.div>
             </div>
@@ -329,7 +315,7 @@ const HundebetreuungPage: React.FC = () => {
               </p>
             </div>
             <div className="md:w-1/2 flex justify-center">
-              <div className="w-full rounded-lg overflow-hidden" style={{ aspectRatio: '4/3' }}>
+              <div className="w-full rounded-lg overflow-hidden aspect-ratio-4-3">
                 <img
                   src={hotelImg}
                   alt="Hunde Übernachtung"
@@ -383,7 +369,7 @@ const HundebetreuungPage: React.FC = () => {
               </p>
             </div>
             <div className="md:w-1/2 flex justify-center">
-              <div className="w-full rounded-lg overflow-hidden" style={{ aspectRatio: '4/3' }}>
+              <div className="w-full rounded-lg overflow-hidden aspect-ratio-4-3">
                 <img
                   src={taxiImg}
                   alt="Taxi Dog Service"
@@ -650,9 +636,8 @@ const HundebetreuungPage: React.FC = () => {
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2695.8066014845847!2d8.599349976526055!3d47.5766069718048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47907b7d7107f8dd%3A0x3a1afd03a55b7a7d!2sHauptstrasse%2C%208416%20Flaach%2C%20Switzerland!5e0!3m2!1sen!2sbr!4v1688561234567!5m2!1sen!2sbr"
                     width="100%"
                     height="100%"
-                    style={{ border: 0 }}
+                    className="maps-iframe"
                     allowFullScreen={true}
-                    loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Karte zu AmanluxDog in Flaach"
                   ></iframe>

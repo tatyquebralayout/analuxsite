@@ -49,8 +49,7 @@ const ContactSection: React.FC<ContactSectionProps> = () => {
             <img
               src={ContactImage}
               alt="Cachorro feliz usando fones de ouvido"
-              className="max-w-full h-auto mx-auto lg:mx-0 rounded-lg shadow-lg" // Adicionado rounded e shadow
-              style={{ maxWidth: '450px' }} // Limitar tamanho da imagem se necessário
+              className="max-w-full h-auto mx-auto lg:mx-0 rounded-lg shadow-lg contact-section-image" // Adicionada a classe e removido o style
             />
           </motion.div>
 

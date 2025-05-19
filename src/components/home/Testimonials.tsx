@@ -86,7 +86,7 @@ const Testimonials: React.FC = () => {
             )}
             {testimonial && (
               <div className="text-center">
-                <div className="mb-4" style={{ minHeight: '150px' }}>
+                <div className="mb-4 testimonial-text-container">
                   {testimonial.textLines.map((line: string, lineIdx: number) => (
                     <p
                       key={`${i18n.language}-${currentIndex}-${lineIdx}`}
