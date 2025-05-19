@@ -19,9 +19,9 @@ const ContactPage: React.FC = () => {
       <SEO
         // title={t_old.contact?.title || 'Contact Us'}
         // description={t_old.contact?.promise || 'Contact AmanluxDog for inquiries about our services.'}
-        title={t('contact.title', 'Contact Us')} // Usar t()
-        description={t('contact.promise', 'Contact AmanluxDog for inquiries about our services.')} // Usar t()
-        keywords="contact amanluxdog, hundebetreuung kontakt, hundetraining kontakt"
+        title={t('contact.title', 'Contact Us - Amanlux Dog')}
+        description={t('contact.promise', 'Contact AmanluxDog for inquiries about our services.')}
+        keywords="contact Amanlux Dog, hundebetreuung kontakt, hundetraining kontakt"
       />
       <div className="container mx-auto px-4 py-12 font-sans">
         <ContactForm />

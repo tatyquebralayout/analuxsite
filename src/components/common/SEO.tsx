@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 interface SEOProps {
   title: string;
@@ -7,34 +8,41 @@ interface SEOProps {
   keywords?: string;
   image?: string;
   url?: string;
+  children?: React.ReactNode;
 }
 
-const SEO: React.FC<SEOProps> = ({ title, description, keywords, image, url }) => {
-  // You might want to define a default base URL and image
-  const siteUrl = url || 'https://www.amanluxdog.com'; // Replace with your actual domain
-  const siteImage = image || 'https://www.amanluxdog.com/images/og-default.jpg'; // Replace with your default OG image
+const SEO: React.FC<SEOProps> = ({ title, description, keywords, image, url, children }) => {
+  const { i18n } = useTranslation();
+  const siteUrl = url || 'https://www.amanluxdog.com'; // Revertido para amanluxdog.com
+  const siteImage = image || 'https://www.amanluxdog.com/images/og-default.jpg'; // Revertido para amanluxdog.com
 
   return (
     <Helmet>
-      {/* Basic Meta Tags */}
-      <title>{`${title} | AmanluxDog`}</title>
+      {/* Standard SEO Tags */}
+      <title>{`${title} | Amanlux Dog`}</title> {/* Revertido para Amanlux Dog */}
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
-      {/* Open Graph / Facebook */}
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={`${title} | AmanluxDog`} />
+      <link rel="canonical" href={siteUrl} />
+      {/* Open Graph Tags (Facebook, etc.) */}
+      <meta property="og:title" content={`${title} | Amanlux Dog`} />{' '}
+      {/* Revertido para Amanlux Dog */}
       <meta property="og:description" content={description} />
+      <meta property="og:url" content={siteUrl} />
       <meta property="og:image" content={siteImage} />
-      <meta property="og:url" content={siteUrl + location.pathname} />{' '}
-      {/* Assuming location is available or passed */}
-      <meta property="og:site_name" content="AmanluxDog" />
-      {/* Twitter */}
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="Amanlux Dog" /> {/* Revertido para Amanlux Dog */}
+      <meta property="og:locale" content={i18n.language} />
+      {/* Twitter Card Tags */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={`${title} | AmanluxDog`} />
+      <meta name="twitter:title" content={`${title} | Amanlux Dog`} />{' '}
+      {/* Revertido para Amanlux Dog */}
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={siteImage} />
-      {/* <meta name="twitter:site" content="@YourTwitterHandle"> */}
-      {/* <meta name="twitter:creator" content="@YourTwitterHandle"> */}
+      {/* <meta name="twitter:site" content="@yourTwitterHandle" /> */}
+      {/* <meta name="twitter:creator" content="@yourTwitterHandle" /> */}
+      {/* Favicon and Icons */}
+      {/* Add any additional favicon and icon tags here */}
+      {children}
     </Helmet>
   );
 };

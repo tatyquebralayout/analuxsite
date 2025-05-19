@@ -21,9 +21,9 @@ const PartnershipPage: React.FC = () => {
   return (
     <>
       <SEO
-        title={t('partnership.title', 'Partnership')}
+        title={t('partnership.title', 'Partnership - Amanlux Dog')}
         description={t('partnership.description', 'Become a partner with AmanluxDog.')}
-        keywords="dog partnership, amanluxdog partners, hundebetreuung partnerschaft"
+        keywords="dog partnership, Amanlux Dog partners, hundebetreuung partnerschaft"
       />
 
       {/* Hero Section - Image Only */}
@@ -163,7 +163,7 @@ const PartnershipPage: React.FC = () => {
                 <p className="mb-1">Sincerely,</p>
                 <p className="font-bold text-primary flex items-center">
                   <Heart className="mr-2" size={18} />
-                  AmanluxDogs
+                  Amanlux Dogs
                 </p>
               </div>
             </div>

@@ -89,13 +89,13 @@ export function useDeviceCapabilities(): DeviceCapabilities {
       // Teste de performance sintético
       const testStart = performance.now();
 
-      // Operação intensiva - o resultado não é usado, mas a operação precisa
-      // ser executada para medir a performance
-
+      // Operação intensiva
       let _dummy = 0;
       for (let i = 0; i < 100000; i++) {
         _dummy += Math.sqrt(Math.random() * 10000);
       }
+      // Para satisfazer o linter sobre _dummy ser "usada"
+      if (typeof _dummy === 'undefined') console.log('Esta condição nunca será verdadeira');
 
       const testDuration = performance.now() - testStart;
       isLowPerformance = testDuration > 100; // Mais de 100ms indica baixa performance

@@ -1,10 +1,10 @@
-# Analux - Premium Dog Care Website
+# Amanlux Dog - Premium Dog Care Website
 
-![Analux Logo](https://iili.io/3dgK2Zg.png)
+![Amanlux Dog Logo](https://iili.io/3dgK2Zg.png)
 
 ## Overview
 
-Analux is a premium dog care services website built with React, TypeScript, and Tailwind CSS. The website is presented in German and showcases various dog care services, including daycare, hotel, training, taxi service, and grooming.
+Amanlux Dog is a premium dog care services website built with React, TypeScript, and Tailwind CSS. The website is presented in German and showcases various dog care services, including daycare, hotel, training, taxi service, and grooming.
 
 ## Live Demo
 
@@ -228,7 +228,7 @@ In the project directory, you can run:
 
 ## Deployment
 
-The website is deployed on Netlify. You can deploy your own version by:
+The website is configured for deployment on Vercel. You can deploy your own version by:
 
 1. Building the project:
 
@@ -236,7 +236,7 @@ The website is deployed on Netlify. You can deploy your own version by:
 npm run build
 ```
 
-2. Deploying the content of the `dist` directory to your preferred hosting provider (Netlify, Vercel, GitHub Pages, etc.)
+2. Deploying the content of the `dist` directory to Vercel (or another preferred hosting provider like Netlify, GitHub Pages, etc.)
 
 ## Browser Support
 

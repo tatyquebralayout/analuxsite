@@ -15,7 +15,7 @@ export const usePerformanceOptimizer = (options: PerformanceOptions = {}) => {
   const {
     disableAnimationsOnLowEnd = true, // Por padrão, desativa animações em dispositivos de baixo desempenho
     reducedMotionPreference = true, // Por padrão, respeita preferência de movimento reduzido
-    cookieKey = 'amanluxdog-performance-settings', // Chave padrão para cookie
+    cookieKey = 'amanluxdog-performance-settings', // Revertido
   } = options;
 
   // Estado para armazenar se deve otimizar

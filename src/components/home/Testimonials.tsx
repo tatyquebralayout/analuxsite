@@ -2,6 +2,21 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+// Definindo o tipo para um item de testemunho
+interface TestimonialItemRaw {
+  text: string;
+  name: string;
+  pet: string;
+  photo?: string;
+}
+
+interface TestimonialProcessed {
+  textLines: string[];
+  name: string;
+  pet: string;
+  photo?: string;
+}
+
 const Testimonials: React.FC = () => {
   const { t, i18n } = useTranslation();
 
@@ -9,14 +24,15 @@ const Testimonials: React.FC = () => {
   const testimonialItemsResult = t('testimonials.items', {
     returnObjects: true,
     defaultValue: [],
-  });
+  }) as TestimonialItemRaw[]; // Adicionando type assertion aqui
 
   // Adicionar validação para garantir que testimonialItemsResult seja um array
-  const testimonials = useMemo(() => {
+  const testimonials: TestimonialProcessed[] = useMemo(() => {
     if (!Array.isArray(testimonialItemsResult)) {
       return [];
     }
-    return testimonialItemsResult.map((item: any, index: number) => {
+    // O parâmetro 'index' foi removido pois não era utilizado
+    return testimonialItemsResult.map((item: TestimonialItemRaw) => {
       // Dividir o texto em linhas para melhor formatação
       const textLines = item.text ? item.text.split('\n').map((line: string) => line.trim()) : [];
       return {

@@ -12,14 +12,11 @@ const AboutPage: React.FC = () => {
   return (
     <>
       <SEO
-        title={t('aboutPage.seo.title', 'Über uns - Amanlux Dog')}
-        description={t(
-          'aboutPage.seo.description',
-          'Lernen Sie das Team und die Geschichte von Amanlux Dog kennen.'
-        )}
+        title={t('about.title', 'Über Uns - Amanlux Dog')}
+        description={t('about.description', 'Erfahren Sie mehr über Amanlux Dog.')}
         keywords={t(
-          'aboutPage.seo.keywords',
-          'über uns, amanluxdog, hundebetreuung zürich, team, geschichte'
+          'about.keywords',
+          'über uns, Amanlux Dog, hundebetreuung zürich, team, geschichte'
         )}
       />
       <div className="container mx-auto px-4 py-12 font-sans">

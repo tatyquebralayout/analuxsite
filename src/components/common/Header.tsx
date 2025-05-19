@@ -96,7 +96,7 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
             </div>
             <div className="flex items-center gap-2">
               <Mail size={16} className="text-primary" />
-              <span className="text-gray-700">• info@amanlux.com</span>
+              <span className="text-gray-700">• contato@amanluxdog.com</span>
             </div>
           </div>
 
