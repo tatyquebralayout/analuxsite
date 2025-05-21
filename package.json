@@ -13,12 +13,16 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage",
-    "check-circular-deps": "madge --circular --extensions ts,tsx ./src"
+    "check-circular-deps": "madge --circular --extensions ts,tsx ./src",
+    "server": "node server/index.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@emailjs/nodejs": "^5.0.2",
     "@headlessui/react": "^2.2.2",
     "@heroicons/react": "^2.1.5",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
     "framer-motion": "^11.18.2",
     "i18next": "^25.0.1",
     "i18next-browser-languagedetector": "^8.0.5",
@@ -37,6 +41,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^22.15.21",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",

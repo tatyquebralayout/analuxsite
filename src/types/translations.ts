@@ -158,24 +158,42 @@ export interface FAQSection {
 
 export interface ContactSection {
   title: string;
+  description: string;
+  name: string;
+  phone: string;
+  email: string;
+  dogCount: string;
+  dogSize: string;
+  message: string;
+  smallDog: string;
+  largeDog: string;
+  service: string;
+  daycare: string;
+  boarding: string;
+  training: string;
+  other: string;
+  submit: string;
+  sending: string;
+  successTitle: string;
+  successMessage: string;
+  sendAnother: string;
+  requiredFields: string;
+  validationError: string;
+  errorMessage: string;
+  emailFormatError: string;
+  phoneFormatError: string;
+  promise: string;
+  or: string;
+  small: string;
+  medium: string;
+  large: string;
+  dogCountOptions?: string[];
+  dogSizeOptions?: string[];
+  serviceOptions?: string[];
   subtitle?: string;
   address?: string;
-  phone?: string;
-  email?: string;
   formTitle?: string;
   formSubtitle?: string;
-  requiredFields?: string;
-  name?: string;
-  dogCount?: string;
-  dogCountOptions?: string[];
-  dogSize?: string;
-  dogSizeOptions?: string[];
-  service?: string;
-  serviceOptions?: string[];
-  message?: string;
-  submit?: string;
-  promise?: string;
-  or?: string;
   formFields?: {
     name: string;
     email: string;
@@ -183,8 +201,6 @@ export interface ContactSection {
     message: string;
     submit: string;
   };
-  successMessage?: string;
-  errorMessage?: string;
 }
 
 export interface LocationSection {
