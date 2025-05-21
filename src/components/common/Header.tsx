@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Menu as MenuIcon, X, ChevronDown } from 'lucide-react';
 import { Menu } from '@headlessui/react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { translations } from '../../utils/translations';
-import { TranslationSchema } from '../../types';
+import { useTranslation } from 'react-i18next';
+import { TranslationSchema } from '../../types/translations';
 
 /**
  * Interface de propriedades do componente Header
  */
-interface HeaderProps {
-  language: string; // Idioma atual (sempre 'de')
-}
+// Removendo a prop language, pois usaremos o hook useTranslation
+// interface HeaderProps {
+//   language: string; // Idioma atual (sempre 'de')
+// }
 
 /**
  * Componente de cabeçalho da aplicação
@@ -23,12 +24,12 @@ interface HeaderProps {
  * Implementa comportamento responsivo e efeito de scroll que fixa o
  * cabeçalho no topo da página quando o usuário rola para baixo.
  */
-const Header: React.FC<HeaderProps> = ({ language }) => {
-  // Get translations based on the passed language prop
-  const t = translations[language as keyof typeof translations] as TranslationSchema;
+const Header = () => {
+  // Use useTranslation para obter a função t e a instância i18n
+  const { t, i18n } = useTranslation();
 
-  // Add a check for t and t.header for safety
-  const headerTranslations = t?.header || {};
+  // Acessa as traduções do cabeçalho, com fallback para um objeto vazio
+  const headerTranslations = t('header', { returnObjects: true }) as TranslationSchema['header'] || {};
 
   // Estado para controlar a abertura/fechamento do menu mobile
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -92,11 +93,11 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
           <div className="hidden md:flex items-center space-x-6">
             <div className="flex items-center gap-2">
               <Phone size={16} className="text-primary" />
-              <span className="text-gray-700">+41 76 575 09 77</span>
+              <span className="text-gray-700">{headerTranslations.phone}</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail size={16} className="text-primary" />
-              <span className="text-gray-700">• contato@amanluxdog.com</span>
+              <span className="text-gray-700">{headerTranslations.email}</span>
             </div>
           </div>
 
@@ -104,11 +105,11 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
           <div className="hidden md:flex items-center space-x-6">
             <div className="flex items-center gap-2">
               <MapPin size={16} className="text-primary" />
-              <span className="text-gray-700">Hauptstrasse, 8416 Flaach (HJF3+Q8)</span>
+              <span className="text-gray-700">{headerTranslations.address}</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock size={16} className="text-primary" />
-              <span className="text-gray-700">07:00 - 18:00 (Mon-Fri)</span>
+              <span className="text-gray-700">{headerTranslations.hours}</span>
             </div>
           </div>
 
@@ -116,11 +117,11 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
           <div className="flex md:hidden w-full justify-between">
             <div className="flex items-center gap-2">
               <Phone size={14} className="text-primary" />
-              <span className="text-sm text-gray-700">+41 76 575 09 77</span>
+              <span className="text-sm text-gray-700">{headerTranslations.phone}</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail size={14} className="text-primary" />
-              <span className="text-sm text-gray-700">contato@amanluxdog.com</span>
+              <span className="text-sm text-gray-700">{headerTranslations.email}</span>
             </div>
           </div>
         </div>
@@ -147,7 +148,7 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
                     className="h-10 w-auto"
                   />
                 </motion.div>
-                <h1 className="headline5 font-bold font-sour-gummy">Amanlux Dog</h1>
+                <h1 className="headline5 font-bold font-sour-gummy">{headerTranslations.siteTitle}</h1>
               </Link>
             </motion.div>
 
@@ -160,7 +161,7 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
                     to="/"
                     className="text-primary text-lg font-medium px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors"
                   >
-                    {headerTranslations.home || 'Home'}
+                    {headerTranslations.home}
                   </Link>
                 </motion.div>
 
@@ -168,7 +169,7 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
                     <Menu.Button className="text-primary text-lg font-medium px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors inline-flex items-center">
-                      {headerTranslations.services || 'Services'}
+                      {headerTranslations.services}
                       <ChevronDown className="-mr-1 ml-1 h-5 w-5" aria-hidden="true" />
                     </Menu.Button>
                   </div>
@@ -183,7 +184,8 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
                               active ? 'bg-primary text-white' : 'text-gray-700'
                             } block px-4 py-2 font-medium transition-colors`}
                           >
-                            Hundebetreuung
+                            {/* Use translation for service name */}
+                            {t('services.daycare.title')}
                           </Link>
                         )}
                       </Menu.Item>
@@ -195,7 +197,8 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
                               active ? 'bg-primary text-white' : 'text-gray-700'
                             } block px-4 py-2 font-medium transition-colors`}
                           >
-                            Hundetraining
+                            {/* Use translation for service name */}
+                            {t('services.training.title')}
                           </Link>
                         )}
                       </Menu.Item>
@@ -208,7 +211,7 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
                     to="/about"
                     className="text-primary text-lg font-medium px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors"
                   >
-                    {headerTranslations.about || 'About'}
+                    {headerTranslations.about}
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{ y: -2 }}>
@@ -216,7 +219,7 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
                     to="/partnership"
                     className="text-primary text-lg font-medium px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors"
                   >
-                    {headerTranslations.partnership || 'Partnership'}
+                    {headerTranslations.partnership}
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{ y: -2 }}>
@@ -224,9 +227,32 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
                     to="/contact"
                     className="text-primary text-lg font-medium px-3 py-1 rounded-md hover:bg-primary hover:text-white transition-colors"
                   >
-                    {headerTranslations.contact || 'Contact'}
+                    {headerTranslations.contact}
                   </Link>
                 </motion.div>
+
+                {/* Seletor de Idioma com Bandeiras */}
+                <div className="ml-4 flex items-center space-x-2">
+                  <motion.img
+                    src="/src/assets/flags/de.png"
+                    alt={t('header.languageSelector.de') || 'Deutsch'}
+                    className={`h-6 w-auto cursor-pointer ${
+                      i18n.language === 'de' ? 'border-2 border-primary' : ''
+                    } rounded-sm`}
+                    onClick={() => i18n.changeLanguage('de')}
+                    whileHover={{ scale: 1.1 }}
+                  />
+                  <motion.img
+                    src="/src/assets/flags/gb.png"
+                    alt={t('header.languageSelector.en') || 'English'}
+                    className={`h-6 w-auto cursor-pointer ${
+                      i18n.language === 'en' ? 'border-2 border-primary' : ''
+                    } rounded-sm`}
+                    onClick={() => i18n.changeLanguage('en')}
+                    whileHover={{ scale: 1.1 }}
+                  />
+                </div>
+
               </nav>
 
               {/* Botão de orçamento - Estilo Aprimorado */}
@@ -235,7 +261,7 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
                   to="/contact"
                   className="bg-primary text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-primary-dark transition-colors duration-300"
                 >
-                  {headerTranslations.bookNow || 'Book Now'}
+                  {headerTranslations.bookNow}
                 </Link>
               </motion.div>
 
@@ -274,42 +300,44 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
                 className="font-medium hover:text-primary transition-colors"
                 onClick={closeMobileMenu}
               >
-                {headerTranslations.home || 'Home'}
+                {headerTranslations.home}
               </Link>
               <Link
                 to="/services"
                 className="font-medium hover:text-primary transition-colors"
                 onClick={closeMobileMenu}
               >
-                Hundebetreuung
+                {/* Use translation for service name in mobile menu */}
+                {t('services.daycare.title')}
               </Link>
               <Link
                 to="/services/hundetraining"
                 className="font-medium hover:text-primary transition-colors"
                 onClick={closeMobileMenu}
               >
-                Hundetraining
+                {/* Use translation for service name in mobile menu */}
+                {t('services.training.title')}
               </Link>
               <Link
                 to="/about"
                 className="font-medium hover:text-primary transition-colors"
                 onClick={closeMobileMenu}
               >
-                {headerTranslations.about || 'About'}
+                {headerTranslations.about}
               </Link>
               <Link
                 to="/partnership"
                 className="font-medium hover:text-primary transition-colors"
                 onClick={closeMobileMenu}
               >
-                {headerTranslations.partnership || 'Partnership'}
+                {headerTranslations.partnership}
               </Link>
               <Link
                 to="/contact"
                 className="font-medium hover:text-primary transition-colors"
                 onClick={closeMobileMenu}
               >
-                {headerTranslations.contact || 'Contact'}
+                {headerTranslations.contact}
               </Link>
 
               <motion.button
@@ -317,7 +345,7 @@ const Header: React.FC<HeaderProps> = ({ language }) => {
                 whileTap={{ scale: 0.95 }}
                 onClick={closeMobileMenu}
               >
-                {headerTranslations.bookNow || 'Book Now'}
+                {headerTranslations.bookNow}
               </motion.button>
             </nav>
           </motion.div>

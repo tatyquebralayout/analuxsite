@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'; // Import Link
 import videoUrl from '../../assets/video/2video.mp4'; // Import the NEW video file
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next'; // Added useTranslation import
 // Import SVG Icons as React Components (Vite specific - requires vite-plugin-svgr or similar)
 import VerdeIcon from '../../assets/images/svg/verde.svg?react';
 // import LivresIcon from '../../assets/images/svg/livres.svg?react'; // Removed old icon
@@ -15,15 +16,39 @@ const VideoHighlight: React.FC = () => {
     threshold: 0.1, // Adjust threshold for when animation triggers
     triggerOnce: true,
   });
+  const { t } = useTranslation(); // Added t hook
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: 'easeOut',
+      },
+    },
+  };
 
   // Define mask ID
   const maskId = 'video-mask';
 
+  // Use translation keys for items
   const iconTextItems = [
-    { Icon: VerdeIcon, text: 'Umweltanreicherung' },
-    { Icon: EstimulosIcon, text: 'Physische & kognitive Anreize' }, // Changed Icon here
-    { Icon: OlharIcon, text: 'Individuelle Betreuung' },
-    { Icon: LimpezaIcon, text: 'Tägliche Hygieneprotokolle' },
+    { Icon: VerdeIcon, text: t('videoHighlight.items.0.text') }, // Using translation key
+    { Icon: EstimulosIcon, text: t('videoHighlight.items.1.text') }, // Using translation key
+    { Icon: OlharIcon, text: t('videoHighlight.items.2.text') }, // Using translation key
+    { Icon: LimpezaIcon, text: t('videoHighlight.items.3.text') }, // Using translation key
   ];
 
   return (
@@ -34,6 +59,7 @@ const VideoHighlight: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ duration: 0.8 }}
+        variants={containerVariants}
       >
         {/* Left Column: Video - Added h-full */}
         <motion.div
@@ -96,9 +122,11 @@ const VideoHighlight: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <h1 className="headline3 mb-2 text-primary font-sour-gummy text-center">
-            Ein Paradies für Ihren Hund
+            {t('videoHighlight.title')}
           </h1>
-          <h3 className="headline5 mb-4 text-primary text-center">Mehr als nur Betreuung</h3>
+          <h3 className="headline5 mb-4 text-primary text-center">
+            {t('videoHighlight.subtitle')}
+          </h3>
 
           {/* Icon and Text Items */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-4">
@@ -106,28 +134,31 @@ const VideoHighlight: React.FC = () => {
               // Apply larger size specifically to EstimulosIcon
               const iconSizeClass = Icon === EstimulosIcon ? 'w-28 h-28' : 'w-24 h-24';
               return (
-                <div
+                <motion.div
                   key={index}
                   className="flex items-center gap-6 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+                  variants={itemVariants}
                 >
                   <Icon
                     className={`${iconSizeClass} text-primary flex-shrink-0`}
                     aria-hidden="true"
                   />
                   <span className="body1 text-primary font-medium">{text}</span>
-                </div>
+                </motion.div>
               );
             })}
           </div>
 
           {/* Bottom Titles & Button */}
-          <h1 className="headline4 mb-2 text-primary text-center">Engagement für Wohlbefinden</h1>
+          <h1 className="headline4 mb-2 text-primary text-center">
+            {t('videoHighlight.bottomTitle')}
+          </h1>
           <h3 className="subtitle1 text-primary text-center">
-            Sicherheit und Spass an erster Stelle
+            {t('videoHighlight.bottomSubtitle')}
           </h3>
           <div className="mt-4 flex justify-center">
             <Link to="/services" className="btn-primary w-fit">
-              Entdecken Sie unsere Angebote
+              {t('videoHighlight.button')}
             </Link>
           </div>
         </motion.div>

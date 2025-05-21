@@ -69,8 +69,7 @@ const Location: React.FC = () => {
               if (container) {
                 const errorMsg = document.createElement('div');
                 errorMsg.className = 'p-4 text-center text-gray-700';
-                errorMsg.innerText =
-                  'Não foi possível carregar o mapa. Por favor, verifique sua conexão com a internet.';
+                errorMsg.innerText = t('location.mapError');
                 container.appendChild(errorMsg);
               }
             }}
@@ -93,10 +92,23 @@ const Location: React.FC = () => {
             </motion.div>
             <div>
               <h3 className="headline6 text-gray-900 font-sour-gummy">
-                {t('location.address', 'Address')}
+                {t('location.address')}
               </h3>
-              <p className="body1 text-gray-700">Hauptstrasse, 8416 Flaach</p>
-              <p className="body1 text-gray-700">Switzerland (HJF3+Q8)</p>
+              {
+                (() => {
+                  const directions = t('location.directions');
+                  if (Array.isArray(directions)) {
+                    return directions.map((line, index) => (
+                      <p key={index} className="body1 text-gray-700">
+                        {line}
+                      </p>
+                    ));
+                  } else if (directions) {
+                    return <p className="body1 text-gray-700">{directions}</p>;
+                  }
+                  return null;
+                })()
+              }
             </div>
           </motion.div>
 
