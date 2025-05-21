@@ -3,7 +3,7 @@ import { Handshake, Award, Users, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
-import bannerImage from '../../assets/images/banner_parceria.png';
+import bannerImage from '../../assets/images/banner-parceria.png';
 
 const Partnership: React.FC = () => {
   const { ref, inView } = useInView({

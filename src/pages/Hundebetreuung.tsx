@@ -5,13 +5,42 @@ import { useTranslation } from 'react-i18next';
 import emailjs from '@emailjs/browser';
 import carinhoImg from '../assets/images/carinho.png';
 // import crecheImg from '../assets/images/creche.png'; // Removido, pois não é mais usado
-import sleepIcon from '../assets/images/svg/sleep.png';
+import sleepIcon from '../assets/images/sleep.png';
 import hotelImg from '../assets/images/hotel.png';
-import taxiIcon from '../assets/images/svg/taxidog.png';
-import taxiImg from '../assets/images/taxidogfot.png';
+import taxiIcon from '../assets/images/svg/taxidog.svg';
+import taxiImg from '../assets/images/service-taxidog.png';
 
 const HundebetreuungPage: React.FC = () => {
   const { t } = useTranslation();
+
+  // Helper function to render text that could be a string or a string array
+  const renderText = (text: string | string[] | undefined) => {
+    if (!text) return null;
+    if (Array.isArray(text)) {
+      return text.map((paragraph, index) => (
+        <p key={index} className="body1 text-gray-600 mb-4 leading-relaxed">
+          {paragraph}
+        </p>
+      ));
+    } else {
+      return <p className="body1 text-gray-600 mb-4 leading-relaxed">{text}</p>;
+    }
+  };
+
+  // Helper function to render price details list
+  const renderPriceDetails = (details: string[] | string | undefined) => {
+    if (!details) return null;
+    const detailList = Array.isArray(details) ? details : [details]; // Ensure it's an array
+
+    return detailList.map((detail, index) => (
+      <li key={index} className="flex items-start">
+        <div className="h-6 w-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 mt-0.5 shrink-0">
+          <span className="text-sm">{index + 1}</span>
+        </div>
+        <p className="text-gray-600">{detail}</p>
+      </li>
+    ));
+  };
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -163,21 +192,17 @@ const HundebetreuungPage: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <motion.h2 className="headline2 mb-6 text-primary font-sour-gummy">
-                Hundebetreuung
+                {t('hundebetreuungPage.introductionTitle')}
               </motion.h2>
               <div className="space-y-4">
                 <p className="body1 text-gray-600">
-                  Unser Ziel ist es, Ihren Hund mit der gleichen Fürsorge und Zuneigung zu betreuen,
-                  die er auch von Ihnen kennt. So können Sie entspannt arbeiten, reisen oder
-                  unterwegs sein – in dem Wissen, dass Ihr Vierbeiner in besten Händen ist.
+                  {t('hundebetreuungPage.intro.p1')}
                 </p>
                 <p className="body1 text-gray-600">
-                  Mit individueller und liebevoller Betreuung sorgen wir dafür, dass sich Ihr Hund
-                  bei uns sicher, geborgen und rundum wohlfühlt.
+                  {t('hundebetreuungPage.intro.p2')}
                 </p>
                 <p className="body1 text-gray-600">
-                  Wir kümmern uns um alle seine Bedürfnisse – mit Aufmerksamkeit, Geduld und ganz
-                  viel Herz.
+                  {t('hundebetreuungPage.intro.p3')}
                 </p>
               </div>
             </motion.div>
@@ -194,7 +219,7 @@ const HundebetreuungPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Unsere Hundebetreuung in Bildern
+            {t('hundebetreuungPage.galleryTitle')}
           </motion.h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             {[
@@ -252,15 +277,14 @@ const HundebetreuungPage: React.FC = () => {
             <div className="md:w-1/2">
               <div className="flex items-center mb-6">
                 <img
-                  src="/src/assets/images/svg/daycare.png"
+                  src="/src/assets/images/svg/daycare.svg"
                   alt="Daycare Icon"
                   className="w-12 h-12 mr-4"
                 />
-                <h2 className="headline2 text-primary font-sour-gummy">Tagesbetreuung</h2>
+                <h2 className="headline2 text-primary font-sour-gummy">{t('hundebetreuungPage.daycare.title')}</h2>
               </div>
               <p className="body1 text-gray-600 mb-6 leading-relaxed">
-                Wir bieten Ihrem vierbeinigen Liebling ein besonderes Erlebnis – voller Freude,
-                Geborgenheit und Komfort, den ganzen Tag über.
+                {t('hundebetreuungPage.daycare.description')}
               </p>
             </div>
             <div className="md:w-1/2">
@@ -298,21 +322,10 @@ const HundebetreuungPage: React.FC = () => {
               <div className="flex items-center mb-6">
                 <img src={sleepIcon} alt="Sleep Icon" className="w-12 h-12 mr-4" />
                 <h2 className="headline3 font-sour-gummy text-primary">
-                  Übernachtung und Wochenende
+                  {t('hundebetreuungPage.boarding.title')}
                 </h2>
               </div>
-              <p className="body1 text-gray-600 mb-4 leading-relaxed">
-                Wenn Ihr Hund über Nacht oder am Wochenende bei uns bleibt, kümmern wir uns liebevoll um alles.
-              </p>
-              <p className="body1 text-gray-600 mb-4 leading-relaxed">
-                Wir stellen bequeme Betten, kuschelige Decken und Spielzeug zur Verfügung – alles, was Ihr Hund für Komfort und Wohlbefinden braucht, ist bereits da.
-              </p>
-              <p className="body1 text-gray-600 mb-4 leading-relaxed">
-                Sie müssen nichts mitbringen – ausser dem gewohnten Futter Ihres Hundes.
-              </p>
-              <p className="body1 text-gray-600 mb-6 leading-relaxed">
-                Denn bei AmanLux Dogs ist für alles gesorgt.
-              </p>
+              {renderText(t('hundebetreuungPage.boarding.description'))}
             </div>
             <div className="md:w-1/2 flex justify-center">
               <div className="w-full rounded-lg overflow-hidden aspect-ratio-4-3">
@@ -340,32 +353,12 @@ const HundebetreuungPage: React.FC = () => {
             <div className="md:w-1/2">
               <div className="flex items-center mb-6">
                 <img src={taxiIcon} alt="Taxi Dog Icon" className="w-12 h-12 mr-4" />
-                <h2 className="headline3 font-sour-gummy text-primary-light">Taxi Dog-Service</h2>
+                <h2 className="headline3 font-sour-gummy text-primary-light">{t('hundebetreuungPage.taxi.title')}</h2>
               </div>
+              {renderText(t('hundebetreuungPage.taxi.description'))}
+              <p className="font-bold text-primary-light mb-4">{t('hundebetreuungPage.taxi.noteTitle')}</p>
               <p className="body1 text-gray-600 mb-4">
-                Unser Taxi-Dog-Service in Zürich und Umgebung ist im Preis für die Tagesbetreuung
-                und das Hundehotel inbegriffen.
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                Da wir zwei Fahrzeuge haben, bieten wir zwei feste Routen an.
-              </p>
-              <p className="font-bold text-primary-light mb-4">Bitte beachten Sie:</p>
-              <p className="body1 text-gray-600 mb-4">
-                An Wochenenden und Feiertagen ist der Taxi-Dog-Service nicht verfügbar.
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                Fragen Sie uns gerne, ob Ihre Adresse innerhalb unserer Fahrtrouten liegt.
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                Für Kunden ausserhalb dieser Gebiete vereinbaren wir gerne einen zentralen
-                Treffpunkt in Zürich.
-              </p>
-              <p className="body1 text-gray-600 mb-4">
-                Unser Standort befindet sich in Flaach, mitten im Grünen – ein wahres Paradies für
-                Ihren Hund! 🥰
-              </p>
-              <p className="body1 text-gray-600 mb-6">
-                Für weitere Informationen stehen wir Ihnen jederzeit zur Verfügung.
+                {t('hundebetreuungPage.taxi.note')}
               </p>
             </div>
             <div className="md:w-1/2 flex justify-center">
@@ -390,7 +383,7 @@ const HundebetreuungPage: React.FC = () => {
         variants={sectionVariants}
       >
         <div className="container mx-auto px-4">
-          <h2 className="headline2 text-center mb-12 text-primary font-sour-gummy">Preise</h2>
+          <h2 className="headline2 text-center mb-12 text-primary font-sour-gummy">{t('hundebetreuungPage.prices.title')}</h2>
 
           <div className="max-w-4xl mx-auto">
             <motion.div
@@ -398,50 +391,16 @@ const HundebetreuungPage: React.FC = () => {
               whileHover={{ y: -5 }}
             >
               <div className="bg-primary-light p-8 text-white">
-                <h3 className="headline3 mb-2 font-sour-gummy">Preise – Tagesbetreuung</h3>
+                <h3 className="headline3 mb-2 font-sour-gummy">{t('hundebetreuungPage.prices.daycare.title')}</h3>
                 <p className="headline2 font-bold flex items-baseline">
-                  87 CHF
-                  <span className="text-sm ml-2 opacity-80 font-normal">(Preise exkl. MwSt)</span>
+                  {t('hundebetreuungPage.prices.daycare.price')}
+                  <span className="text-sm ml-2 opacity-80 font-normal">{t('hundebetreuungPage.prices.daycare.vatInfo')}</span>
                 </p>
-                <p className="mt-2 text-white text-opacity-90">pro Tag</p>
+                <p className="mt-2 text-white text-opacity-90">{t('hundebetreuungPage.prices.daycare.unit')}</p>
               </div>
               <div className="p-8">
                 <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <div className="h-6 w-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 mt-0.5 shrink-0">
-                      <span className="text-sm">1</span>
-                    </div>
-                    <p className="text-gray-600">Die Abholung beginnt ab 07:00 Uhr.</p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="h-6 w-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 mt-0.5 shrink-0">
-                      <span className="text-sm">2</span>
-                    </div>
-                    <p className="text-gray-600">
-                      Die genaue Uhrzeit hängt von der täglichen Route, der Anzahl der Hunde, dem
-                      Verkehrsaufkommen und der individuellen Betreuungszeit ab.
-                    </p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="h-6 w-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 mt-0.5 shrink-0">
-                      <span className="text-sm">3</span>
-                    </div>
-                    <p className="text-gray-600">
-                      Aus Sicherheitsgründen holen wir jeden Hund direkt an Ihrer Haustür ab – daher
-                      kann es zu leichten Zeitabweichungen kommen. Sobald wir unterwegs sind,
-                      erhalten Sie eine kurze Nachricht mit der voraussichtlichen Ankunftszeit.
-                    </p>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="h-6 w-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 mt-0.5 shrink-0">
-                      <span className="text-sm">4</span>
-                    </div>
-                    <p className="font-bold text-primary-light">
-                      Falls Sie nicht zu Hause sind, können Sie uns einfach den Schlüssel
-                      hinterlassen – wir holen Ihren Hund sicher ab und bringen ihn ebenso
-                      zuverlässig wieder zurück.
-                    </p>
-                  </li>
+                  {renderPriceDetails(t('hundebetreuungPage.prices.daycare.details'))}
                 </ul>
               </div>
             </motion.div>

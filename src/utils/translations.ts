@@ -70,40 +70,6 @@ export const translations: { [key: string]: TranslationSchema } = {
         "Here at AmanluxDog, we understand that your dog is not just a pet – they are part of your life. That's why we've created a space designed to offer exceptional care, total safety, and unforgettable moments. Licensed and passionate, our team is committed to making every bark a happy one.",
       button: 'Discover Our Space',
     },
-    team: {
-      title: 'Our Team',
-      button: 'Meet Our Team',
-      members: [
-        {
-          name: 'Daniel León',
-          role: 'Dog Care & Dog Trainer',
-          description:
-            "Daniel is a caring, responsible handler who looks after every one of your dog's needs-from grooming and feeding to playtime and daily affection.",
-          image: '/assets/images/team/daniel_foto.png',
-        },
-        {
-          name: 'Danillo Pires',
-          role: 'Dog Care, Dog Trainer & Accounting',
-          description:
-            'Danillo runs AmanLux Dogs with extensive experience, strong organizational skills, and a deep love for dogs. As an accomplished caretaker and trainer, he makes sure every service is delivered to the highest standard and with the utmost care.',
-          image: '/assets/images/team/danilo_foto.png',
-        },
-        {
-          name: 'Caroline Sousa',
-          role: 'Dog Care',
-          description:
-            'With empathy and dedication, Caroline ensures every dog feels at home with us. Grooming, play sessions, and loving attention are always her top priorities.',
-          image: '', // Add image URL later
-        },
-        {
-          name: 'Chamo',
-          role: 'CEO | Chihuahua',
-          description:
-            'Ich bin hier, um zu zeigen, dass Grösse keine Rolle spielt! Bei AmanLux Dogs ist der Spass garantiert – und Bellen ist unsere offizielle Sprache.',
-          image: '/assets/images/team/chamo banner_hero.png',
-        },
-      ],
-    },
     testimonials: {
       title: 'What dog owners are saying about us',
       badge: '98% of clients recommend AmanluxDog!',
@@ -332,7 +298,6 @@ export const translations: { [key: string]: TranslationSchema } = {
       home: 'Startseite',
       about: 'Über uns',
       services: 'Angebot',
-      gallery: 'Galerie',
       testimonials: 'Referenzen',
       faq: 'FAQ',
       contact: 'Kontakt',
@@ -411,40 +376,6 @@ export const translations: { [key: string]: TranslationSchema } = {
       badge: 'Mehr als nur eine Hundetagesstätte',
       button: 'Unsere Geschichte',
     },
-    team: {
-      title: 'Unsere TEAM',
-      button: 'Lernen Sie unser Team kennen',
-      members: [
-        {
-          name: 'Daniel León',
-          role: 'Hundebetreuung und Hundetrainer',
-          description:
-            'Daniel ist ein liebevoller und verantwortungsbewusster Betreuer, der sich mit Herz um alle Bedürfnisse Ihres Hundes kümmert – von der Pflege über das Futter bis hin zum Spiel und der täglichen Zuwendung.',
-          image: '/assets/images/team/daniel_foto.png',
-        },
-        {
-          name: 'Danillo Pires',
-          role: 'Hundebetreuung, Hundetrainer & Buchhaltung',
-          description:
-            'Danillo leitet AmanLux Dogs mit viel Erfahrung, Organisationstalent und einer tiefen Liebe zu Hunden. Als erfahrener Hundebetreuer und -trainer stellt er sicher, dass alle Dienstleistungen auf höchstem Niveau und mit grösster Sorgfalt ausgeführt werden.',
-          image: '/assets/images/team/danilo_foto.png',
-        },
-        {
-          name: 'Caroline Sousa',
-          role: 'Hundebetreuung',
-          description:
-            'Caroline sorgt mit viel Einfühlungsvermögen und Hingabe dafür, dass sich jeder Hund bei uns wohlfühlt. Pflege, Spielzeit und liebevolle Aufmerksamkeit stehen bei ihr an erster Stelle.',
-          image: '', // Add image URL later
-        },
-        {
-          name: 'Chamo',
-          role: 'CEO | Chihuahua',
-          description:
-            'Ich bin hier, um zu zeigen, dass Grösse keine Rolle spielt! Bei AmanLux Dogs ist der Spass garantiert – und Bellen ist unsere offizielle Sprache.',
-          image: '/assets/images/team/chamo banner_hero.png',
-        },
-      ],
-    },
     testimonials: {
       title: 'Was Hundebesitzer über uns sagen',
       badge: '98% der Kunden empfehlen AmanluxDog!',
@@ -467,7 +398,7 @@ export const translations: { [key: string]: TranslationSchema } = {
       ],
     },
     gallery: {
-      sectionTitle: 'Unsere Galerie genießen',
+      sectionSubtitle: 'Unsere Galerie genießen',
       title: 'Glückliche Momente, die Geschichten erzählen',
       viewImage: 'Bild ansehen',
       viewAll: 'Gesamte Galerie ansehen',
@@ -506,7 +437,6 @@ export const translations: { [key: string]: TranslationSchema } = {
       dogSizeOptions: ['Kleiner (bis 10 kg)', 'Grosse (ab 10 kg)'],
       service: 'Angebot *',
       serviceOptions: ['Tagesbetreuung', 'Ferienbetreuung', 'Hundetraining'],
-      message: 'Nachricht *',
       submit: 'Jetzt Senden',
       promise: 'Wir versprechen, innerhalb von 24 Stunden zu antworten.',
       or: 'Oder rufen Sie uns an:',
@@ -514,7 +444,6 @@ export const translations: { [key: string]: TranslationSchema } = {
     },
     location: {
       title: 'Wir sind hier, um Sie und Ihren Hund zu empfangen!',
-      city: 'Zürich',
       phone: '+41 76 575 09 77',
       email: 'info@amanlux.com',
       hours: 'Mo - Fr / 7:00 - 18:30 Uhr',
@@ -526,8 +455,6 @@ export const translations: { [key: string]: TranslationSchema } = {
       parkingDescription: 'Kostenloses Parken für Kunden bis zu 30 Minuten.',
     },
     footer: {
-      weekdays: 'Montag bis Freitag',
-      weekends: 'Samstag und Sonntag',
       quickLinks: 'Schnelllinks',
       followUs: 'Soziale Medien',
       privacy: 'Datenschutzrichtlinie',
