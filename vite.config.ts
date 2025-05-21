@@ -10,16 +10,22 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
   build: {
-    outDir: 'dist', // Explicitamente define o diretório de saída
-    emptyOutDir: true, // Limpa o diretório antes de construir
+    outDir: 'dist',
+    emptyOutDir: true,
   },
   server: {
-    // Permite que qualquer host acesse a aplicação
     hmr: {
       host: 'localhost',
     },
     cors: true,
     strictPort: true,
-    host: true, // Permite acesso externo
+    host: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3030',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 });
