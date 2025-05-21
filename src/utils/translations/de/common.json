@@ -1,0 +1,36 @@
+{
+  "header": {
+    "home": "Home",
+    "services": "Dienstleistungen",
+    "about": "Über Uns",
+    "partnership": "Partnerschaft",
+    "contact": "Kontakt",
+    "bookNow": "Jetzt Buchen",
+    "openMenu": "Menü Öffnen",
+    "closeMenu": "Menü Schließen",
+    "serviceSubMenu": {
+      "dogCare": "Hundebetreuung",
+      "dogTraining": "Hundetraining"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "",
+      "subtitle": "",
+      "button": ""
+    },
+    "paradiseSection": { 
+      "title": "Ein Paradies für Ihren Hund",
+      "subtitle": "Mehr als nur Betreuung",
+      "features": [
+        "Umweltanreicherung",
+        "Physische & kognitive Anreize",
+        "Individuelle Betreuung",
+        "Tägliche Hygieneprotokolle"
+      ],
+      "commitmentTitle": "Engagement für Wohlbefinden",
+      "safetySubtitle": "Sicherheit und Spass an erster Stelle",
+      "button": "Entdecken Sie unsere Angebote"
+    }
+  }
+} 

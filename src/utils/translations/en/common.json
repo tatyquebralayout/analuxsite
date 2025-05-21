@@ -1,0 +1,36 @@
+{
+  "header": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About Us",
+    "partnership": "Partnership",
+    "contact": "Contact",
+    "bookNow": "Book Now",
+    "openMenu": "Open Menu",
+    "closeMenu": "Close Menu",
+    "serviceSubMenu": {
+      "dogCare": "Dog Care",
+      "dogTraining": "Dog Training"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "A place full of love—for puppies, adults, and seniors.",
+      "subtitle": "After all, your dog is family and deserves nothing but the best.",
+      "button": "Learn more about us"
+    },
+    "paradiseSection": {
+      "title": "A Paradise for Your Dog",
+      "subtitle": "More Than Just Care",
+      "features": [
+        "Environmental Enrichment",
+        "Physical & Cognitive Stimulation",
+        "Personalized Attention",
+        "Daily Hygiene Protocols",
+        "Commitment to Well-being",
+        "Safety and Fun Come First"
+      ],
+      "button": "Explore Our Services"
+    }
+  }
+} 
