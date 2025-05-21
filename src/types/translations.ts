@@ -5,6 +5,8 @@ export interface HeroSection {
   headline: string;
   subtitle: string;
   primaryCTA: string;
+  secondaryCTA?: string;
+  imageAlt?: string;
 }
 
 export interface AdvantagesSection {
@@ -91,10 +93,18 @@ export interface AboutSection {
   subtitle?: string;
   description: string | string[];
   button?: string;
-  team?: {
-    title: string;
-    description?: string;
-  };
+  heroTitle?: string;
+  heroSubtitle?: string;
+  heroPrimaryCTA?: string;
+  heroSecondaryCTA?: string;
+  aboutSectionTitle?: string;
+  history?: { title: string; description: string | string[]; };
+  founders?: { title: string; description: string | string[]; };
+  philosophy?: { title: string; description: string | string[]; };
+  mission?: { title: string; description: string | string[]; };
+  values?: { title: string; description: string | string[]; };
+  methodology?: { title: string; description: string | string[]; };
+  teamTitle?: string;
   serviceHighlights?: {
     daycare: ServiceHighlightItem;
     hotel: ServiceHighlightItem;
@@ -126,6 +136,7 @@ export interface TestimonialsSection {
     name: string;
     pet: string;
     image?: string;
+    photo?: string;
   }>;
 }
 
@@ -158,49 +169,44 @@ export interface FAQSection {
 
 export interface ContactSection {
   title: string;
-  description: string;
+  requiredFields: string;
+  description?: string;
   name: string;
   phone: string;
   email: string;
+  message?: string;
   dogCount: string;
   dogSize: string;
-  message: string;
-  smallDog: string;
-  largeDog: string;
   service: string;
-  daycare: string;
-  boarding: string;
-  training: string;
-  other: string;
   submit: string;
-  sending: string;
-  successTitle: string;
-  successMessage: string;
-  sendAnother: string;
-  requiredFields: string;
-  validationError: string;
-  errorMessage: string;
-  emailFormatError: string;
-  phoneFormatError: string;
   promise: string;
   or: string;
-  small: string;
-  medium: string;
-  large: string;
+  successMessage: string;
   dogCountOptions?: string[];
   dogSizeOptions?: string[];
   serviceOptions?: string[];
-  subtitle?: string;
-  address?: string;
-  formTitle?: string;
-  formSubtitle?: string;
-  formFields?: {
-    name: string;
-    email: string;
-    phone?: string;
-    message: string;
-    submit: string;
-  };
+  small?: string;
+  medium?: string;
+  large?: string;
+  smallDog?: string;
+  largeDog?: string;
+  daycare?: string;
+  boarding?: string;
+  training?: string;
+  other?: string;
+  sending?: string;
+  successTitle?: string;
+  sendAnother?: string;
+  selectPlaceholder?: string;
+  dogCountOption1?: string;
+  dogCountOption2?: string;
+  dogCountOption3Plus?: string;
+  smallDogFull?: string;
+  largeDogFull?: string;
+  validationError?: string;
+  errorMessage?: string;
+  emailFormatError?: string;
+  phoneFormatError?: string;
 }
 
 export interface LocationSection {
@@ -214,24 +220,100 @@ export interface LocationSection {
   taxiArea?: string;
   parking?: string;
   parkingDescription?: string;
+  phone?: string;
+  email?: string;
+  hours?: string;
+  mapError?: string;
 }
 
 export interface PartnershipSection {
   title: string;
   subtitle?: string;
-  description: string[];
+  description: string[] | string;
   benefits?: string[];
   cta?: string;
+  sectionTitle?: string;
+  sectionDescription?: string;
+}
+
+export interface ServiceSectionDetail {
+  title: string;
+  description: string | string[];
+}
+
+export interface PriceItem {
+  title: string;
+  price: string;
+  details: string[];
+  unit?: string;
+  vatInfo?: string;
 }
 
 export interface ServicePageSection {
-  intro: {
+  intro?: {
     p1: string;
     p2: string;
     p3: string;
   };
-  pricing: Record<string, string>;
+  daycare?: ServiceSectionDetail;
+  boarding?: ServiceSectionDetail;
+  taxi?: ServiceSectionDetail & { note?: string; noteTitle?: string; };
+  prices?: {
+    title: string;
+    daycare?: PriceItem;
+    boarding?: PriceItem;
+    taxi?: PriceItem;
+  };
+  galleryTitle?: string;
+  hero?: {
+    title: string;
+    subtitle: string;
+  };
+  introductionTitle?: string;
   [key: string]: unknown;
+}
+
+export interface QuickServicesSection {
+  daycare: {
+    title: string;
+    description: string;
+    button: string;
+  };
+  boarding: {
+    title: string;
+    description: string;
+    button: string;
+  };
+  training: {
+    title: string;
+    description: string;
+    button: string;
+  };
+}
+
+export interface VideoHighlightSection {
+  title: string;
+  subtitle: string;
+  items: Array<{ text: string }>;
+  bottomTitle: string;
+  bottomSubtitle: string;
+  button: string;
+}
+
+export interface FooterSection {
+  quickLinks?: string;
+  followUs?: string;
+  rights?: string;
+  privacy?: string;
+  terms?: string;
+  newsletter?: string;
+  newsletterText?: string;
+  emailPlaceholder?: string;
+  subscribe?: string;
+  subscribeSuccess?: string;
+  mapSectionTitle?: string;
+  instagramAriaLabel?: string;
+  facebookAriaLabel?: string;
 }
 
 // Define a estrutura para cada seção de traduções
@@ -246,12 +328,14 @@ export interface TranslationSchema {
     openMenu?: string;
     closeMenu?: string;
     partnership?: string;
+    everyday?: string;
+    phone?: string;
+    email?: string;
+    address?: string;
+    hours?: string;
+    siteTitle?: string;
   };
-  footer?: {
-    quickLinks?: string;
-    followUs?: string;
-    rights?: string;
-  };
+  footer?: FooterSection;
   hero?: HeroSection;
   advantages?: AdvantagesSection;
   services?: ServicesSection;
@@ -265,4 +349,6 @@ export interface TranslationSchema {
   partnership?: PartnershipSection;
   hundebetreuungPage?: ServicePageSection;
   hundetrainingPage?: ServicePageSection;
+  quickServices?: QuickServicesSection;
+  videoHighlight?: VideoHighlightSection;
 }

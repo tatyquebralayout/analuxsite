@@ -1,5 +1,6 @@
 import React from 'react';
 import { TeamMember } from '../../types/translations';
+import styles from './Team.module.css';
 
 interface TeamProps {
   title: string;
@@ -28,16 +29,9 @@ const Team: React.FC<TeamProps> = ({ title, members }) => {
                     `https://via.placeholder.com/150/cccccc/808080?text=${member.name?.charAt(0)}`
                   }
                   alt={`${member.name} - ${member.role}`}
-                  className="w-full h-full object-cover rounded-full border-4 border-white shadow-md"
-                  style={
-                    member.name === 'Chamo'
-                      ? {
-                          objectFit: 'cover',
-                          objectPosition: 'center 30%',
-                          transform: 'scale(1.1)',
-                        }
-                      : {}
-                  }
+                  className={`w-full h-full object-cover rounded-full border-4 border-white shadow-md ${
+                    member.name === 'Chamo' ? styles.chamoSpecificStyle : ''
+                  }`}
                 />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white font-sour-gummy">

@@ -39,3 +39,9 @@ dist-ssr
 coverage
 .vercel
 .netlify
+
+# TypeScript build info files
+*.tsbuildinfo
+
+# Server dependencies (if applicable)
+server/node_modules/

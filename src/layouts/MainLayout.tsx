@@ -3,45 +3,49 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
-import { LanguageProvider } from '../contexts/LanguageContext';
 import { useScrollToTop } from '../utils/hooks/useScrollToTop';
 
 /**
- * Layout principal da aplicação
+ * Main Application Layout
  *
- * Este componente define a estrutura básica de todas as páginas,
- * incluindo o Header e Footer.
+ * This component defines the basic structure for all pages,
+ * including the Header and Footer.
  *
- * O idioma agora é fixo para Alemão (de).
+ * Language is now handled by react-i18next and user selection.
  *
- * A AnimatePresence é usada para animar transições entre páginas.
+ * AnimatePresence is used to animate transitions between pages.
  */
 const MainLayout: React.FC = () => {
   const location = useLocation();
   useScrollToTop();
 
-  const currentLanguage = 'de'; // Idioma fixo
+  // The currentLanguage is now managed by react-i18next, 
+  // so this fixed value is no longer needed.
+  // const currentLanguage = 'de'; // Fixed language
 
   return (
-    <LanguageProvider value={{ language: currentLanguage }}>
-      <div className="min-h-screen bg-white flex flex-col">
-        <Header language={currentLanguage} />
-        <main className="flex-grow">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={location.pathname}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Outlet />
-            </motion.div>
-          </AnimatePresence>
-        </main>
-        <Footer language={currentLanguage} />
-      </div>
-    </LanguageProvider>
+    // Language is now handled globally by i18next, LanguageProvider might be deprecated or adapted
+    <div className="min-h-screen bg-white flex flex-col">
+      {/* Render the Header component. Language is implicitly handled by Header now. */}
+      <Header />
+      <main className="flex-grow">
+        {/* Animate page transitions */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            {/* Render the current page component */}
+            <Outlet />
+          </motion.div>
+        </AnimatePresence>
+      </main>
+      {/* Render the Footer component. Language is implicitly handled by Footer now. */}
+      <Footer />
+    </div>
   );
 };
 

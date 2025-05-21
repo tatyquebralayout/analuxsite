@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import carinhoImg from '../assets/images/carinho.png';
 // import crecheImg from '../assets/images/creche.png'; // Removido, pois não é mais usado
-import sleepIcon from '../assets/images/svg/sleep.png';
+import sleepIcon from '../assets/images/sleep.png';
 import hotelImg from '../assets/images/hotel.png';
-import taxiIcon from '../assets/images/svg/taxidog.png';
-import taxiImg from '../assets/images/taxidogfot.png';
+import taxiIcon from '../assets/images/svg/taxidog.svg';
+import taxiImg from '../assets/images/service-taxidog.png';
 
 const HundebetreuungPage: React.FC = () => {
   const sectionVariants = {
@@ -148,7 +148,7 @@ const HundebetreuungPage: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <motion.h2 className="headline2 mb-6 text-primary font-sour-gummy">
-                Hundebetreuung
+                Hundebetreuung 
               </motion.h2>
               <div className="space-y-4">
                 <p className="body1 text-gray-600">
@@ -179,7 +179,7 @@ const HundebetreuungPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Unsere Hundebetreuung in Bildern
+            Unsere Hundebetreuung in Bildern 
           </motion.h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             {[
@@ -237,7 +237,7 @@ const HundebetreuungPage: React.FC = () => {
             <div className="md:w-1/2">
               <div className="flex items-center mb-6">
                 <img
-                  src="/src/assets/images/svg/daycare.png"
+                  src="/src/assets/images/svg/daycare.svg"
                   alt="Daycare Icon"
                   className="w-12 h-12 mr-4"
                 />
@@ -338,7 +338,7 @@ const HundebetreuungPage: React.FC = () => {
               <p className="body1 text-gray-600 mb-4">
                 An Wochenenden und Feiertagen ist der Taxi-Dog-Service nicht verfügbar.
               </p>
-              <p className="body1 text-gray-600 mb-4">
+               <p className="body1 text-gray-600 mb-4">
                 Fragen Sie uns gerne, ob Ihre Adresse innerhalb unserer Fahrtrouten liegt.
               </p>
               <p className="body1 text-gray-600 mb-4">
