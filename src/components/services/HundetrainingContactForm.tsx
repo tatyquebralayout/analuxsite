@@ -4,10 +4,10 @@ import emailjs from '@emailjs/browser';
 interface FormData {
   user_name: string;
   user_phone: string;
+  user_email: string;
   training_service: string;
   dog_count: string;
   dog_size: string;
-  user_email: string;
   message: string;
 }
 
@@ -18,10 +18,10 @@ const HundetrainingContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     user_name: '',
     user_phone: '',
+    user_email: '',
     training_service: '',
     dog_count: '',
     dog_size: '',
-    user_email: '',
     message: '',
   });
   const [formStatus, setFormStatus] = useState<FormStatus>('idle');
@@ -52,9 +52,9 @@ const HundetrainingContactForm: React.FC = () => {
     setFormMessage('');
 
     // Substitua com suas credenciais EmailJS
-    const serviceID = 'YOUR_SERVICE_ID';
-    const templateID = 'YOUR_TEMPLATE_ID';
-    const publicKey = 'YOUR_PUBLIC_KEY';
+    const serviceID = 'service_2lih55m';
+    const templateID = 'template_70auqci';
+    const publicKey = 'AmgBu5KTBSjqp5HVm';
 
     // Prepara os parâmetros para EmailJS (sendForm lê os names, mas podemos enviar dados extras)
     // Certifique-se que seu template EmailJS espera variáveis com os mesmos nomes que os atributos 'name' do form.
@@ -69,10 +69,10 @@ const HundetrainingContactForm: React.FC = () => {
         setFormData({
           user_name: '',
           user_phone: '',
+          user_email: '',
           training_service: '',
           dog_count: '',
           dog_size: '',
-          user_email: '',
           message: '',
         });
         if (form.current) form.current.reset(); // Reseta o formulário visualmente
@@ -93,12 +93,12 @@ const HundetrainingContactForm: React.FC = () => {
       <form ref={form} onSubmit={handleSubmit} className="space-y-6">
         {/* Name Input */}
         <div>
-          <label htmlFor="name" className="block mb-2 font-bold text-primary">
+          <label htmlFor="user_name" className="block mb-2 font-bold text-primary">
             Name *
           </label>
           <input
             type="text"
-            id="name"
+            id="user_name"
             name="user_name"
             value={formData.user_name}
             onChange={handleChange}
@@ -110,12 +110,12 @@ const HundetrainingContactForm: React.FC = () => {
 
         {/* Phone Input */}
         <div>
-          <label htmlFor="phone" className="block mb-2 font-bold text-primary">
+          <label htmlFor="user_phone" className="block mb-2 font-bold text-primary">
             Telefonnummer *
           </label>
           <input
             type="tel"
-            id="phone"
+            id="user_phone"
             name="user_phone"
             value={formData.user_phone}
             onChange={handleChange}
@@ -127,11 +127,11 @@ const HundetrainingContactForm: React.FC = () => {
 
         {/* Service Select */}
         <div>
-          <label htmlFor="service" className="block mb-2 font-bold text-primary">
+          <label htmlFor="training_service" className="block mb-2 font-bold text-primary">
             Angebot *
           </label>
           <select
-            id="service"
+            id="training_service"
             name="training_service"
             value={formData.training_service}
             onChange={handleChange}
@@ -150,11 +150,11 @@ const HundetrainingContactForm: React.FC = () => {
 
         {/* Dog Count Select */}
         <div>
-          <label htmlFor="dogs" className="block mb-2 font-bold text-primary">
+          <label htmlFor="dog_count" className="block mb-2 font-bold text-primary">
             Wie viele hunde? *
           </label>
           <select
-            id="dogs"
+            id="dog_count"
             name="dog_count"
             value={formData.dog_count}
             onChange={handleChange}
@@ -207,12 +207,12 @@ const HundetrainingContactForm: React.FC = () => {
 
         {/* Email Input */}
         <div>
-          <label htmlFor="email" className="block mb-2 font-bold text-primary">
+          <label htmlFor="user_email" className="block mb-2 font-bold text-primary">
             Email *
           </label>
           <input
             type="email"
-            id="email"
+            id="user_email"
             name="user_email"
             value={formData.user_email}
             onChange={handleChange}

@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+/// <reference types="node" />
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import emailjs from '@emailjs/browser';
@@ -7,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 const ContactForm: React.FC = () => {
   const { t } = useTranslation();
   const formRef = useRef<HTMLFormElement>(null);
+  const submitTimeoutRef = useRef<NodeJS.Timeout>();
 
   const { ref, inView } = useInView({
     threshold: 0.1,
@@ -14,12 +16,12 @@ const ContactForm: React.FC = () => {
   });
 
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    dogCount: '1',
-    dogSize: 'small',
-    service: 'daycare',
+    user_name: '',
+    user_phone: '',
+    user_email: '',
+    dog_count: '1',
+    dog_size: 'Kleiner (bis 10 kg)',
+    training_service: 'daycare',
     message: '',
   });
 
@@ -36,48 +38,45 @@ const ContactForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formRef.current) return;
 
-    if (!formData.name || !formData.phone || !formData.email || !formData.message) {
-      setSubmitStatus('error');
-      setErrorMessage(t('contact.validationError', 'Bitte füllen Sie alle Pflichtfelder aus.'));
-      return;
+    if (isSubmitting) return;
+
+    if (submitTimeoutRef.current) {
+      clearTimeout(submitTimeoutRef.current);
     }
-
-    const serviceID = 'service_2lih55m';
-    const templateID = 'template_2lih55m';
-
-    const templateParams = {
-      from_name: formData.name,
-      reply_to: formData.email,
-      phone: formData.phone,
-      message: formData.message,
-      dog_count: formData.dogCount,
-      dog_size: formData.dogSize,
-      service_requested: formData.service,
-      site_name: 'AmanluxDog',
-      date: new Date().toLocaleDateString(),
-    };
 
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
+    // Configurações do EmailJS
+    const serviceID = 'service_2lih55m';
+    const templateID = 'template_70auqci';
+    const publicKey = 'AmgBu5KTBSjqp5HVm';
+
     try {
-      await emailjs.send(serviceID, templateID, templateParams);
+      const result = await emailjs.sendForm(serviceID, templateID, formRef.current, publicKey);
+      console.log('✅ Email enviado com sucesso:', result);
 
       setSubmitStatus('success');
       setFormData({
-        name: '',
-        phone: '',
-        email: '',
-        dogCount: '1',
-        dogSize: 'small',
-        service: 'daycare',
+        user_name: '',
+        user_phone: '',
+        user_email: '',
+        dog_count: '1',
+        dog_size: 'Kleiner (bis 10 kg)',
+        training_service: 'daycare',
         message: '',
       });
 
       if (formRef.current) formRef.current.reset();
+
+      submitTimeoutRef.current = setTimeout(() => {
+        setIsSubmitting(false);
+      }, 30000);
+
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('❌ Erro ao enviar email:', error);
       setSubmitStatus('error');
       setErrorMessage(
         t(
@@ -85,10 +84,19 @@ const ContactForm: React.FC = () => {
           'Es gab ein Problem beim Senden Ihrer Nachricht. Bitte versuchen Sie es später erneut.'
         )
       );
-    } finally {
-      setIsSubmitting(false);
+      submitTimeoutRef.current = setTimeout(() => {
+        setIsSubmitting(false);
+      }, 5000);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (submitTimeoutRef.current) {
+        clearTimeout(submitTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div ref={ref} className="max-w-3xl mx-auto">
@@ -145,14 +153,14 @@ const ContactForm: React.FC = () => {
 
             {/* Name Input */}
             <div>
-              <label htmlFor="name" className="block mb-2 font-bold text-primary">
+              <label htmlFor="user_name" className="block mb-2 font-bold text-primary">
                 {t('contact.name', 'Name')} *
               </label>
               <input
                 type="text"
-                id="name"
-                name="name"
-                value={formData.name}
+                id="user_name"
+                name="user_name"
+                value={formData.user_name}
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                 required
@@ -162,31 +170,33 @@ const ContactForm: React.FC = () => {
 
             {/* Phone Input */}
             <div>
-              <label htmlFor="phone" className="block mb-2 font-bold text-primary">
-                {t('contact.phone', 'Telefon')} *
+              <label htmlFor="user_phone" className="block mb-2 font-bold text-primary">
+                {t('contact.phone', 'Phone')} *
               </label>
               <input
                 type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
+                id="user_phone"
+                name="user_phone"
+                value={formData.user_phone}
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                 required
+                pattern="^(\+49|0)[1-9][0-9 ]{7,14}$"
+                title={t('contact.phoneFormatError', 'Please enter a valid German phone number')}
                 disabled={isSubmitting}
               />
             </div>
 
             {/* Email Input */}
             <div>
-              <label htmlFor="email" className="block mb-2 font-bold text-primary">
+              <label htmlFor="user_email" className="block mb-2 font-bold text-primary">
                 {t('contact.email', 'Email')} *
               </label>
               <input
                 type="email"
-                id="email"
-                name="email"
-                value={formData.email}
+                id="user_email"
+                name="user_email"
+                value={formData.user_email}
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                 required
@@ -196,13 +206,13 @@ const ContactForm: React.FC = () => {
 
             {/* Dog Count Select */}
             <div>
-              <label htmlFor="dogCount" className="block mb-2 font-bold text-primary">
+              <label htmlFor="dog_count" className="block mb-2 font-bold text-primary">
                 {t('contact.dogCount', 'Anzahl Hunde')} *
               </label>
               <select
-                id="dogCount"
-                name="dogCount"
-                value={formData.dogCount}
+                id="dog_count"
+                name="dog_count"
+                value={formData.dog_count}
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                 required
@@ -223,9 +233,9 @@ const ContactForm: React.FC = () => {
                 <label className="flex items-center">
                   <input
                     type="radio"
-                    name="dogSize"
-                    value="small"
-                    checked={formData.dogSize === 'small'}
+                    name="dog_size"
+                    value="Kleiner (bis 10 kg)"
+                    checked={formData.dog_size === 'Kleiner (bis 10 kg)'}
                     onChange={handleChange}
                     className="mr-2"
                     disabled={isSubmitting}
@@ -235,9 +245,9 @@ const ContactForm: React.FC = () => {
                 <label className="flex items-center">
                   <input
                     type="radio"
-                    name="dogSize"
-                    value="large"
-                    checked={formData.dogSize === 'large'}
+                    name="dog_size"
+                    value="Grosse (ab 10 kg)"
+                    checked={formData.dog_size === 'Grosse (ab 10 kg)'}
                     onChange={handleChange}
                     className="mr-2"
                     disabled={isSubmitting}
@@ -249,13 +259,13 @@ const ContactForm: React.FC = () => {
 
             {/* Service Select */}
             <div>
-              <label htmlFor="service" className="block mb-2 font-bold text-primary">
+              <label htmlFor="training_service" className="block mb-2 font-bold text-primary">
                 {t('contact.service', 'Dienstleistung')} *
               </label>
               <select
-                id="service"
-                name="service"
-                value={formData.service}
+                id="training_service"
+                name="training_service"
+                value={formData.training_service}
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
                 required

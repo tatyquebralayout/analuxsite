@@ -33,6 +33,35 @@ export const de: Partial<TranslationSchema> = {
       taxi: { title: 'Taxi Dog', description: 'Platzhalter-Beschreibung für Taxi Dog.' },
     },
   },
+  // Adicionando traduções para o formulário de contato
+  contact: {
+    title: 'Kontakt',
+    description: 'Wir freuen uns auf Ihre Nachricht. Füllen Sie das Formular aus, und wir werden uns so schnell wie möglich bei Ihnen melden.',
+    name: 'Name',
+    email: 'Email',
+    phone: 'Telefon',
+    message: 'Nachricht',
+    dogCount: 'Anzahl Hunde',
+    dogSize: 'Hundegrösse',
+    smallDog: 'Kleiner (bis 10 kg)',
+    largeDog: 'Grosse (ab 10 kg)',
+    service: 'Dienstleistung',
+    daycare: 'Tagesbetreuung',
+    boarding: 'Ferienbetreuung',
+    training: 'Hundetraining',
+    other: 'Andere',
+    submit: 'Nachricht senden',
+    sending: 'Wird gesendet...',
+    successTitle: 'Nachricht gesendet!',
+    successMessage: 'Vielen Dank für Ihre Nachricht. Wir werden uns in Kürze bei Ihnen melden.',
+    sendAnother: 'Weitere Nachricht senden',
+    requiredFields: 'Felder mit * sind Pflichtfelder',
+    validationError: 'Bitte füllen Sie alle Pflichtfelder aus.',
+    errorMessage: 'Es gab ein Problem beim Senden Ihrer Nachricht. Bitte versuchen Sie es später erneut.',
+    // Novas mensagens de validação
+    emailFormatError: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+    phoneFormatError: 'Bitte geben Sie eine gültige deutsche Telefonnummer ein.',
+  },
   // Aqui seriam adicionadas outras seções específicas
 };
 
