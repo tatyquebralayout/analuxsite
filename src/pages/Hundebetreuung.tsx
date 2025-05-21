@@ -298,23 +298,21 @@ const HundebetreuungPage: React.FC = () => {
               <div className="flex items-center mb-6">
                 <img src={sleepIcon} alt="Sleep Icon" className="w-12 h-12 mr-4" />
                 <h2 className="headline3 font-sour-gummy text-primary">
-                  {t('about.serviceHighlights.hotel.title')}
+                  Übernachtung und Wochenende
                 </h2>
               </div>
-              {(() => {
-                const hotelDescription = t('about.serviceHighlights.hotel.description');
-                const descriptionParagraphs = hotelDescription ? hotelDescription.split('\n') : [];
-                return descriptionParagraphs.map((paragraph, index) => (
-                  <p
-                    key={index}
-                    className={`body1 text-gray-600 ${
-                      index === descriptionParagraphs.length - 1 ? 'mb-6' : 'mb-4'
-                    }`}
-                  >
-                    {paragraph}
-                  </p>
-                ));
-              })()}
+              <p className="body1 text-gray-600 mb-4 leading-relaxed">
+                Wenn Ihr Hund über Nacht oder am Wochenende bei uns bleibt, kümmern wir uns liebevoll um alles.
+              </p>
+              <p className="body1 text-gray-600 mb-4 leading-relaxed">
+                Wir stellen bequeme Betten, kuschelige Decken und Spielzeug zur Verfügung – alles, was Ihr Hund für Komfort und Wohlbefinden braucht, ist bereits da.
+              </p>
+              <p className="body1 text-gray-600 mb-4 leading-relaxed">
+                Sie müssen nichts mitbringen – ausser dem gewohnten Futter Ihres Hundes.
+              </p>
+              <p className="body1 text-gray-600 mb-6 leading-relaxed">
+                Denn bei AmanLux Dogs ist für alles gesorgt.
+              </p>
             </div>
             <div className="md:w-1/2 flex justify-center">
               <div className="w-full rounded-lg overflow-hidden aspect-ratio-4-3">
