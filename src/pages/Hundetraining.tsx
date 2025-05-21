@@ -132,12 +132,93 @@ const HundetrainingPage: React.FC = () => {
 
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="flex justify-center mb-8">
-            <img
-              src={socialTrainingIcon}
-              alt="Social Training und Social Walking"
-              className="h-[120px] w-[120px]"
-            />
+          <div className="flex justify-center mb-8 relative overflow-visible">
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              {/* Efeito de ondas concêntricas */}
+              {[...Array(3)].map((_, i) => (
+                <motion.div 
+                  key={i}
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-secondary rounded-full"
+                  initial={{ width: 0, height: 0, opacity: 0 }}
+                  animate={{ 
+                    width: [0, 180 + i * 20], 
+                    height: [0, 180 + i * 20],
+                    opacity: [0, 0.7, 0]
+                  }}
+                  transition={{ 
+                    repeat: Infinity, 
+                    duration: 3,
+                    delay: i * 0.8,
+                    ease: "easeOut"
+                  }}
+                />
+              ))}
+              
+              {/* Ícone principal com animação de rotação 3D */}
+              <motion.div
+                className="relative z-10"
+                initial={{ rotateX: -30 }}
+                animate={{ 
+                  rotateX: [-30, 0, -30],
+                  rotateZ: [0, 5, 0, -5, 0],
+                }}
+                transition={{ 
+                  rotateX: { repeat: Infinity, duration: 3, ease: "easeInOut" },
+                  rotateZ: { repeat: Infinity, duration: 7, ease: "easeInOut" }
+                }}
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                <motion.img
+                  src={socialTrainingIcon}
+                  alt="Social Training und Social Walking"
+                  className="h-[120px] w-[120px]"
+                  initial={{ scale: 0.8 }}
+                  animate={{ 
+                    scale: [0.8, 1],
+                    filter: ["drop-shadow(0px 0px 0px rgba(21, 101, 192, 0))", "drop-shadow(0px 0px 10px rgba(21, 101, 192, 0.7))", "drop-shadow(0px 0px 0px rgba(21, 101, 192, 0))"]
+                  }}
+                  transition={{ 
+                    scale: { duration: 0.8 },
+                    filter: { repeat: Infinity, duration: 3, ease: "easeInOut" }
+                  }}
+                  whileHover={{ 
+                    scale: 1.1,
+                    transition: { duration: 0.3 }
+                  }}
+                  whileTap={{ 
+                    scale: 0.9,
+                    rotate: 360,
+                    transition: { duration: 0.5 }
+                  }}
+                />
+                
+                {/* Pequenas estrelas orbitando */}
+                {[...Array(4)].map((_, i) => (
+                  <motion.div 
+                    key={i}
+                    className="absolute top-1/2 left-1/2 w-3 h-3 bg-secondary-light rounded-full"
+                    animate={{ 
+                      x: Math.cos(i * Math.PI / 2) * 70,
+                      y: Math.sin(i * Math.PI / 2) * 70,
+                      opacity: [0.2, 1, 0.2],
+                      scale: [0.5, 1, 0.5]
+                    }}
+                    transition={{ 
+                      x: { repeat: Infinity, duration: 4, ease: "linear" },
+                      y: { repeat: Infinity, duration: 4, ease: "linear" },
+                      opacity: { repeat: Infinity, duration: 2, ease: "easeInOut", delay: i * 0.5 },
+                      scale: { repeat: Infinity, duration: 2, ease: "easeInOut", delay: i * 0.5 }
+                    }}
+                    style={{ transformOrigin: "center" }}
+                  />
+                ))}
+              </motion.div>
+            </motion.div>
           </div>
           <h2 className="headline2 text-primary font-sour-gummy text-center mb-12">
             Social Training und Social Walking
@@ -539,8 +620,92 @@ const HundetrainingPage: React.FC = () => {
 
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="flex justify-center mb-10">
-            <img src={particularIcon} alt="Privatunterricht" className="h-[120px] w-[120px]" />
+          <div className="flex justify-center mb-10 relative">
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              {/* Círculo de fundo animado */}
+              <motion.div 
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-container" 
+                initial={{ width: 0, height: 0 }}
+                animate={{ 
+                  width: 150, 
+                  height: 150,
+                  boxShadow: ['0px 0px 0px rgba(236, 28, 84, 0)', '0px 0px 20px rgba(236, 28, 84, 0.3)', '0px 0px 0px rgba(236, 28, 84, 0)'],
+                }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 3,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              {/* Partículas decorativas */}
+              {[...Array(5)].map((_, i) => (
+                <motion.div 
+                  key={i}
+                  className="absolute w-3 h-3 rounded-full bg-primary"
+                  initial={{ 
+                    x: 0, 
+                    y: 0, 
+                    opacity: 0,
+                    scale: 0
+                  }}
+                  animate={{ 
+                    x: [0, (i % 2 === 0 ? 1 : -1) * (30 + i * 10) * Math.cos(i * 72 * Math.PI / 180)],
+                    y: [0, (i % 2 === 0 ? 1 : -1) * (30 + i * 10) * Math.sin(i * 72 * Math.PI / 180)],
+                    opacity: [0, 0.7, 0],
+                    scale: [0, 1, 0]
+                  }}
+                  transition={{ 
+                    repeat: Infinity, 
+                    duration: 2 + i * 0.2,
+                    delay: i * 0.3,
+                    ease: "easeOut"
+                  }}
+                />
+              ))}
+              
+              {/* Ícone principal com animação */}
+              <motion.img 
+                src={particularIcon} 
+                alt="Privatunterricht" 
+                className="h-[120px] w-[120px] relative z-10" 
+                initial={{ rotateY: 90, opacity: 0 }}
+                animate={{ 
+                  rotateY: 0, 
+                  opacity: 1,
+                  y: [0, -8, 0],
+                }}
+                transition={{ 
+                  rotateY: { duration: 0.8, ease: "easeOut" },
+                  opacity: { duration: 0.8 },
+                  y: { repeat: Infinity, duration: 2, ease: "easeInOut" }
+                }}
+                whileHover={{ 
+                  scale: 1.1,
+                  rotateZ: [0, -3, 3, -3, 0],
+                  filter: ["brightness(1)", "brightness(1.2)", "brightness(1)"],
+                  transition: { duration: 0.8 }
+                }}
+                whileTap={{ 
+                  scale: 0.9,
+                  rotateY: 180,
+                  transition: { duration: 0.4 }
+                }}
+                drag
+                dragConstraints={{
+                  top: -10,
+                  left: -10,
+                  right: 10,
+                  bottom: 10,
+                }}
+                dragElastic={0.3}
+              />
+            </motion.div>
           </div>
           <h2 className="headline2 text-primary font-sour-gummy text-center mb-14">
             Privatunterricht

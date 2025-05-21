@@ -2,13 +2,13 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// Import translation files
-import translationDE from './utils/translations/de';
+// Import translations from the translations.ts file
+import { translations } from './utils/translations';
 
 // Set resources for German language only
 const resources = {
   de: {
-    translation: translationDE,
+    translation: translations.de,
   },
 };
 

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import { LanguageProvider } from '../contexts/LanguageContext';
-import { useScrollToTop } from '../utils/hooks';
+import { useScrollToTop } from '../utils/hooks/useScrollToTop';
 
 /**
  * Layout principal da aplicação

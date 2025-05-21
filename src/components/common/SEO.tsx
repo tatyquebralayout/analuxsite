@@ -1,6 +1,5 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
 
 interface SEOProps {
   title: string;
@@ -12,7 +11,6 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({ title, description, keywords, image, url, children }) => {
-  const { i18n } = useTranslation();
   const siteUrl = url || 'https://www.amanluxdog.com'; // Revertido para amanluxdog.com
   const siteImage = image || 'https://www.amanluxdog.com/images/og-default.jpg'; // Revertido para amanluxdog.com
 
@@ -31,7 +29,7 @@ const SEO: React.FC<SEOProps> = ({ title, description, keywords, image, url, chi
       <meta property="og:image" content={siteImage} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Amanlux Dog" /> {/* Revertido para Amanlux Dog */}
-      <meta property="og:locale" content={i18n.language} />
+      <meta property="og:locale" content="de_DE" />
       {/* Twitter Card Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={`${title} | Amanlux Dog`} />{' '}
