@@ -1,7 +1,6 @@
 import React from 'react';
 import SEO from '../components/common/SEO';
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 import emailjs from '@emailjs/browser';
 import carinhoImg from '../assets/images/carinho.png';
 // import crecheImg from '../assets/images/creche.png'; // Removido, pois não é mais usado
@@ -11,8 +10,6 @@ import taxiIcon from '../assets/images/svg/taxidog.png';
 import taxiImg from '../assets/images/taxidogfot.png';
 
 const HundebetreuungPage: React.FC = () => {
-  const { t } = useTranslation();
-
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -94,15 +91,9 @@ const HundebetreuungPage: React.FC = () => {
   return (
     <>
       <SEO
-        title={t('seo.hundebetreuung.title', 'Hundebetreuung - AmanLux Dogs')}
-        description={t(
-          'seo.hundebetreuung.description',
-          'Tagesbetreuung, Übernachtung und Wochenende für Ihren Hund in Zürich.'
-        )}
-        keywords={t(
-          'seo.hundebetreuung.keywords',
-          'Hundebetreuung, Hundehotel, Hundetagesstätte, Zürich, Übernachtung, Wochenende'
-        )}
+        title={'Hundebetreuung - AmanLux Dogs'}
+        description={'Tagesbetreuung, Übernachtung und Wochenende für Ihren Hund in Zürich.'}
+        keywords={'Hundebetreuung, Hundehotel, Hundetagesstätte, Zürich, Übernachtung, Wochenende'}
       />
 
       {/* Hero Section */}
@@ -116,10 +107,7 @@ const HundebetreuungPage: React.FC = () => {
                 transition={{ duration: 0.6 }}
                 className="headline1 mb-6 leading-tight font-sour-gummy"
               >
-                {t(
-                  'hundebetreuungPage.hero.title',
-                  'Betreuung, die über den Alltag hinausgeht – mit Liebe, Achtsamkeit und Vertrauen.'
-                )}
+                {'Betreuung, die über den Alltag hinausgeht – mit Liebe, Achtsamkeit und Vertrauen.'}
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -127,10 +115,7 @@ const HundebetreuungPage: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="body1 text-white"
               >
-                {t(
-                  'hundebetreuungPage.hero.subtitle',
-                  'Während Sie sich um Ihre Verpflichtungen kümmern, sorgen wir für den, der zu Hause sehnsüchtig auf Sie wartet – mit der gleichen Zuwendung und Geborgenheit, die er von Ihnen kennt.'
-                )}
+                {'Während Sie sich um Ihre Verpflichtungen kümmern, sorgen wir für den, der zu Hause sehnsüchtig auf Sie wartet – mit der gleichen Zuwendung und Geborgenheit, die er von Ihnen kennt.'}
               </motion.p>
             </div>
 
@@ -298,23 +283,21 @@ const HundebetreuungPage: React.FC = () => {
               <div className="flex items-center mb-6">
                 <img src={sleepIcon} alt="Sleep Icon" className="w-12 h-12 mr-4" />
                 <h2 className="headline3 font-sour-gummy text-primary">
-                  {t('about.serviceHighlights.hotel.title')}
+                  Übernachtung und Wochenende
                 </h2>
               </div>
-              {(() => {
-                const hotelDescription = t('about.serviceHighlights.hotel.description');
-                const descriptionParagraphs = hotelDescription ? hotelDescription.split('\n') : [];
-                return descriptionParagraphs.map((paragraph, index) => (
-                  <p
-                    key={index}
-                    className={`body1 text-gray-600 ${
-                      index === descriptionParagraphs.length - 1 ? 'mb-6' : 'mb-4'
-                    }`}
-                  >
-                    {paragraph}
-                  </p>
-                ));
-              })()}
+              <p className="body1 text-gray-600 mb-4">
+                Wenn Ihr Hund über Nacht oder am Wochenende bei uns bleibt, kümmern wir uns liebevoll um alles.
+              </p>
+              <p className="body1 text-gray-600 mb-4">
+                Wir stellen bequeme Betten, kuschelige Decken und Spielzeug zur Verfügung – alles, was Ihr Hund für Komfort und Wohlbefinden braucht, ist bereits da.
+              </p>
+              <p className="body1 text-gray-600 mb-4">
+                Sie müssen nichts mitbringen – ausser dem gewohnten Futter Ihres Hundes.
+              </p>
+              <p className="body1 text-gray-600 mb-6">
+                Denn bei AmanLux Dogs ist für alles gesorgt.
+              </p>
             </div>
             <div className="md:w-1/2 flex justify-center">
               <div className="w-full rounded-lg overflow-hidden aspect-ratio-4-3">
