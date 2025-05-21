@@ -8,15 +8,17 @@ import { Calendar, Clock, MapPin, Users, DollarSign, Activity } from 'lucide-rea
 // Importações das imagens e ícones locais
 import adestramentoImg from '../assets/images/adestramento.png';
 import certificadoImg from '../assets/images/certificado.png';
-import socialTrainingIcon from '../assets/images/svg/socialtraing.png';
-import bannerSocialImg from '../assets/images/banner_social.png';
-import treinamentoIcon from '../assets/images/svg/treinamento.png';
-import bannerTreinamentoImg from '../assets/images/banner_treinamento.png';
-import sempuxarIcon from '../assets/images/sempuxar.png';
+import socialTrainingIcon from '../assets/images/training-social.png';
+import bannerSocialImg from '../assets/images/banner-social.png';
+import treinamentoIcon from '../assets/images/treinamento.png';
+import bannerTreinamentoImg from '../assets/images/banner-treinamento.png';
+import sempuxarIcon from '../assets/images/training-sempuxar.png';
 import bannerCursoImg from '../assets/images/banner_curso.png';
-import particularIcon from '../assets/images/particular_ICON.jpg.png';
-import bannerParticularImg from '../assets/images/banner_PARTICILAR.png';
-import bannerOnlineImg from '../assets/images/banner_online.png';
+import particularIcon from '../assets/images/icon-particular.png';
+import bannerParticularImg from '../assets/images/banner-particular.png';
+import bannerOnlineImg from '../assets/images/banner-online.png';
+
+import styles from './Hundetraining.module.css';
 
 const HundetrainingPage: React.FC = () => {
   const { t } = useTranslation();
@@ -57,8 +59,7 @@ const HundetrainingPage: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.3 }}
                   className="headline1 mb-6 leading-tight font-sour-gummy"
                 >
-                  Mehr als nur Kommandos – eine vertrauensvolle Beziehung zwischen Mensch und Hund
-                  aufbauen
+                  {t('hundetrainingPage.heroTitle')}
                 </motion.h1>
               </motion.div>
             </div>
@@ -108,7 +109,7 @@ const HundetrainingPage: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <h2 className="headline2 text-primary font-sour-gummy mb-6">Hundetraining</h2>
+                <h2 className="headline2 text-primary font-sour-gummy mb-6">{t('hundetrainingPage.introductionTitle')}</h2>
                 <div className="space-y-4">
                   <p className="body1 text-gray-600">
                     Die Körpersprache ist eine der wichtigsten Arten, wie Hunde mit uns und ihrer
@@ -221,7 +222,7 @@ const HundetrainingPage: React.FC = () => {
             </motion.div>
           </div>
           <h2 className="headline2 text-primary font-sour-gummy text-center mb-12">
-            Social Training und Social Walking
+            {t('hundetrainingPage.socialTrainingTitle')}
           </h2>
 
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -231,44 +232,40 @@ const HundetrainingPage: React.FC = () => {
                 <div className="flex items-start gap-3">
                   <Calendar className="h-5 w-5 text-primary-light mt-0.5 flex-shrink-0" />
                   <span>
-                    <span className="font-medium text-primary">Wann:</span> Termine werden noch
-                    bekannt gegeben
+                    <span className="font-medium text-primary">{t('hundetrainingPage.socialTrainingDetails.when')}</span> {t('hundetrainingPage.socialTrainingDetails.whenValue')}
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="h-5 w-5 text-primary-light mt-0.5 flex-shrink-0" />
                   <span>
-                    <span className="font-medium text-primary">Dauer:</span> 90 Minuten
+                    <span className="font-medium text-primary">{t('hundetrainingPage.socialTrainingDetails.duration')}</span> {t('hundetrainingPage.socialTrainingDetails.durationValue')}
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-primary-light mt-0.5 flex-shrink-0" />
                   <span>
-                    <span className="font-medium text-primary">Ort:</span> Verschiedene Locations –
-                    je nach Ziel der Einheit mit vielen, wenigen oder keinen Menschen ausser der
-                    Gruppe (z. B. Parks, Strassen oder Wälder)
+                    <span className="font-medium text-primary">{t('hundetrainingPage.socialTrainingDetails.location')}</span> {t('hundetrainingPage.socialTrainingDetails.locationValue')}
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Users className="h-5 w-5 text-primary-light mt-0.5 flex-shrink-0" />
                   <span>
-                    <span className="font-medium text-primary">Gruppen:</span> 8–10 Hunde, jeweils
-                    mit einer Begleitperson
+                    <span className="font-medium text-primary">{t('hundetrainingPage.socialTrainingDetails.groups')}</span>
                   </span>
                 </div>
                 <div className="border-t border-gray-200 my-5"></div>
                 <div className="flex items-start gap-3">
                   <DollarSign className="h-5 w-5 text-primary-light mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-primary">Preis:</p>
+                    <p className="font-medium text-primary">{t('hundetrainingPage.socialTrainingDetails.price')}:</p>
                     <p className="mt-2">
-                      <span className="font-medium text-primary">Einzelsession: CHF 55.00</span>
+                      <span className="font-medium text-primary">{t('hundetrainingPage.socialTrainingDetails.singleSession')}</span>
                     </p>
                     <p className="mt-1">
-                      <span className="font-medium text-primary">10er-Paket: CHF 450.00</span>{' '}
-                      (gültig für 6 Monate)
+                      <span className="font-medium text-primary">{t('hundetrainingPage.socialTrainingDetails.tenSessions')}</span>{' '}
+                      {t('hundetrainingPage.socialTrainingDetails.validity')}
                     </p>
-                    <p className="text-sm text-gray-500 mt-2">Preise exkl. MwSt</p>
+                    <p className="text-sm text-gray-500 mt-2">{t('hundetrainingPage.socialTrainingDetails.exclVat')}</p>
                   </div>
                 </div>
               </div>
@@ -276,29 +273,23 @@ const HundetrainingPage: React.FC = () => {
 
             {/* Segunda coluna */}
             <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="headline4 mb-4 text-primary-dark">Was ist Social Walking?</h3>
+              <h3 className="headline4 mb-4 text-primary-dark">{t('hundetrainingPage.socialWalkingTitle')}</h3>
               <p className="body1 text-gray-600 mb-4">
-                Beim Social Walking spaziert der Hund gemeinsam mit seinem Besitzer und anderen
-                Hunden in einer Gruppe – in Umgebungen mit unterschiedlichen Reizen, wie Parks,
-                Straßen oder Wäldern.
+                {t('hundetrainingPage.socialWalkingText1')}
               </p>
               <p className="body1 text-gray-600">
-                Der Hund lernt dabei, gelassener auf verschiedene Situationen, Geräusche, Menschen
-                und andere Tiere zu reagieren – immer in sicherer Begleitung.
+                {t('hundetrainingPage.socialWalkingText2')}
               </p>
             </div>
 
             {/* Terceira coluna */}
             <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="headline4 mb-4 text-primary-dark">Was ist Social Training?</h3>
+              <h3 className="headline4 mb-4 text-primary-dark">{t('hundetrainingPage.socialTrainingDefinitionTitle')}</h3>
               <p className="body1 text-gray-600 mb-4">
-                Das Social Training ist eine ergänzende Trainingseinheit, bei der gezielt am
-                Verhalten des Hundes gearbeitet wird – unter Berücksichtigung seiner Persönlichkeit,
-                seiner Bedürfnisse und seiner Grenzen.
+                {t('hundetrainingPage.socialTrainingDefinitionText1')}
               </p>
               <p className="body1 text-gray-600">
-                Unser Ziel ist es, ein harmonisches Miteinander zu fördern – mit Geduld, Respekt und
-                positiver Verstärkung.
+                {t('hundetrainingPage.socialTrainingDefinitionText2')}
               </p>
             </div>
           </div>
@@ -313,37 +304,30 @@ const HundetrainingPage: React.FC = () => {
                 <div className="w-full md:w-1/2 flex items-center">
                   <div className="body1 text-gray-600 space-y-2 max-w-xl">
                     <p className="mb-3">
-                      Das Verhalten eines Hundes hängt stark davon ab, wie gut er die soziale
-                      Struktur versteht, in der er lebt – also seine Rolle in der Familie, in der
-                      Gruppe und in der Gesellschaft.
+                      {t('hundetrainingPage.socialTrainingDetails.text1')}
                     </p>
 
                     <p>
-                      Manche Verhaltensweisen, die für uns Menschen unangenehm oder unerwünscht
-                      erscheinen, haben oft tiefere Ursachen, die nicht sofort erkennbar sind.
+                      {t('hundetrainingPage.socialTrainingDetails.text2')}
                     </p>
 
                     <p>
-                      Deshalb ist es entscheidend, dass wir lernen, diese Signale richtig zu deuten
-                      – nur so können wir unseren Hunden wirklich helfen.
+                      {t('hundetrainingPage.socialTrainingDetails.text3')}
                     </p>
 
                     <div>
                       <p className="mb-1">
-                        Viele Probleme entstehen durch fehlende oder unzureichende Sozialisierung.
-                        Beispiele dafür sind:
+                        {t('hundetrainingPage.socialTrainingDetails.text4')}
                       </p>
                       <ul className="pl-5 list-disc mb-2">
-                        <li>Angst vor anderen Hunden</li>
-                        <li>Unsicherheit gegenüber Kindern, fremden Menschen oder Katzen</li>
-                        <li>Bellen, Fluchtverhalten oder sogar aggressives Verhalten</li>
+                        <li>{t('hundetrainingPage.socialTrainingDetails.bullet1')}</li>
+                        <li>{t('hundetrainingPage.socialTrainingDetails.bullet2')}</li>
+                        <li>{t('hundetrainingPage.socialTrainingDetails.bullet3')}</li>
                       </ul>
                     </div>
 
                     <p>
-                      Diese Verhaltensmuster lassen sich nicht durch Strafen, sondern nur durch
-                      gezieltes Training und kontinuierliche Sozialisierung verbessern. Und je
-                      früher man damit beginnt, desto nachhaltiger sind die Ergebnisse.
+                      {t('hundetrainingPage.socialTrainingDetails.text5')}
                     </p>
                   </div>
                 </div>
@@ -351,7 +335,7 @@ const HundetrainingPage: React.FC = () => {
                   <div className="w-full h-full flex items-center">
                     <img
                       src={bannerSocialImg}
-                      alt="Warum Social Training & Social Walking so wichtig sind"
+                      alt={t('hundetrainingPage.socialTrainingBannerAlt', 'Warum Social Training & Social Walking so wichtig sind')}
                       className="w-full h-auto rounded-lg shadow-sm object-cover"
                     />
                   </div>
@@ -372,7 +356,7 @@ const HundetrainingPage: React.FC = () => {
             />
           </div>
           <h2 className="headline2 text-primary font-sour-gummy text-center mb-14">
-            Impulskontrolle und Gehorsamkeitstraining
+            {t('hundetrainingPage.impulseControlTitle')}
           </h2>
 
           {/* Coluna centralizada com informações */}
@@ -382,57 +366,55 @@ const HundetrainingPage: React.FC = () => {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <Calendar className="h-6 w-6 text-primary-light flex-shrink-0" />
-                    <h3 className="text-xl font-medium text-primary">Wann:</h3>
+                    <h3 className="text-xl font-medium text-primary">{t('hundetrainingPage.impulseControlDetails.when')}</h3>
                   </div>
-                  <p className="text-gray-700 pl-8">Termine werden noch bekannt gegeben</p>
+                  <p className="text-gray-700 pl-8">{t('hundetrainingPage.impulseControlDetails.whenValue')}</p>
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <Clock className="h-6 w-6 text-primary-light flex-shrink-0" />
-                    <h3 className="text-xl font-medium text-primary">Dauer:</h3>
+                    <h3 className="text-xl font-medium text-primary">{t('hundetrainingPage.impulseControlDetails.duration')}</h3>
                   </div>
-                  <p className="text-gray-700 pl-8">60 Minuten</p>
+                  <p className="text-gray-700 pl-8">{t('hundetrainingPage.impulseControlDetails.durationValue')}</p>
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <MapPin className="h-6 w-6 text-primary-light flex-shrink-0" />
-                    <h3 className="text-xl font-medium text-primary">Ort:</h3>
+                    <h3 className="text-xl font-medium text-primary">{t('hundetrainingPage.impulseControlDetails.location')}</h3>
                   </div>
-                  <p className="text-gray-700 pl-8">
-                    Verschiedene Locations im Kanton Zürich – z. B. Parks, Strassen oder Wälder
-                  </p>
+                  <p className="text-gray-700 pl-8">{t('hundetrainingPage.impulseControlDetails.locationValue')}</p>
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <Users className="h-6 w-6 text-primary-light flex-shrink-0" />
-                    <h3 className="text-xl font-medium text-primary">Gruppen:</h3>
+                    <h3 className="text-xl font-medium text-primary">{t('hundetrainingPage.impulseControlDetails.groups')}</h3>
                   </div>
-                  <p className="text-gray-700 pl-8">4–6 Hunde, jeweils mit einer Begleitperson</p>
+                  <p className="text-gray-700 pl-8">{t('hundetrainingPage.impulseControlDetails.groupsValue')}</p>
                 </div>
 
                 <div className="md:col-span-2 mt-6 pt-6 border-t border-gray-200">
                   <div className="flex items-center gap-2 mb-4">
                     <DollarSign className="h-6 w-6 text-primary-light flex-shrink-0" />
-                    <h3 className="text-xl font-medium text-primary">Preis:</h3>
+                    <h3 className="text-xl font-medium text-primary">{t('hundetrainingPage.impulseControlDetails.price')}</h3>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pl-8">
                     <div className="space-y-2">
-                      <p className="font-medium text-primary-dark">Einzelsession:</p>
-                      <p className="text-gray-700 pl-3 text-lg">CHF 70.00</p>
+                      <p className="font-medium text-primary-dark">{t('hundetrainingPage.impulseControlDetails.singleSession')}</p>
+                      <p className="text-gray-700 pl-3 text-lg">{t('hundetrainingPage.impulseControlDetails.singleSessionPrice')}</p>
                     </div>
 
                     <div className="space-y-2">
-                      <p className="font-medium text-primary-dark">10er-Paket:</p>
-                      <p className="text-gray-700 pl-3 text-lg">CHF 650.00</p>
-                      <p className="text-gray-600 pl-3">(gültig für 6 Monate)</p>
+                      <p className="font-medium text-primary-dark">{t('hundetrainingPage.impulseControlDetails.tenSessions')}</p>
+                      <p className="text-gray-700 pl-3 text-lg">{t('hundetrainingPage.impulseControlDetails.tenSessionsPrice')}</p>
+                      <p className="text-gray-600 pl-3">{t('hundetrainingPage.impulseControlDetails.validity')}</p>
                     </div>
                   </div>
 
-                  <p className="text-sm text-gray-500 mt-6 pl-8">Preise exkl. MwSt</p>
+                  <p className="text-sm text-gray-500 mt-6 pl-8">{t('hundetrainingPage.impulseControlDetails.exclVat')}</p>
                 </div>
               </div>
             </div>
@@ -444,35 +426,23 @@ const HundetrainingPage: React.FC = () => {
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="w-full md:w-1/2">
                   <div className="body1 space-y-4">
-                    <p>
-                      Ungehorsamkeit und fehlende Impulskontrolle können für Mensch und Hund
-                      gleichermassen frustrierend sein. Oft entstehen diese Herausforderungen aus
-                      Unsicherheit, mangelnder Orientierung oder fehlendem Training.
-                    </p>
-                    <p>
-                      Viele dieser Probleme lassen sich vermeiden, wenn der Hund lernt, seinem
-                      Menschen zu vertrauen, auf ihn zu achten und klare Kommandos zu verstehen.
-                    </p>
-                    <p>In diesem Kurs lernt Ihr Hund,</p>
+                    <p>{t('hundetrainingPage.impulseControlDetails.text1')}</p>
+                    <p>{t('hundetrainingPage.impulseControlDetails.text2')}</p>
+                    <p>{t('hundetrainingPage.impulseControlDetails.text3')}</p>
+                    <p>{t('hundetrainingPage.impulseControlDetails.text4')}</p>
                     <ul className="list-disc list-inside">
-                      <li>sich besser zu konzentrieren,</li>
-                      <li>
-                        Impulse zu kontrollieren (z. B. bei Reizen wie anderen Hunden, Katzen oder
-                        Geräuschen),
-                      </li>
-                      <li>zuverlässig auf Kommandos zu reagieren,</li>
-                      <li>und gelassener in Alltagssituationen zu bleiben.</li>
+                      <li>{t('hundetrainingPage.impulseControlDetails.bullet1')}</li>
+                      <li>{t('hundetrainingPage.impulseControlDetails.bullet2')}</li>
+                      <li>{t('hundetrainingPage.impulseControlDetails.bullet3')}</li>
+                      <li>{t('hundetrainingPage.impulseControlDetails.bullet4')}</li>
                     </ul>
-                    <p>
-                      Das Ziel ist eine harmonische, sichere und entspannte Beziehung – damit
-                      Spaziergänge wieder Freude machen und Vertrauen wächst.
-                    </p>
+                    <p>{t('hundetrainingPage.impulseControlDetails.text5')}</p>
                   </div>
                 </div>
                 <div className="w-full md:w-1/2">
                   <img
                     src={bannerTreinamentoImg}
-                    alt="Impulskontrolle und Gehorsamkeitstraining"
+                    alt={t('hundetrainingPage.impulseControlDetails.bannerAlt', 'Impulskontrolle und Gehorsamkeitstraining')}
                     className="w-full h-auto object-cover rounded-lg"
                   />
                 </div>
@@ -488,7 +458,7 @@ const HundetrainingPage: React.FC = () => {
             <img src={sempuxarIcon} alt="Training des Hundes" className="h-[120px] w-[120px]" />
           </div>
           <h2 className="headline2 text-primary font-sour-gummy text-center mb-14">
-            Training des Hundes, damit er beim Spaziergang nicht mehr an der Leine zieht
+            {t('hundetrainingPage.leashTrainingTitle')}
           </h2>
 
           {/* Duas colunas abaixo do título */}
@@ -497,7 +467,7 @@ const HundetrainingPage: React.FC = () => {
               {/* Primeira coluna */}
               <div className="bg-white p-8 rounded-lg shadow-sm flex items-center">
                 <h3 className="headline3 text-primary">
-                  Leinenführigkeit – Training für entspannte Spaziergänge
+                  {t('hundetrainingPage.leashTrainingSubtitle')}
                 </h3>
               </div>
 
@@ -506,24 +476,24 @@ const HundetrainingPage: React.FC = () => {
                 <div className="w-full">
                   <div className="flex items-center gap-2 mb-6">
                     <DollarSign className="h-6 w-6 text-primary-light flex-shrink-0" />
-                    <h3 className="text-xl font-medium text-primary">Preis:</h3>
+                    <h3 className="text-xl font-medium text-primary">{t('hundetrainingPage.leashTrainingDetails.priceTitle')}:</h3>
                   </div>
 
                   <div className="pl-8 space-y-5">
                     <div className="flex items-baseline justify-between">
-                      <p className="font-medium text-primary-dark">Einzelsession:</p>
-                      <p className="text-gray-700 text-lg">CHF 70.00</p>
+                      <p className="font-medium text-primary-dark">{t('hundetrainingPage.leashTrainingDetails.singleSessionLabel')}:</p>
+                      <p className="text-gray-700 text-lg">{t('hundetrainingPage.leashTrainingDetails.singleSessionPrice')}</p>
                     </div>
 
                     <div className="space-y-1">
                       <div className="flex items-baseline justify-between">
-                        <p className="font-medium text-primary-dark">10er-Paket:</p>
-                        <p className="text-gray-700 text-lg">CHF 650.00</p>
+                        <p className="font-medium text-primary-dark">{t('hundetrainingPage.leashTrainingDetails.tenSessionsLabel')}:</p>
+                        <p className="text-gray-700 text-lg">{t('hundetrainingPage.leashTrainingDetails.tenSessionsPrice')}</p>
                       </div>
-                      <p className="text-gray-600 text-right text-sm">(gültig für 6 Monate)</p>
+                      <p className="text-gray-600 text-right text-sm">{t('hundetrainingPage.leashTrainingDetails.validity')}</p>
                     </div>
 
-                    <p className="text-sm text-gray-500 mt-4">Preise exkl. MwSt</p>
+                    <p className="text-sm text-gray-500 mt-4">{t('hundetrainingPage.leashTrainingDetails.exclVat')}</p>
                   </div>
                 </div>
               </div>
@@ -538,68 +508,53 @@ const HundetrainingPage: React.FC = () => {
                   <div className="overflow-hidden rounded-lg">
                     <img
                       src={bannerCursoImg}
-                      alt="Hund an der Leine Training"
+                      alt={t('hundetrainingPage.leashTrainingDetails.bannerAlt', 'Hund an der Leine Training')}
                       className="w-full h-auto object-cover rounded-lg transform hover:scale-105 transition duration-300"
                     />
                   </div>
                 </div>
                 <div className="w-full md:w-2/5">
                   <div className="body1 space-y-4 text-gray-600">
-                    <p>
-                      Zieht Ihr Hund an der Leine, obwohl Sie ihn immer wieder bitten, damit
-                      aufzuhören?
-                    </p>
-                    <p>
-                      Reagiert er plötzlich stark, wenn er andere Hunde, Katzen, Autos oder Menschen
-                      sieht?
-                    </p>
-                    <p>Fühlen Sie sich auf Spaziergängen gestresst oder überfordert?</p>
-                    <p className="font-medium text-primary-dark">
-                      Dann ist dieser Kurs genau das Richtige für Sie.
-                    </p>
-                    <p>
-                      Wir helfen Ihnen, die Kontrolle zurückzugewinnen – mit Geduld, positiver
-                      Kommunikation und gezielten Techniken. Ihr Hund lernt, sich besser zu
-                      konzentrieren, ruhiger zu bleiben und achtsam an Ihrer Seite zu laufen.
-                    </p>
+                    <p>{t('hundetrainingPage.leashTrainingDetails.text1')}</p>
+                    <p>{t('hundetrainingPage.leashTrainingDetails.text2')}</p>
+                    <p>{t('hundetrainingPage.leashTrainingDetails.text3')}</p>
+                    <p className="font-medium text-primary-dark">{t('hundetrainingPage.leashTrainingDetails.text4')}</p>
+                    <p>{t('hundetrainingPage.leashTrainingDetails.text5')}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Duas novas colunas: Trainingsdetails e Ziel */}
+          {/* Duas novas colunas: Trainingsdetails und Ziel */}
           <div className="max-w-6xl mx-auto mt-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Primeira coluna - Trainingsdetails */}
               <div className="bg-white p-8 rounded-lg shadow-sm">
-                <h3 className="text-xl font-medium text-primary mb-6">Trainingsdetails</h3>
+                <h3 className="text-xl font-medium text-primary mb-6">{t('hundetrainingPage.leashTrainingDetails.trainingDetailsTitle')}</h3>
                 <ul className="space-y-5 text-gray-600">
                   <li className="flex items-start gap-3">
                     <Clock className="h-6 w-6 text-primary-light mt-0.5 flex-shrink-0" />
                     <div>
-                      <span className="font-semibold text-primary-light">Dauer:</span> 90 Minuten
+                      <span className="font-semibold text-primary-light">{t('hundetrainingPage.leashTrainingDetails.durationLabel')}:</span> {t('hundetrainingPage.leashTrainingDetails.durationValue')}
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
                     <Users className="h-6 w-6 text-primary-light mt-0.5 flex-shrink-0" />
                     <div>
-                      <span className="font-semibold text-primary-light">Teilnehmer:</span> 3 Hunde
-                      + 3 Bezugspersonen
+                      <span className="font-semibold text-primary-light">{t('hundetrainingPage.leashTrainingDetails.participantsLabel')}:</span> {t('hundetrainingPage.leashTrainingDetails.participantsValue')}
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
                     <MapPin className="h-6 w-6 text-primary-light mt-0.5 flex-shrink-0" />
                     <div>
-                      <span className="font-semibold text-primary-light">Ort:</span> Verschiedene
-                      Locations im Kanton Zürich (Parks, Strassen oder Wälder)
+                      <span className="font-semibold text-primary-light">{t('hundetrainingPage.leashTrainingDetails.locationLabel')}:</span> {t('hundetrainingPage.leashTrainingDetails.locationValue')}
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
                     <Activity className="h-6 w-6 text-primary-light mt-0.5 flex-shrink-0" />
                     <div>
-                      <span className="font-semibold text-primary-light">Reizlevel:</span> mit
-                      vielen, wenigen oder keinen externen Einflüssen – je nach Trainingsziel
+                      <span className="font-semibold text-primary-light">{t('hundetrainingPage.leashTrainingDetails.stimulusLevelLabel')}:</span> {t('hundetrainingPage.leashTrainingDetails.stimulusLevelValue')}
                     </div>
                   </li>
                 </ul>
@@ -607,10 +562,9 @@ const HundetrainingPage: React.FC = () => {
 
               {/* Segunda coluna - Ziel */}
               <div className="bg-white p-8 rounded-lg shadow-sm flex flex-col justify-center">
-                <h3 className="text-xl font-medium text-primary mb-6">Ziel:</h3>
+                <h3 className="text-xl font-medium text-primary mb-6">{t('hundetrainingPage.leashTrainingDetails.goalTitle')}:</h3>
                 <p className="text-gray-600">
-                  Ein harmonisches, sicheres Miteinander an der Leine – für entspannte und freudige
-                  Spaziergänge, bei denen Sie und Ihr Hund wieder im Einklang unterwegs sind.
+                  {t('hundetrainingPage.leashTrainingDetails.goalText')}
                 </p>
               </div>
             </div>
@@ -708,7 +662,7 @@ const HundetrainingPage: React.FC = () => {
             </motion.div>
           </div>
           <h2 className="headline2 text-primary font-sour-gummy text-center mb-14">
-            Privatunterricht
+            {t('hundetrainingPage.privateLessonsTitle')}
           </h2>
 
           <div className="max-w-6xl mx-auto">
@@ -718,7 +672,7 @@ const HundetrainingPage: React.FC = () => {
                 <div className="overflow-hidden rounded-lg w-full">
                   <img
                     src={bannerParticularImg}
-                    alt="Privatunterricht Banner"
+                    alt={t('hundetrainingPage.privateLessonsDetails.privateLessonsBannerAlt')}
                     className="w-full h-auto object-cover rounded-lg transform hover:scale-105 transition duration-300"
                   />
                 </div>
@@ -726,20 +680,15 @@ const HundetrainingPage: React.FC = () => {
 
               {/* Coluna direita - Texto (menor) na metade inferior */}
               <div
-                className="bg-white p-8 rounded-lg shadow-sm md:col-span-2 flex flex-col"
-                style={{ minHeight: '400px' }}
+                className={
+                  `bg-white p-8 rounded-lg shadow-sm md:col-span-2 flex flex-col ${styles.minHeight400}`
+                }
               >
                 <div className="flex-grow min-h-[40%]"></div>
                 <div className="body1 space-y-6 text-gray-600 pb-6">
+                  <p>{t('hundetrainingPage.privateLessonsDetails.text1')}</p>
                   <p>
-                    In unserem Einzeltraining (60 Minuten) gehen wir gezielt auf die
-                    Herausforderungen ein, die Sie mit Ihrem Hund erleben. Gemeinsam entwickeln wir
-                    Lösungen, die genau zu Ihnen, Ihrem Alltag und der Persönlichkeit Ihres Hundes
-                    passen.
-                  </p>
-                  <p>
-                    <span className="font-medium text-primary-dark">Unser Ziel:</span> Ein
-                    harmonisches Miteinander – abgestimmt auf Ihre individuellen Bedürfnisse.
+                    <span className="font-medium text-primary-dark">{t('hundetrainingPage.privateLessonsDetails.goalTitle')}</span> {t('hundetrainingPage.privateLessonsDetails.goalText')}
                   </p>
                 </div>
               </div>
@@ -750,28 +699,26 @@ const HundetrainingPage: React.FC = () => {
               <div className="mb-8">
                 <div className="flex items-center gap-2 mb-6">
                   <DollarSign className="h-6 w-6 text-primary-light flex-shrink-0" />
-                  <h3 className="text-xl font-medium text-primary">Preise:</h3>
+                  <h3 className="text-xl font-medium text-primary">{t('hundetrainingPage.privateLessonsDetails.priceTitle')}</h3>
                 </div>
 
                 <ul className="pl-9 space-y-4 text-gray-600">
                   <li className="flex items-center gap-2">
                     <span className="text-primary-light font-medium">–</span>
                     <p>
-                      <span className="font-medium">Einzelstunde:</span> CHF 80.00
+                      <span className="font-medium">{t('hundetrainingPage.privateLessonsDetails.singleHour')}</span> CHF 80.00
                     </p>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="text-primary-light font-medium">–</span>
                     <p>
-                      <span className="font-medium">10er-Paket:</span> CHF 650.00 (gültig für 6
-                      Monate)
+                      <span className="font-medium">{t('hundetrainingPage.privateLessonsDetails.tenHours')}</span> CHF 650.00 ({t('hundetrainingPage.privateLessonsDetails.validity')})
                     </p>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="text-primary-light font-medium">–</span>
                     <p>
-                      <span className="font-medium">Fahrtkosten:</span> CHF 1.00 pro Kilometer (ab
-                      Standort Flaach)
+                      <span className="font-medium">{t('hundetrainingPage.privateLessonsDetails.travelCosts')}</span> {t('hundetrainingPage.privateLessonsDetails.travelCostValue')}
                     </p>
                   </li>
                 </ul>
@@ -781,10 +728,7 @@ const HundetrainingPage: React.FC = () => {
 
               <div className="flex items-start gap-3 mt-8">
                 <Activity className="h-6 w-6 text-primary-light mt-1 flex-shrink-0" />
-                <p className="text-gray-600">
-                  Ob Verhaltenstraining, Alltagssituationen oder spezielle Themen – wir sind an
-                  Ihrer Seite, um Sie und Ihren Hund bestmöglich zu begleiten.
-                </p>
+                <p className="text-gray-600">{t('hundetrainingPage.privateLessonsDetails.finalText')}</p>
               </div>
             </div>
           </div>
@@ -804,44 +748,33 @@ const HundetrainingPage: React.FC = () => {
 
             <div className="text-center">
               <h2 className="headline2 text-primary font-sour-gummy mb-8">
-                Für einen gelungenen Start mit Ihrem neuen Hund
+                {t('hundetrainingPage.onlineTrainingTitle')}
               </h2>
             </div>
 
             <div className="body1 space-y-4 text-gray-600 max-w-3xl mx-auto">
-              <p>
-                Haben Sie kürzlich einen Hund adoptiert – oder planen Sie, bald ein neues
-                Familienmitglied bei sich aufzunehmen?
-              </p>
-              <p>
-                Die ersten Wochen sind entscheidend für eine stabile Bindung und ein harmonisches
-                Zusammenleben.
-              </p>
-              <p>
-                Wir begleiten Sie in dieser wichtigen Phase mit einfühlsamer Beratung per Video-
-                oder Onlinegespräch.
-              </p>
-              <p>
-                Ob vor der Ankunft oder in den ersten Tagen nach dem Einzug – wir sind für Sie da.
-              </p>
-              <p>Auf Wunsch kann auch ein persönliches Treffen (60 Minuten) vereinbart werden.</p>
+              <p>{t('hundetrainingPage.onlineTrainingDetails.text1')}</p>
+              <p>{t('hundetrainingPage.onlineTrainingDetails.text2')}</p>
+              <p>{t('hundetrainingPage.onlineTrainingDetails.text3')}</p>
+              <p>{t('hundetrainingPage.onlineTrainingDetails.text4')}</p>
+              <p>{t('hundetrainingPage.onlineTrainingDetails.text5')}</p>
 
               <div className="border-t border-gray-200 my-6"></div>
 
               <div className="mt-6">
                 <div className="flex items-center gap-2 mb-4">
                   <DollarSign className="h-6 w-6 text-primary-light flex-shrink-0" />
-                  <h3 className="text-xl font-medium text-primary">Preis:</h3>
+                  <h3 className="text-xl font-medium text-primary">{t('hundetrainingPage.onlineTrainingDetails.priceTitle')}</h3>
                 </div>
 
                 <ul className="pl-9 space-y-3 text-gray-600">
                   <li className="flex items-center gap-2">
                     <span className="text-primary-light font-medium">–</span>
-                    <p>CHF 80.00 pro Beratung (online oder vor Ort)</p>
+                    <p>{t('hundetrainingPage.onlineTrainingDetails.priceOnline')}</p>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="text-primary-light font-medium">–</span>
-                    <p>Fahrtkosten: CHF 1.00 pro Kilometer (ab Standort Flaach)</p>
+                    <p>{t('hundetrainingPage.onlineTrainingDetails.travelCosts')}: {t('hundetrainingPage.onlineTrainingDetails.travelCostValue')}</p>
                   </li>
                 </ul>
               </div>
@@ -858,7 +791,7 @@ const HundetrainingPage: React.FC = () => {
         variants={sectionVariants}
       >
         <div className="container mx-auto px-4">
-          <h2 className="headline2 text-primary font-sour-gummy text-center mb-8">Kontakt</h2>
+          <h2 className="headline2 text-primary font-sour-gummy text-center mb-8">{t('contact.title')}</h2>
           <HundetrainingContactForm />
         </div>
       </motion.section>

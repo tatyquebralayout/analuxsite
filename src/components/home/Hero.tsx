@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import heroDogsUrl from '../../assets/images/dogs_hero.webp';
+import heroDogsUrl from '../../assets/images/hero-dogs.webp';
 
 /**
  * Interface de propriedades do componente Hero

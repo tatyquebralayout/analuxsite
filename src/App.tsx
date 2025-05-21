@@ -3,27 +3,32 @@ import AppRoutes from './routes';
 import { PerformanceProvider } from './contexts/PerformanceContext';
 
 /**
- * Componente principal da aplicação
+ * Main Application Component
  *
- * Este componente envolve toda a aplicação com o PerformanceProvider
- * para gerenciar otimizações de performance em toda a aplicação.
+ * This component wraps the entire application with the PerformanceProvider
+ * to manage performance optimizations throughout the app.
  *
- * O PerformanceProvider detecta capacidades do dispositivo e preferências
- * do usuário para ajustar animações e efeitos visuais.
+ * The PerformanceProvider detects device capabilities and user preferences
+ * to adjust animations and visual effects.
  */
 function App() {
+  // State to track if the component has mounted
   const [isMounted, setIsMounted] = useState(false);
 
+  // Effect to set isMounted to true after the initial render
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  // Optionally show a loading indicator before mounting
   if (!isMounted) {
-    return <div>Carregando...</div>;
+    return <div>Loading...</div>; // Consider using a more sophisticated loading component
   }
 
   return (
+    // Wrap the application with the PerformanceProvider
     <PerformanceProvider>
+      {/* Render the application routes */}
       <AppRoutes />
     </PerformanceProvider>
   );

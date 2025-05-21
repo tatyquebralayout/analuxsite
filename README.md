@@ -65,7 +65,7 @@ analuxsite/
 │   ├── assets/
 │   │   ├── video/
 │   │   ├── images/
-│   │   └── index.ts      // Este index.ts é de assets
+│   │   └── index.ts      // This index.ts is from assets
 │   ├── components/
 │   │   ├── about/
 │   │   │   └── Team.tsx
@@ -110,12 +110,12 @@ analuxsite/
 │   │   │   ├── usePerformanceOptimizer.ts
 │   │   │   └── useScrollToTop.ts
 │   │   └── translations/
-│   │       ├── de/           // Diretório com as traduções em alemão
+│   │       ├── de/           // Directory with German translations
 │   │       │   ├── common.ts
 │   │       │   ├── index.ts
 │   │       │   └── pages.ts
-│   │       ├── index.ts      // Agregador principal de traduções (agora apenas para alemão)
-│   │       └── types.ts      // Tipos para as traduções
+│   │       ├── index.ts      // Main translation aggregator (now only for German)
+│   │       └── types.ts      // Types for translations
 │   ├── App.tsx
 │   ├── index.css
 │   ├── main.tsx

@@ -1,18 +1,15 @@
 import React from 'react';
 import SEO from '../components/common/SEO';
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 import emailjs from '@emailjs/browser';
 import carinhoImg from '../assets/images/carinho.png';
 // import crecheImg from '../assets/images/creche.png'; // Removido, pois não é mais usado
-import sleepIcon from '../assets/images/svg/sleep.png';
+import sleepIcon from '../assets/images/sleep.png';
 import hotelImg from '../assets/images/hotel.png';
-import taxiIcon from '../assets/images/svg/taxidog.png';
-import taxiImg from '../assets/images/taxidogfot.png';
+import taxiIcon from '../assets/images/svg/taxidog.svg';
+import taxiImg from '../assets/images/service-taxidog.png';
 
 const HundebetreuungPage: React.FC = () => {
-  const { t } = useTranslation();
-
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -94,15 +91,9 @@ const HundebetreuungPage: React.FC = () => {
   return (
     <>
       <SEO
-        title={t('seo.hundebetreuung.title', 'Hundebetreuung - AmanLux Dogs')}
-        description={t(
-          'seo.hundebetreuung.description',
-          'Tagesbetreuung, Übernachtung und Wochenende für Ihren Hund in Zürich.'
-        )}
-        keywords={t(
-          'seo.hundebetreuung.keywords',
-          'Hundebetreuung, Hundehotel, Hundetagesstätte, Zürich, Übernachtung, Wochenende'
-        )}
+        title={'Hundebetreuung - AmanLux Dogs'}
+        description={'Tagesbetreuung, Übernachtung und Wochenende für Ihren Hund in Zürich.'}
+        keywords={'Hundebetreuung, Hundehotel, Hundetagesstätte, Zürich, Übernachtung, Wochenende'}
       />
 
       {/* Hero Section */}
@@ -116,10 +107,7 @@ const HundebetreuungPage: React.FC = () => {
                 transition={{ duration: 0.6 }}
                 className="headline1 mb-6 leading-tight font-sour-gummy"
               >
-                {t(
-                  'hundebetreuungPage.hero.title',
-                  'Betreuung, die über den Alltag hinausgeht – mit Liebe, Achtsamkeit und Vertrauen.'
-                )}
+                {'Betreuung, die über den Alltag hinausgeht – mit Liebe, Achtsamkeit und Vertrauen.'}
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -127,10 +115,7 @@ const HundebetreuungPage: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="body1 text-white"
               >
-                {t(
-                  'hundebetreuungPage.hero.subtitle',
-                  'Während Sie sich um Ihre Verpflichtungen kümmern, sorgen wir für den, der zu Hause sehnsüchtig auf Sie wartet – mit der gleichen Zuwendung und Geborgenheit, die er von Ihnen kennt.'
-                )}
+                {'Während Sie sich um Ihre Verpflichtungen kümmern, sorgen wir für den, der zu Hause sehnsüchtig auf Sie wartet – mit der gleichen Zuwendung und Geborgenheit, die er von Ihnen kennt.'}
               </motion.p>
             </div>
 
@@ -163,7 +148,7 @@ const HundebetreuungPage: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <motion.h2 className="headline2 mb-6 text-primary font-sour-gummy">
-                Hundebetreuung
+                Hundebetreuung 
               </motion.h2>
               <div className="space-y-4">
                 <p className="body1 text-gray-600">
@@ -194,7 +179,7 @@ const HundebetreuungPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Unsere Hundebetreuung in Bildern
+            Unsere Hundebetreuung in Bildern 
           </motion.h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             {[
@@ -252,7 +237,7 @@ const HundebetreuungPage: React.FC = () => {
             <div className="md:w-1/2">
               <div className="flex items-center mb-6">
                 <img
-                  src="/src/assets/images/svg/daycare.png"
+                  src="/src/assets/images/svg/daycare.svg"
                   alt="Daycare Icon"
                   className="w-12 h-12 mr-4"
                 />
@@ -353,7 +338,7 @@ const HundebetreuungPage: React.FC = () => {
               <p className="body1 text-gray-600 mb-4">
                 An Wochenenden und Feiertagen ist der Taxi-Dog-Service nicht verfügbar.
               </p>
-              <p className="body1 text-gray-600 mb-4">
+               <p className="body1 text-gray-600 mb-4">
                 Fragen Sie uns gerne, ob Ihre Adresse innerhalb unserer Fahrtrouten liegt.
               </p>
               <p className="body1 text-gray-600 mb-4">

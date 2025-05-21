@@ -4,31 +4,35 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 import './index.css';
-import './i18n-fixed'; // Alterado de './i18n' para './i18n-fixed'
+import './i18n-fixed'; // Changed from './i18n' to './i18n-fixed'
 
-// Determina o basename com base na URL atual
+// Determines the basename based on the current URL
 const getBasename = () => {
   const { pathname } = window.location;
-  // Verifica se estamos em localhost
+  // Check if we are on localhost and the path includes '/analuxsite/'
   if (pathname.includes('/analuxsite/')) {
     return '/analuxsite';
   }
+  // Otherwise, use the root path
   return '/';
 };
 
 /**
- * Ponto de entrada da aplicação
+ * Application Entry Point
  *
- * Renderiza o componente App dentro de um StrictMode para
- * detectar problemas potenciais durante o desenvolvimento.
+ * Renders the App component within a StrictMode to
+ * detect potential problems during development.
  *
- * O createRoot é a API recomendada do React 18 para renderização,
- * que habilita recursos como Concurrent Mode.
+ * createRoot is the recommended React 18 API for rendering,
+ * which enables features like Concurrent Mode.
  */
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    {/* Use BrowserRouter for routing, setting the basename dynamically */}
     <BrowserRouter basename={getBasename()}>
+      {/* Provides context for managing document head tags */}
       <HelmetProvider>
+        {/* Render the main application component */}
         <App />
       </HelmetProvider>
     </BrowserRouter>

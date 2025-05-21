@@ -1,14 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Heart, Clock } from 'lucide-react';
-import bannerFotoAbout from '../../assets/images/banner_foto_about.png';
+// Importing the banner image for the about section
+import bannerFotoAbout from '../../assets/images/banner-about-photo.png';
+// Importing the Team component
 import Team from '../about/Team';
 
+// Importing team member images
 import chamoCeoImage from '../../assets/images/team/chamo_ceo.png';
 import danielFotoImage from '../../assets/images/team/daniel_foto.png';
 import daniloFotoImage from '../../assets/images/team/danilo_foto.png';
 
+// AboutUs component definition
 const AboutUs: React.FC = () => {
+  // Animation variants for sections
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -21,6 +26,7 @@ const AboutUs: React.FC = () => {
     },
   };
 
+  // Array of team members with their details
   const teamMembers = [
     {
       name: 'Chamo',
@@ -44,7 +50,7 @@ const AboutUs: React.FC = () => {
       name: 'Caroline Sousa',
       role: 'Hundebetreuung',
       description: 'Caroline sorgt mit viel Einfühlungsvermögen und Hingabe dafür, dass sich jeder Hund bei uns wohlfühlt. Pflege, Spielzeit und liebevolle Aufmerksamkeit stehen bei ihr an erster Stelle.',
-      image: 'https://via.placeholder.com/150/ff1655/FFFFFF?text=CS', // Placeholder temporário
+      image: 'https://via.placeholder.com/150/ff1655/FFFFFF?text=CS', // Temporary placeholder
     },
   ];
 
@@ -55,6 +61,7 @@ const AboutUs: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="flex flex-col items-center justify-center h-full">
+              {/* Hero text */}
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -67,6 +74,7 @@ const AboutUs: React.FC = () => {
               </motion.div>
             </div>
 
+            {/* Hero image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -83,9 +91,10 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
+      {/* About section */}
       <section id="about" className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          {/* Título principal */}
+          {/* Main title */}
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0 }}
@@ -95,9 +104,10 @@ const AboutUs: React.FC = () => {
             <h2 className="headline2 text-primary font-sour-gummy mb-4">Über uns</h2>
           </motion.div>
 
-          {/* História e Fundadora */}
+          {/* History and Founder */}
           <div className="max-w-6xl mx-auto mb-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+              {/* Text content */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -133,6 +143,7 @@ const AboutUs: React.FC = () => {
                 </div>
               </motion.div>
 
+              {/* Image */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -150,7 +161,7 @@ const AboutUs: React.FC = () => {
             </div>
           </div>
 
-          {/* Missão e Valores */}
+          {/* Mission and Values */}
           <motion.div
             className="max-w-6xl mx-auto bg-gray-50 rounded-lg p-8 md:p-12 shadow-sm mb-20"
             variants={sectionVariants}
@@ -161,6 +172,7 @@ const AboutUs: React.FC = () => {
             <h3 className="headline3 text-primary-dark text-center mb-10">Unsere Philosophie</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Mission Card */}
               <motion.div
                 className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-[#ff1655] text-center h-full transform hover:-translate-y-1"
                 whileHover={{ scale: 1.02 }}
@@ -180,6 +192,7 @@ const AboutUs: React.FC = () => {
                 </p>
               </motion.div>
 
+              {/* Values Card */}
               <motion.div
                 className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-[#ff1655] text-center h-full transform hover:-translate-y-1"
                 whileHover={{ scale: 1.02 }}
@@ -198,6 +211,7 @@ const AboutUs: React.FC = () => {
                 </p>
               </motion.div>
 
+              {/* Methodology Card */}
               <motion.div
                 className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-[#ff1655] text-center h-full transform hover:-translate-y-1"
                 whileHover={{ scale: 1.02 }}
@@ -220,7 +234,7 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Adicionando a seção da equipe aqui */}
+      {/* Adding the team section here */}
       <Team title="Unser Team" members={teamMembers} />
     </>
   );
