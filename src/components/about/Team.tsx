@@ -1,15 +1,13 @@
 import React from 'react';
-import { translations } from '../../utils/translations';
-import { TranslationSchema, TeamMember } from '../../types';
+import { TeamMember } from '../../types/translations';
 
 interface TeamProps {
-  language: string;
+  title: string;
+  members: TeamMember[];
 }
 
-const Team: React.FC<TeamProps> = ({ language }) => {
-  const t = translations[language as keyof typeof translations] as TranslationSchema;
-
-  if (!t?.team?.members || t.team.members.length === 0) {
+const Team: React.FC<TeamProps> = ({ title, members }) => {
+  if (!members || members.length === 0) {
     return null;
   }
 
@@ -17,11 +15,11 @@ const Team: React.FC<TeamProps> = ({ language }) => {
     <section id="team" className="py-16 bg-neutral-surface dark:bg-neutral-800">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12 text-[#ff1655] dark:text-[#ff1655] font-sour-gummy">
-          {t.team?.title}
+          {title}
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
-          {t.team.members.map((member: TeamMember, index: number) => (
+          {members.map((member: TeamMember, index: number) => (
             <div key={index} className="text-center flex flex-col items-center">
               <div className="relative w-48 h-48 mx-auto mb-6">
                 <img

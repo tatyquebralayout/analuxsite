@@ -1,6 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Heart, Clock } from 'lucide-react';
+import bannerFotoAbout from '../../assets/images/banner_foto_about.png';
+import Team from '../about/Team';
+
+import chamoCeoImage from '../../assets/images/team/chamo_ceo.png';
+import danielFotoImage from '../../assets/images/team/daniel_foto.png';
+import daniloFotoImage from '../../assets/images/team/danilo_foto.png';
 
 const AboutUs: React.FC = () => {
   const sectionVariants = {
@@ -14,6 +20,33 @@ const AboutUs: React.FC = () => {
       },
     },
   };
+
+  const teamMembers = [
+    {
+      name: 'Chamo',
+      role: 'CEO | Chihuahua',
+      description: 'Ich bin hier, um zu zeigen, dass Grösse keine Rolle spielt!\nBei AmanLux Dogs ist der Spass garantiert – und Bellen ist unsere offizielle Sprache.',
+      image: chamoCeoImage,
+    },
+    {
+      name: 'Daniel León',
+      role: 'Hundebetreuung und Hundetrainer',
+      description: 'Daniel ist ein liebevoller und verantwortungsbewusster Betreuer, der sich mit Herz um alle Bedürfnisse Ihres Hundes kümmert – von der Pflege über das Futter bis hin zum Spiel und der täglichen Zuwendung.',
+      image: danielFotoImage,
+    },
+    {
+      name: 'Danilo',
+      role: 'Hundebetreuung, Hundetrainer & Buchhaltung',
+      description: 'Danillo leitet AmanLux Dogs mit viel Erfahrung, Organisationstalent und einer tiefen Liebe zu Hunden. Als erfahrener Hundebetreuer und -trainer stellt er sicher, dass alle Dienstleistungen auf höchstem Niveau und mit grösster Sorgfalt ausgeführt werden.',
+      image: daniloFotoImage,
+    },
+    {
+      name: 'Caroline Sousa',
+      role: 'Hundebetreuung',
+      description: 'Caroline sorgt mit viel Einfühlungsvermögen und Hingabe dafür, dass sich jeder Hund bei uns wohlfühlt. Pflege, Spielzeit und liebevolle Aufmerksamkeit stehen bei ihr an erster Stelle.',
+      image: 'https://via.placeholder.com/150/ff1655/FFFFFF?text=CS', // Placeholder temporário
+    },
+  ];
 
   return (
     <>
@@ -41,7 +74,7 @@ const AboutUs: React.FC = () => {
               className="flex justify-center"
             >
               <img
-                src="/src/assets/images/chamo_ceo.png"
+                src={chamoCeoImage}
                 alt="AmanLux Dogs Gründerin"
                 className="w-auto h-auto max-h-80 rounded-full border-4 border-white shadow-xl"
               />
@@ -108,7 +141,7 @@ const AboutUs: React.FC = () => {
               >
                 <div className="relative">
                   <img
-                    src="/src/assets/images/banner_foto_about.png"
+                    src={bannerFotoAbout}
                     alt="AmanLux Dogs"
                     className="w-full h-auto rounded-lg shadow-xl"
                   />
@@ -186,6 +219,9 @@ const AboutUs: React.FC = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Adicionando a seção da equipe aqui */}
+      <Team title="Unser Team" members={teamMembers} />
     </>
   );
 };

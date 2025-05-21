@@ -66,6 +66,29 @@ export const de: Partial<TranslationSchema> = {
     medium: 'Mittel',
     large: 'Groß'
   },
+  team: {
+    title: 'Unser Team Platzhalter',
+    members: [
+      {
+        name: 'Chamo',
+        role: 'Cargo Provísório',
+        description: 'Descrição provisória do Chamo.',
+        image: '/assets/images/team/chamo_ceo.png',
+      },
+      {
+        name: 'Daniel León',
+        role: 'Cargo Provísório',
+        description: 'Descrição provisória do Daniel.',
+        image: '/assets/images/team/daniel_foto.png',
+      },
+      {
+        name: 'Danilo',
+        role: 'Cargo Provísório',
+        description: 'Descrição provisória do Danilo.',
+        image: '/assets/images/team/danilo_foto.png',
+      },
+    ],
+  },
   // Aqui seriam adicionadas outras seções específicas
 };
 
