@@ -1,0 +1,29 @@
+{
+  "contact": {
+    "title": "Contact",
+    "description": "We look forward to your message. Fill out the form and we will get back to you as soon as possible.",
+    "name": "Name",
+    "phone": "Phone",
+    "email": "Email",
+    "dogCount": "Number of Dogs",
+    "dogSize": "Dog Size",
+    "smallDog": "Small (up to 10 kg)",
+    "largeDog": "Large (over 10 kg)",
+    "service": "Service",
+    "daycare": "Day Care",
+    "boarding": "Boarding",
+    "training": "Dog Training",
+    "other": "Other",
+    "message": "Message",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "successTitle": "Message Sent!",
+    "successMessage": "Thank you for your message. We will get back to you shortly.",
+    "sendAnother": "Send Another Message",
+    "errorMessage": "There was a problem sending your message. Please try again later.",
+    "requiredFields": "Fields marked with * are required",
+    "validationError": "Please fill in all required fields.",
+    "emailFormatError": "Please enter a valid email address.",
+    "phoneFormatError": "Please enter a valid German phone number."
+  }
+} 

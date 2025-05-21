@@ -227,24 +227,38 @@ export interface TranslationSchema {
   // Contact section
   contact: {
     title: string;
+    description: string;
     name: string;
     phone: string;
     email: string;
     dogCount: string;
     dogSize: string;
+    message: string;
+    smallDog: string;
+    largeDog: string;
+    service: string;
+    daycare: string;
+    boarding: string;
+    training: string;
+    other: string;
+    submit: string;
+    sending: string;
+    successTitle: string;
+    successMessage: string;
+    sendAnother: string;
+    requiredFields: string;
+    validationError: string;
+    errorMessage: string;
+    emailFormatError: string;
+    phoneFormatError: string;
+    promise: string;
+    or: string;
     small: string;
     medium: string;
     large: string;
-    service: string;
-    submit: string;
-    promise: string;
-    or: string;
-    successMessage: string;
-    requiredFields?: string;
     dogCountOptions?: string[];
     dogSizeOptions?: string[];
     serviceOptions?: string[];
-    message?: string;
   };
 
   // Location section

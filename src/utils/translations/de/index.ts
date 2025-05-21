@@ -58,9 +58,13 @@ export const de: Partial<TranslationSchema> = {
     requiredFields: 'Felder mit * sind Pflichtfelder',
     validationError: 'Bitte füllen Sie alle Pflichtfelder aus.',
     errorMessage: 'Es gab ein Problem beim Senden Ihrer Nachricht. Bitte versuchen Sie es später erneut.',
-    // Novas mensagens de validação
     emailFormatError: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
     phoneFormatError: 'Bitte geben Sie eine gültige deutsche Telefonnummer ein.',
+    promise: 'Wir werden uns so schnell wie möglich bei Ihnen melden',
+    or: 'oder',
+    small: 'Klein',
+    medium: 'Mittel',
+    large: 'Groß'
   },
   // Aqui seriam adicionadas outras seções específicas
 };
